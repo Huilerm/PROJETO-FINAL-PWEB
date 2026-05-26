@@ -1,15 +1,13 @@
 version: "3.9"
 
-name: deppi-api
 services:
   postgres:
     image: postgres:18
-    container_name: deppi-api
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: apideppi
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
