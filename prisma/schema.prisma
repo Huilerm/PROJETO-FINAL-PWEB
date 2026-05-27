@@ -5,9 +5,102 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model Usuario {
+  idUsuario     Int        @id @default(autoincrement())
+  usuario_nome  String
+  usuario_email String     @unique
+  usuario_senha String
+  usuario_cpf   String     @unique
+  cargos        Cargos[]   @default([ALUNO])
+  alunos        Aluno?
+  professor     Professor?
+}
+
+model Aluno {
+  idAluno         Int         @id @default(autoincrement())
+  aluno_matricula String
+  Usuario         Usuario     @relation(fields: [fkUsuario], references: [idUsuario])
+  fkUsuario       Int         @unique
+  inscricaos      Inscricao[]
+}
+
+model Professor {
+  idProfessor    Int     @id @default(autoincrement())
+  professor_siap String
+  Usuario        Usuario @relation(fields: [fkUsuario], references: [idUsuario])
+  fkUsuario      Int     @unique
+  cursos         Curso[]
+}
+
+model Curso {
+  idCurso              Int          @id @default(autoincrement())
+  curso_nome           String
+  curso_carga_horaria  Int
+  curso_vagas          Int
+  curso_status         StatusCurso  @default(ANALISE)
+  curso_data_inicio    DateTime     @db.Date
+  curso_data_fim       DateTime     @db.Date
+  curso_horario_inicio DateTime     @db.Time()
+  curso_horario_fim    DateTime     @db.Time()
+  curso_professores    Professor[]
+  curso_dias_semana    DiasSemana[]
+  inscricao            Inscricao[]
+  Instituicao          Instituicao  @relation(fields: [fkInstituicao], references: [idInstituicao])
+  fkInstituicao        Int
+}
+
+model Instituicao {
+  idInstituicao      Int     @id @default(autoincrement())
+  instituicao_nome   String
+  instituicao_cidade String
+  instituicao_campus String
+  instituicao_cnpj   String
+  cursos             Curso[]
+}
+
+model Inscricao {
+  idInscricao    Int             @id @default(autoincrement())
+  inscricao_data DateTime        @default(now())
+  curso_status   StatusInscricao @default(PENDENTE)
+  aluno          Aluno           @relation(fields: [fkAluno], references: [idAluno])
+  fkAluno        Int
+  curso          Curso           @relation(fields: [fkCurso], references: [idCurso])
+  fkCurso        Int
+}
+
+enum StatusCurso {
+  ANDAMENTO
+  ANALISE
+  CONCLUIDO
+  FECHADO
+}
+
+enum StatusInscricao {
+  PENDENTE
+  DEFERIDO
+  INDEFERIDO
+}
+
+enum Cargos {
+  ALUNO
+  PROFESSOR
+  DEPPI
+  ADMIN
+}
+
+enum DiasSemana {
+  SEGUNDA
+  TERCA
+  QUARTA
+  QUINTA
+  SEXTA
+  SABADO
+  DOMINGO
 }
