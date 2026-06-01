@@ -12,14 +12,20 @@ datasource db {
 }
 
 model Usuario {
-  idUsuario     Int        @id @default(autoincrement())
-  usuario_nome  String
-  usuario_email String     @unique
-  usuario_senha String
-  usuario_cpf   String     @unique
-  cargos        Cargos[]   @default([ALUNO])
-  alunos        Aluno?
-  professor     Professor?
+  idUsuario            Int        @id @default(autoincrement())
+  usuario_nome         String
+  usuario_nome_social  String?
+  usuario_data_nasc    DateTime
+  usuario_sexo         Sexo[]
+  usuario_naturalidade String
+  usuario_raca         Raca[]
+  usuario_email        String     @unique
+  usuario_senha        String
+  identidade           Identidade @relation(fields: [usuario_identidade], references: [idIdentidade])
+  usuario_identidade   Int        @unique
+  cargos               Cargos[]   @default([ALUNO])
+  alunos               Aluno?
+  professor            Professor?
 }
 
 model Aluno {
@@ -74,6 +80,22 @@ model Inscricao {
   fkCurso        Int
 }
 
+model Identidade {
+  idIdentidade             Int      @id @default(autoincrement())
+  identidade_rg            String
+  identidade_cpf           String
+  identidade_orgao_emissor String
+  identidade_estado        String
+  identidade_data_emissao  DateTime
+  usuario                  Usuario?
+}
+
+model RendaFamiliar {
+  idRendaFamiliar Int @id @default(autoincrement())
+  renda_familiar Float
+  numero_pessoas Int
+}
+
 enum StatusCurso {
   ANDAMENTO
   ANALISE
@@ -102,4 +124,18 @@ enum DiasSemana {
   SEXTA
   SABADO
   DOMINGO
+}
+
+enum Sexo {
+  MASCULINO
+  FEMININO
+}
+
+enum Raca {
+  AMARELA
+  BRANCA
+  PARDA
+  PRETA
+  INDIGENA
+  NAO_DECLARADO
 }
