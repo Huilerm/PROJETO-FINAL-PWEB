@@ -39,7 +39,7 @@ model Usuario {
 model Aluno {
   id Int @id @default(autoincrement())
 
-  matricula String
+  matricula String @unique
 
   inscricaos Inscricao[]
 
@@ -52,7 +52,7 @@ model Aluno {
 model Professor {
   id Int @id @default(autoincrement())
 
-  siap String
+  siap String @unique
 
   alocacoes AlocacaoProfessor[]
 
