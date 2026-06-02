@@ -12,88 +12,148 @@ datasource db {
 }
 
 model Usuario {
-  idUsuario            Int        @id @default(autoincrement())
-  usuario_nome         String
-  usuario_nome_social  String?
-  usuario_data_nasc    DateTime
-  usuario_sexo         Sexo[]
-  usuario_naturalidade String
-  usuario_raca         Raca[]
-  usuario_email        String     @unique
-  usuario_senha        String
-  identidade           Identidade @relation(fields: [usuario_identidade], references: [idIdentidade])
-  usuario_identidade   Int        @unique
-  cargos               Cargos[]   @default([ALUNO])
-  alunos               Aluno?
-  professor            Professor?
+  id Int @id @default(autoincrement())
+
+  nome         String
+  nome_social  String?
+  data_nasc    DateTime
+  naturalidade String
+  email        String   @unique
+  senha        String
+
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  sexo      Sexo
+  raca      Raca
+  cargos    Cargos[]   @default([ALUNO])
+  alunos    Aluno?
+  professor Professor?
+
+  fk_identidade Int        @unique
+  identidade    Identidade @relation(fields: [fk_identidade], references: [id])
 }
 
 model Aluno {
-  idAluno         Int         @id @default(autoincrement())
-  aluno_matricula String
-  Usuario         Usuario     @relation(fields: [fkUsuario], references: [idUsuario])
-  fkUsuario       Int         @unique
-  inscricaos      Inscricao[]
+  id Int @id @default(autoincrement())
+
+  matricula String
+
+  inscricaos Inscricao[]
+
+  fk_usuario Int     @unique
+  usuario    Usuario @relation(fields: [fk_usuario], references: [id])
 }
 
 model Professor {
-  idProfessor    Int     @id @default(autoincrement())
-  professor_siap String
-  Usuario        Usuario @relation(fields: [fkUsuario], references: [idUsuario])
-  fkUsuario      Int     @unique
-  cursos         Curso[]
+  id Int @id @default(autoincrement())
+
+  siap String
+
+  alocacoes AlocacaoProfessor[]
+
+  fk_usuario Int     @unique
+  usuario    Usuario @relation(fields: [fk_usuario], references: [id])
 }
 
 model Curso {
-  idCurso              Int          @id @default(autoincrement())
-  curso_nome           String
-  curso_carga_horaria  Int
-  curso_vagas          Int
-  curso_status         StatusCurso  @default(ANALISE)
-  curso_data_inicio    DateTime     @db.Date
-  curso_data_fim       DateTime     @db.Date
-  curso_horario_inicio DateTime     @db.Time()
-  curso_horario_fim    DateTime     @db.Time()
-  curso_professores    Professor[]
-  curso_dias_semana    DiasSemana[]
-  inscricao            Inscricao[]
-  Instituicao          Instituicao  @relation(fields: [fkInstituicao], references: [idInstituicao])
-  fkInstituicao        Int
+  id Int @id @default(autoincrement())
+
+  nome           String
+  carga_horaria  Int
+  vagas          Int
+  status         StatusCurso @default(ANALISE)
+  data_inicio    DateTime    @db.Date
+  data_fim       DateTime    @db.Date
+  horario_inicio DateTime    @db.Time()
+  horario_fim    DateTime    @db.Time()
+
+  professores AlocacaoProfessor[]
+  dias_semana DiasSemana[]
+  inscricao   Inscricao[]
+
+  fk_instituicao Int
+  Instituicao    Instituicao @relation(fields: [fk_instituicao], references: [id])
+}
+
+model AlocacaoProfessor {
+  id Int @id @default(autoincrement())
+
+  fk_professor Int
+  fk_curso     Int
+
+  professor Professor @relation(fields: [fk_professor], references: [id])
+  curso     Curso     @relation(fields: [fk_curso], references: [id])
+
+  carga_horaria Int
+  dataAlocacao  DateTime @default(now())
+
+  @@unique([fk_professor, fk_curso])
 }
 
 model Instituicao {
-  idInstituicao      Int     @id @default(autoincrement())
-  instituicao_nome   String
-  instituicao_cidade String
-  instituicao_campus String
-  instituicao_cnpj   String
-  cursos             Curso[]
+  id Int @id @default(autoincrement())
+
+  nome   String
+  cidade String
+  campus String
+  cnpj   String
+
+  cursos Curso[]
 }
 
 model Inscricao {
-  idInscricao    Int             @id @default(autoincrement())
-  inscricao_data DateTime        @default(now())
+  id Int @id @default(autoincrement())
+
+  data DateTime @default(now())
+
   curso_status   StatusInscricao @default(PENDENTE)
-  aluno          Aluno           @relation(fields: [fkAluno], references: [idAluno])
-  fkAluno        Int
-  curso          Curso           @relation(fields: [fkCurso], references: [idCurso])
-  fkCurso        Int
+  renda_familiar RendaFamiliar?
+
+  fk_aluno Int
+  aluno    Aluno @relation(fields: [fk_aluno], references: [id])
+
+  fk_curso Int
+  curso    Curso @relation(fields: [fk_curso], references: [id])
 }
 
 model Identidade {
-  idIdentidade             Int      @id @default(autoincrement())
-  identidade_rg            String
-  identidade_cpf           String
-  identidade_orgao_emissor String
-  identidade_estado        String
-  identidade_data_emissao  DateTime
-  usuario                  Usuario?
+  id Int @id @default(autoincrement())
+
+  rg            String   @unique
+  cpf           String   @unique
+  orgao_emissor String
+  estado        String
+  data_emissao  DateTime @db.Date
+
+  usuario Usuario?
 }
 
 model RendaFamiliar {
-  idRendaFamiliar Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
   renda_familiar Float
   numero_pessoas Int
+
+  fk_inscricao Int       @unique
+  inscricao    Inscricao @relation(fields: [fk_inscricao], references: [id])
+}
+
+model Auditoria {
+  id Int @id @default(autoincrement())
+
+  tabela_modificada String
+  acao_realizada    Acao
+  id_modificado Int
+
+  dados_antigos Json?
+  dados_inseridos Json?
+
+  fk_usuario Int?
+
+  data_modificacao DateTime @default(now())
+
+  @@index([tabela_modificada, id_modificado])
 }
 
 enum StatusCurso {
@@ -138,4 +198,10 @@ enum Raca {
   PRETA
   INDIGENA
   NAO_DECLARADO
+}
+
+enum Acao {
+  CREATE
+  UPDATE
+  DELETE
 }
