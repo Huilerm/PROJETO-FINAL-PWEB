@@ -15,14 +15,14 @@ model Usuario {
   id Int @id @default(autoincrement())
 
   nome         String
-  nome_social  String?
-  data_nasc    DateTime
+  nomeSocial  String? @map("nome_social")
+  dataNasc    DateTime @map("data_nasc")
   naturalidade String
   email        String   @unique
   senha        String
 
-  criado_em     DateTime @default(now())
-  atualizado_em DateTime @updatedAt
+  criadoEm     DateTime @default(now()) @map("criado_em")
+  atualizadoEm DateTime @updatedAt @map("atualizado_em")
 
   sexo      Sexo
   raca      Raca
@@ -30,8 +30,10 @@ model Usuario {
   alunos    Aluno?
   professor Professor?
 
-  fk_identidade Int        @unique
-  identidade    Identidade @relation(fields: [fk_identidade], references: [id])
+  fkIdentidade Int        @unique @map("fk_identidade")
+  identidade    Identidade @relation(fields: [fkIdentidade], references: [id])
+
+  @@map("usuario")
 }
 
 model Aluno {
@@ -41,8 +43,10 @@ model Aluno {
 
   inscricaos Inscricao[]
 
-  fk_usuario Int     @unique
-  usuario    Usuario @relation(fields: [fk_usuario], references: [id])
+  fkUsuario Int     @unique @map("fk_usuario")
+  usuario    Usuario @relation(fields: [fkUsuario], references: [id])
+
+  @@map("aluno")
 }
 
 model Professor {
@@ -52,8 +56,10 @@ model Professor {
 
   alocacoes AlocacaoProfessor[]
 
-  fk_usuario Int     @unique
-  usuario    Usuario @relation(fields: [fk_usuario], references: [id])
+  fkUsuario Int     @unique @map("fk_usuario")
+  usuario    Usuario @relation(fields: [fkUsuario], references: [id])
+
+  @@map("professor")
 }
 
 model Curso {
@@ -63,32 +69,35 @@ model Curso {
   carga_horaria  Int
   vagas          Int
   status         StatusCurso @default(ANALISE)
-  data_inicio    DateTime    @db.Date
-  data_fim       DateTime    @db.Date
-  horario_inicio DateTime    @db.Time()
-  horario_fim    DateTime    @db.Time()
+  dataInicio    DateTime    @db.Date @map("data_inicio")
+  dataFim       DateTime    @db.Date @map("data_fim")
+  horarioInicio DateTime    @db.Time() @map("horario_inicio")
+  horarioFim    DateTime    @db.Time() @map("horario_fim")
 
   professores AlocacaoProfessor[]
-  dias_semana DiasSemana[]
+  diasSemana DiasSemana[] @map("dias_semana")
   inscricao   Inscricao[]
 
-  fk_instituicao Int
-  Instituicao    Instituicao @relation(fields: [fk_instituicao], references: [id])
+  fkInstituicao Int @map("fk_instituicao")
+  Instituicao    Instituicao @relation(fields: [fkInstituicao], references: [id])
+
+  @@map("curso")
 }
 
 model AlocacaoProfessor {
   id Int @id @default(autoincrement())
 
-  fk_professor Int
-  fk_curso     Int
+  fkProfessor  Int       @map("fk_professor")
+  fkCurso      Int       @map("fk_curso")
 
-  professor Professor @relation(fields: [fk_professor], references: [id])
-  curso     Curso     @relation(fields: [fk_curso], references: [id])
+  professor    Professor @relation(fields: [fkProfessor], references: [id])
+  curso        Curso     @relation(fields: [fkCurso], references: [id])
 
-  carga_horaria Int
-  dataAlocacao  DateTime @default(now())
+  cargaHoraria Int       @map("carga_horaria")
+  dataAlocacao DateTime  @default(now()) @map("data_alocacao")
 
-  @@unique([fk_professor, fk_curso])
+  @@unique([fkProfessor, fkCurso])
+  @@map("alocacoes_professores")
 }
 
 model Instituicao {
@@ -97,9 +106,11 @@ model Instituicao {
   nome   String
   cidade String
   campus String
-  cnpj   String
+  cnpj   String @unique
 
   cursos Curso[]
+
+  @@map("instituiocao")
 }
 
 model Inscricao {
@@ -107,14 +118,16 @@ model Inscricao {
 
   data DateTime @default(now())
 
-  curso_status   StatusInscricao @default(PENDENTE)
-  renda_familiar RendaFamiliar?
+  status        StatusInscricao @default(PENDENTE) @map("curso_status")
+  rendaFamiliar RendaFamiliar?
 
-  fk_aluno Int
-  aluno    Aluno @relation(fields: [fk_aluno], references: [id])
+  fkAluno       Int             @map("fk_aluno")
+  aluno         Aluno           @relation(fields: [fkAluno], references: [id])
 
-  fk_curso Int
-  curso    Curso @relation(fields: [fk_curso], references: [id])
+  fkCurso       Int             @map("fk_curso")
+  curso         Curso           @relation(fields: [fkCurso], references: [id])
+
+  @@map("inscricoes")
 }
 
 model Identidade {
@@ -132,28 +145,31 @@ model Identidade {
 model RendaFamiliar {
   id Int @id @default(autoincrement())
 
-  renda_familiar Float
-  numero_pessoas Int
+  rendaFamiliar Float     @map("renda_familiar")
+  numeroPessoas Int       @map("numero_pessoas")
 
-  fk_inscricao Int       @unique
-  inscricao    Inscricao @relation(fields: [fk_inscricao], references: [id])
+  fkInscricao   Int       @unique @map("fk_inscricao")
+  inscricao     Inscricao @relation(fields: [fkInscricao], references: [id])
+
+  @@map("rendas_familiares")
 }
 
 model Auditoria {
   id Int @id @default(autoincrement())
 
-  tabela_modificada String
-  acao_realizada    Acao
-  id_modificado Int
+  tabelaModificada String   @map("tabela_modificada")
+  acaoRealizada    Acao     @map("acao_realizada")
+  idModificado     Int      @map("id_modificado")
 
-  dados_antigos Json?
-  dados_inseridos Json?
+  dadosAntigos     Json?    @map("dados_antigos")
+  dadosInseridos   Json?    @map("dados_inseridos")
 
-  fk_usuario Int?
+  fkUsuario        Int?     @map("fk_usuario")
 
-  data_modificacao DateTime @default(now())
+  dataModificacao  DateTime @default(now()) @map("data_modificacao")
 
-  @@index([tabela_modificada, id_modificado])
+  @@index([tabelaModificada, idModificado])
+  @@map("auditorias")
 }
 
 enum StatusCurso {
