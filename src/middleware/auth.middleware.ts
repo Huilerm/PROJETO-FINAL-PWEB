@@ -18,6 +18,11 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
   const token = authHeader.split(" ")[1];
   const secret = process.env.JWT_SECRET;
 
+  if(!token) {
+    res.status(401).json({ menasgem: "Token não fornecido" });
+    return;
+  }
+
   if (!secret) {
     res.status(500).json({ mensagem: "Configuração de segurança ausente." });
     return;

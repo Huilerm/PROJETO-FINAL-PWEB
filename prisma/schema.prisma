@@ -26,7 +26,7 @@ model Usuario {
   raca      Raca
   alunos    Aluno?
   professor Professor?
-  cargos Cargo[]
+  cargos    Cargo[]
 
   fkIdentidade Int        @unique @map("fk_identidade")
   identidade   Identidade @relation(fields: [fkIdentidade], references: [id])
@@ -173,20 +173,20 @@ model Auditoria {
 }
 
 model Cargo {
-  id Int @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   cargo String
-  desc String?
+  desc  String?
 
-  usuario Usuario[]
+  usuario    Usuario[]
   permissoes Permissoes[]
 
   @@map("cargo")
 }
 
 model Permissoes {
-  id Int @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   permissao String
-  desc String?
+  desc      String?
 
   cargo Cargo[]
 
