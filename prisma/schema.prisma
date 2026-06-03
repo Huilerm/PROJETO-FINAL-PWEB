@@ -7,7 +7,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Usuario {
@@ -25,9 +24,9 @@ model Usuario {
 
   sexo      Sexo
   raca      Raca
-  cargos    Cargos[]   @default([ALUNO])
   alunos    Aluno?
   professor Professor?
+  cargos Cargo[]
 
   fkIdentidade Int        @unique @map("fk_identidade")
   identidade   Identidade @relation(fields: [fkIdentidade], references: [id])
@@ -173,6 +172,27 @@ model Auditoria {
   @@map("auditorias")
 }
 
+model Cargo {
+  id Int @id @default(autoincrement())
+  cargo String
+  desc String?
+
+  usuario Usuario[]
+  permissoes Permissoes[]
+
+  @@map("cargo")
+}
+
+model Permissoes {
+  id Int @id @default(autoincrement())
+  permissao String
+  desc String?
+
+  cargo Cargo[]
+
+  @@map("permissoes")
+}
+
 enum StatusCurso {
   ANDAMENTO
   ANALISE
@@ -184,13 +204,6 @@ enum StatusInscricao {
   PENDENTE
   DEFERIDO
   INDEFERIDO
-}
-
-enum Cargos {
-  ALUNO
-  PROFESSOR
-  DEPPI
-  ADMIN
 }
 
 enum DiasSemana {
