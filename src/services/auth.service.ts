@@ -6,12 +6,10 @@ import type { CadastroInput } from "../schemas/cadastro.schema.js";
 import type { LoginInput } from "../schemas/login.schema.js";
 import { Usuario, Aluno, Identidade } from "@prisma/client";
 
-// Remove formatting from CPF: "123.456.789-00" → "12345678900"
 function normalizeCpf(cpf: string): string {
   return cpf.replace(/[.\-]/g, "");
 }
 
-// Generate a student registration number based on timestamp
 function gerarMatricula(): string {
   const now = new Date();
   const year = now.getFullYear();
