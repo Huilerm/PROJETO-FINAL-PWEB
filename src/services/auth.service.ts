@@ -4,6 +4,7 @@ import { generateToken } from "../utils/jwt.js";
 import { AppError } from "../errors/AppError.js";
 import type { CadastroInput } from "../schemas/cadastro.schema.js";
 import type { LoginInput } from "../schemas/login.schema.js";
+import { Usuario, Aluno, Identidade } from "@prisma/client";
 
 // Remove formatting from CPF: "123.456.789-00" → "12345678900"
 function normalizeCpf(cpf: string): string {
@@ -20,10 +21,36 @@ function gerarMatricula(): string {
   return `${year}${random}`;
 }
 
-export async function cadastrarAluno(data: CadastroInput) {
+interface TransactionResult {
+  usuario: Usuario;
+  aluno: Aluno;
+  identidade: Identidade;
+}
+
+interface CadastroResponse {
+  token: string;
+  usuario: {
+    id: number;
+    nome: string;
+    email: string;
+    cargos: { id: number; cargo: string; desc: string | null }[];
+    matricula: string;
+  };
+}
+
+interface LoginResponse {
+  token: string;
+  usuario: {
+    id: number;
+    nome: string;
+    email: string;
+    cargos: { id: number; cargo: string; desc: string | null }[];
+  };
+}
+
+export async function cadastrarAluno(data: CadastroInput): Promise<CadastroResponse> {
   const cpfNormalizado = normalizeCpf(data.cpf);
 
-  // Check if e-mail already exists
   const emailExistente = await prisma.usuario.findUnique({
     where: { email: data.email },
   });
@@ -31,7 +58,6 @@ export async function cadastrarAluno(data: CadastroInput) {
     throw new AppError("E-mail já cadastrado.", 409);
   }
 
-  // Check if CPF already exists
   const cpfExistente = await prisma.identidade.findUnique({
     where: { cpf: cpfNormalizado },
   });
@@ -39,7 +65,6 @@ export async function cadastrarAluno(data: CadastroInput) {
     throw new AppError("CPF já cadastrado.", 409);
   }
 
-  // Check if RG already exists
   const rgExistente = await prisma.identidade.findUnique({
     where: { rg: data.rg },
   });
@@ -49,8 +74,7 @@ export async function cadastrarAluno(data: CadastroInput) {
 
   const senhaHash = await bcrypt.hash(data.senha, 10);
 
-  // Define a unique matricula
-  let matricula = data.matricula ?? gerarMatricula();
+  let matricula: string = data.matricula ?? gerarMatricula();
   const matriculaExistente = await prisma.aluno.findUnique({
     where: { matricula },
   });
@@ -58,42 +82,43 @@ export async function cadastrarAluno(data: CadastroInput) {
     matricula = gerarMatricula();
   }
 
-  // Create Identidade + Usuario + Aluno in one transaction
-  const resultado = await prisma.$transaction(async (tx) => {
-    const identidade = await tx.identidade.create({
-      data: {
-        rg: data.rg,
-        cpf: cpfNormalizado,
-        orgaoEmissor: data.orgaoEmissor,
-        estado: data.estado.toUpperCase(),
-        dataEmissao: new Date(data.dataEmissao),
-      },
-    });
+  const resultado = await prisma.$transaction(
+    async (tx): Promise<TransactionResult> => {
+      const identidade = await tx.identidade.create({
+        data: {
+          rg: data.rg,
+          cpf: cpfNormalizado,
+          orgaoEmissor: data.orgaoEmissor,
+          estado: data.estado.toUpperCase(),
+          dataEmissao: new Date(data.dataEmissao),
+        },
+      });
 
-    const usuario = await tx.usuario.create({
-      data: {
-        nome: data.nome,
-        nomeSocial: data.nomeSocial,
-        dataNasc: new Date(data.dataNasc),
-        naturalidade: data.naturalidade,
-        email: data.email,
-        senha: senhaHash,
-        sexo: data.sexo,
-        raca: data.raca,
-        cargos: ["ALUNO"],
-        fkIdentidade: identidade.id,
-      },
-    });
+      const usuario = await tx.usuario.create({
+        data: {
+          nome: data.nome,
+          nomeSocial: data.nomeSocial ?? null,
+          dataNasc: new Date(data.dataNasc),
+          naturalidade: data.naturalidade,
+          email: data.email,
+          senha: senhaHash,
+          sexo: data.sexo,
+          raca: data.raca,
+          cargos: { connect: [] },
+          fkIdentidade: identidade.id,
+        },
+      });
 
-    const aluno = await tx.aluno.create({
-      data: {
-        matricula,
-        fkUsuario: usuario.id,
-      },
-    });
+      const aluno = await tx.aluno.create({
+        data: {
+          matricula,
+          fkUsuario: usuario.id,
+        },
+      });
 
-    return { usuario, aluno, identidade };
-  });
+      return { usuario, aluno, identidade };
+    }
+  );
 
   const token = generateToken(resultado.usuario.id, null, ["ALUNO"]);
 
@@ -103,18 +128,19 @@ export async function cadastrarAluno(data: CadastroInput) {
       id: resultado.usuario.id,
       nome: resultado.usuario.nome,
       email: resultado.usuario.email,
-      cargos: resultado.usuario.cargos,
+      cargos: [],
       matricula: resultado.aluno.matricula,
     },
   };
 }
 
-export async function login(data: LoginInput) {
+export async function login(data: LoginInput): Promise<LoginResponse> {
   const usuario = await prisma.usuario.findUnique({
     where: { email: data.email },
     include: {
       alunos: true,
       professor: true,
+      cargos: true,
     },
   });
 
@@ -128,9 +154,9 @@ export async function login(data: LoginInput) {
   }
 
   // roleId: aluno id or professor id (null if admin/DEPPI only)
-  const roleId = usuario.alunos?.id ?? usuario.professor?.id ?? null;
+  const roleId: number | null = usuario.alunos?.id ?? usuario.professor?.id ?? null;
 
-  const token = generateToken(usuario.id, roleId, usuario.cargos);
+  const token = generateToken(usuario.id, roleId, usuario.cargos.map((c) => c.cargo));
 
   return {
     token,

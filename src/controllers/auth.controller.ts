@@ -9,7 +9,7 @@ export async function cadastrar(req: Request, res: Response, next: NextFunction)
     const parsed = cadastroSchema.safeParse(req.body);
 
     if (!parsed.success) {
-      const erros = parsed.error.errors.map((e) => ({
+      const erros = parsed.error.issues.map((e) => ({
         campo: e.path.join("."),
         mensagem: e.message,
       }));
@@ -33,7 +33,7 @@ export async function logarUsuario(req: Request, res: Response, next: NextFuncti
     const parsed = loginSchema.safeParse(req.body);
 
     if (!parsed.success) {
-      const erros = parsed.error.errors.map((e) => ({
+      const erros = parsed.error.issues.map((e) => ({
         campo: e.path.join("."),
         mensagem: e.message,
       }));
