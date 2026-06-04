@@ -1,0 +1,235 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario {
+  id String @id @default(uuid())
+
+  nome         String
+  nomeSocial   String?  @map("nome_social")
+  dataNasc     DateTime @map("data_nasc")
+  naturalidade String
+  email        String   @unique
+  senha        String
+
+  criadoEm     DateTime @default(now()) @map("criado_em")
+  atualizadoEm DateTime @updatedAt @map("atualizado_em")
+
+  sexo      Sexo
+  raca      Raca
+  alunos    Aluno?
+  professor Professor?
+  cargos    Cargo[]
+
+  fkIdentidade String     @unique @map("fk_identidade")
+  identidade   Identidade @relation(fields: [fkIdentidade], references: [id])
+
+  @@map("usuario")
+}
+
+model Aluno {
+  id String @id @default(uuid())
+
+  matricula String @unique
+
+  inscricaos Inscricao[]
+
+  fkUsuario String  @unique @map("fk_usuario")
+  usuario   Usuario @relation(fields: [fkUsuario], references: [id])
+
+  @@map("aluno")
+}
+
+model Professor {
+  id String @id @default(uuid())
+
+  siap String @unique
+
+  alocacoes AlocacaoProfessor[]
+
+  fkUsuario String  @unique @map("fk_usuario")
+  usuario   Usuario @relation(fields: [fkUsuario], references: [id])
+
+  @@map("professor")
+}
+
+model Curso {
+  id String @id @default(uuid())
+
+  nome          String
+  carga_horaria Int
+  vagas         Int
+  status        StatusCurso @default(ANALISE)
+  dataInicio    DateTime    @map("data_inicio") @db.Date
+  dataFim       DateTime    @map("data_fim") @db.Date
+  horarioInicio DateTime    @map("horario_inicio") @db.Time()
+  horarioFim    DateTime    @map("horario_fim") @db.Time()
+
+  professores AlocacaoProfessor[]
+  diasSemana  DiasSemana[]        @map("dias_semana")
+  inscricao   Inscricao[]
+
+  fkInstituicao String      @map("fk_instituicao")
+  Instituicao   Instituicao @relation(fields: [fkInstituicao], references: [id])
+
+  @@map("curso")
+}
+
+model AlocacaoProfessor {
+  id String @id @default(uuid())
+
+  fkProfessor String @map("fk_professor")
+  fkCurso     String @map("fk_curso")
+
+  professor Professor @relation(fields: [fkProfessor], references: [id])
+  curso     Curso     @relation(fields: [fkCurso], references: [id])
+
+  cargaHoraria Int      @map("carga_horaria")
+  dataAlocacao DateTime @default(now()) @map("data_alocacao")
+
+  @@unique([fkProfessor, fkCurso])
+  @@map("alocacoes_professores")
+}
+
+model Instituicao {
+  id String @id @default(uuid())
+
+  nome   String
+  cidade String
+  campus String
+  cnpj   String @unique
+
+  cursos Curso[]
+
+  @@map("instituiocao")
+}
+
+model Inscricao {
+  id String @id @default(uuid())
+
+  data DateTime @default(now())
+
+  status        StatusInscricao @default(PENDENTE) @map("curso_status")
+  rendaFamiliar RendaFamiliar?
+
+  fkAluno String @map("fk_aluno")
+  aluno   Aluno  @relation(fields: [fkAluno], references: [id])
+
+  fkCurso String @map("fk_curso")
+  curso   Curso  @relation(fields: [fkCurso], references: [id])
+
+  @@map("inscricoes")
+}
+
+model Identidade {
+  id String @id @default(uuid())
+
+  rg           String   @unique
+  cpf          String   @unique
+  orgaoEmissor String   @map("orgao_emissor")
+  estado       String
+  dataEmissao  DateTime @map("data_emissao") @db.Date
+
+  usuario Usuario?
+
+  @@map("identidades")
+}
+
+model RendaFamiliar {
+  id String @id @default(uuid())
+
+  rendaFamiliar Float @map("renda_familiar")
+  numeroPessoas Int   @map("numero_pessoas")
+
+  fkInscricao String    @unique @map("fk_inscricao")
+  inscricao   Inscricao @relation(fields: [fkInscricao], references: [id])
+
+  @@map("rendas_familiares")
+}
+
+model Auditoria {
+  id String @id @default(uuid())
+
+  tabelaModificada String @map("tabela_modificada")
+  acaoRealizada    Acao   @map("acao_realizada")
+  idModificado     Int    @map("id_modificado")
+
+  dadosAntigos   Json? @map("dados_antigos")
+  dadosInseridos Json? @map("dados_inseridos")
+
+  fkUsuario String? @map("fk_usuario")
+
+  dataModificacao DateTime @default(now()) @map("data_modificacao")
+
+  @@index([tabelaModificada, idModificado])
+  @@map("auditorias")
+}
+
+model Cargo {
+  id    String  @id @default(uuid())
+  cargo String
+  desc  String?
+
+  usuario    Usuario[]
+  permissoes Permissoes[]
+
+  @@map("cargo")
+}
+
+model Permissoes {
+  id        String  @id @default(uuid())
+  permissao String
+  desc      String?
+
+  cargo Cargo[]
+
+  @@map("permissoes")
+}
+
+enum StatusCurso {
+  ANDAMENTO
+  ANALISE
+  CONCLUIDO
+  FECHADO
+}
+
+enum StatusInscricao {
+  PENDENTE
+  DEFERIDO
+  INDEFERIDO
+}
+
+enum DiasSemana {
+  SEGUNDA
+  TERCA
+  QUARTA
+  QUINTA
+  SEXTA
+  SABADO
+  DOMINGO
+}
+
+enum Sexo {
+  MASCULINO
+  FEMININO
+}
+
+enum Raca {
+  AMARELA
+  BRANCA
+  PARDA
+  PRETA
+  INDIGENA
+  NAO_DECLARADO
+}
+
+enum Acao {
+  CREATE
+  UPDATE
+  DELETE
+}

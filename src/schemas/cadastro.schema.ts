@@ -22,6 +22,7 @@ export const cadastroSchema = z.object({
 
   // Matrícula de aluno (opcional — se omitida, é gerada automaticamente)
   matricula: z.string().optional(),
+  siap: z.string().optional()
 });
 
 export type CadastroInput = z.infer<typeof cadastroSchema>;

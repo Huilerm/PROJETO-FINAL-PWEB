@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 
 export function generateToken(
-  userId: number,
-  roleId: number | null,
+  userId: string,
+  roleId: string | null,
   permissions: string[]
 ) {
   const secret = process.env.JWT_SECRET;
