@@ -2,8 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 interface JwtPayload {
-  userId: number;
-  roleId: number | null;
+  userId: string;
+  roleId: string | null;
   permissions: string[];
 }
 
