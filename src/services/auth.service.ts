@@ -1,10 +1,10 @@
 import bcrypt from "bcryptjs";
-import prisma from "../lib/prisma.js";
+import { prisma } from "../lib/prisma.js";
 import { generateToken } from "../utils/jwt.js";
 import { AppError } from "../errors/AppError.js";
 import type { CadastroInput } from "../schemas/cadastro.schema.js";
 import type { LoginInput } from "../schemas/login.schema.js";
-import { Usuario, Aluno, Identidade } from "@prisma/client";
+import { Usuario, Aluno, Identidade } from "../../generated/prisma/client";
 
 function normalizeCpf(cpf: string): string {
   return cpf.replace(/[.\-]/g, "");
