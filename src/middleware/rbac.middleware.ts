@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { RbacService } from "../services/rbac.services";
+import { RbacService } from "../services/rbac.service";
 
 const rbacService = new RbacService();
 

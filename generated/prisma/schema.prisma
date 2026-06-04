@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -11,7 +8,7 @@ datasource db {
 }
 
 model Usuario {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   nome         String
   nomeSocial   String?  @map("nome_social")
@@ -29,40 +26,40 @@ model Usuario {
   professor Professor?
   cargos    Cargo[]
 
-  fkIdentidade Int        @unique @map("fk_identidade")
+  fkIdentidade String     @unique @map("fk_identidade")
   identidade   Identidade @relation(fields: [fkIdentidade], references: [id])
 
   @@map("usuario")
 }
 
 model Aluno {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   matricula String @unique
 
   inscricaos Inscricao[]
 
-  fkUsuario Int     @unique @map("fk_usuario")
+  fkUsuario String  @unique @map("fk_usuario")
   usuario   Usuario @relation(fields: [fkUsuario], references: [id])
 
   @@map("aluno")
 }
 
 model Professor {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   siap String @unique
 
   alocacoes AlocacaoProfessor[]
 
-  fkUsuario Int     @unique @map("fk_usuario")
+  fkUsuario String  @unique @map("fk_usuario")
   usuario   Usuario @relation(fields: [fkUsuario], references: [id])
 
   @@map("professor")
 }
 
 model Curso {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   nome          String
   carga_horaria Int
@@ -77,17 +74,17 @@ model Curso {
   diasSemana  DiasSemana[]        @map("dias_semana")
   inscricao   Inscricao[]
 
-  fkInstituicao Int         @map("fk_instituicao")
+  fkInstituicao String      @map("fk_instituicao")
   Instituicao   Instituicao @relation(fields: [fkInstituicao], references: [id])
 
   @@map("curso")
 }
 
 model AlocacaoProfessor {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
-  fkProfessor Int @map("fk_professor")
-  fkCurso     Int @map("fk_curso")
+  fkProfessor String @map("fk_professor")
+  fkCurso     String @map("fk_curso")
 
   professor Professor @relation(fields: [fkProfessor], references: [id])
   curso     Curso     @relation(fields: [fkCurso], references: [id])
@@ -100,7 +97,7 @@ model AlocacaoProfessor {
 }
 
 model Instituicao {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   nome   String
   cidade String
@@ -113,24 +110,24 @@ model Instituicao {
 }
 
 model Inscricao {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   data DateTime @default(now())
 
   status        StatusInscricao @default(PENDENTE) @map("curso_status")
   rendaFamiliar RendaFamiliar?
 
-  fkAluno Int   @map("fk_aluno")
-  aluno   Aluno @relation(fields: [fkAluno], references: [id])
+  fkAluno String @map("fk_aluno")
+  aluno   Aluno  @relation(fields: [fkAluno], references: [id])
 
-  fkCurso Int   @map("fk_curso")
-  curso   Curso @relation(fields: [fkCurso], references: [id])
+  fkCurso String @map("fk_curso")
+  curso   Curso  @relation(fields: [fkCurso], references: [id])
 
   @@map("inscricoes")
 }
 
 model Identidade {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   rg           String   @unique
   cpf          String   @unique
@@ -144,19 +141,19 @@ model Identidade {
 }
 
 model RendaFamiliar {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   rendaFamiliar Float @map("renda_familiar")
   numeroPessoas Int   @map("numero_pessoas")
 
-  fkInscricao Int       @unique @map("fk_inscricao")
+  fkInscricao String    @unique @map("fk_inscricao")
   inscricao   Inscricao @relation(fields: [fkInscricao], references: [id])
 
   @@map("rendas_familiares")
 }
 
 model Auditoria {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   tabelaModificada String @map("tabela_modificada")
   acaoRealizada    Acao   @map("acao_realizada")
@@ -165,7 +162,7 @@ model Auditoria {
   dadosAntigos   Json? @map("dados_antigos")
   dadosInseridos Json? @map("dados_inseridos")
 
-  fkUsuario Int? @map("fk_usuario")
+  fkUsuario String? @map("fk_usuario")
 
   dataModificacao DateTime @default(now()) @map("data_modificacao")
 
@@ -174,7 +171,7 @@ model Auditoria {
 }
 
 model Cargo {
-  id    Int     @id @default(autoincrement())
+  id    String  @id @default(uuid())
   cargo String
   desc  String?
 
@@ -185,7 +182,7 @@ model Cargo {
 }
 
 model Permissoes {
-  id        Int     @id @default(autoincrement())
+  id        String  @id @default(uuid())
   permissao String
   desc      String?
 
