@@ -3,7 +3,7 @@ import { PrismaClient } from "../../generated/prisma/client";
 const prisma = new PrismaClient();
 
 export class RbacService {
-    async obterPermissoes(usuarioId: number): Promise<string[]> {        
+    async obterPermissoes(usuarioId: string): Promise<string[]> {        
         const usuario = await prisma.usuario.findUnique({
             where: { id: usuarioId },
             select: {
