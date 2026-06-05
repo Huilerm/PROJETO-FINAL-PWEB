@@ -106,7 +106,7 @@ model Instituicao {
 
   cursos Curso[]
 
-  @@map("instituiocao")
+  @@map("instituicao")
 }
 
 model Inscricao {
