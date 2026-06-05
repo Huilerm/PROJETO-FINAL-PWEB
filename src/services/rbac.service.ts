@@ -1,6 +1,4 @@
-import { PrismaClient } from "../../generated/prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../lib/prisma";
 
 export class RbacService {
     async obterPermissoes(usuarioId: string): Promise<string[]> {        

@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
-import { cadastroSchema } from "../schemas/cadastro.schema.js";
-import { loginSchema } from "../schemas/login.schema.js";
-import { cadastrarAluno, login } from "../services/auth.service.js";
-import { AppError } from "../errors/AppError.js";
+import { cadastroSchema } from "../schemas/cadastro.schema";
+import { loginSchema } from "../schemas/login.schema";
+import { cadastrarAluno, login } from "../services/auth.service";
+import { AppError } from "../errors/AppError";
 
 export async function cadastrar(req: Request, res: Response, next: NextFunction) {
   try {

@@ -1,11 +1,11 @@
 import bcrypt from "bcryptjs";
-import { prisma } from "../lib/prisma.js";
-import { generateToken } from "../utils/jwt.js";
-import { AppError } from "../errors/AppError.js";
-import { CadastroInput } from "../schemas/cadastro.schema.js";
-import { LoginInput } from "../schemas/login.schema.js";
-import { criarAluno } from "./aluno.service.js";
-import { criarProfessor } from "./professor.service.js";
+import { prisma } from "../lib/prisma";
+import { generateToken } from "../utils/jwt";
+import { AppError } from "../errors/AppError";
+import { CadastroInput } from "../schemas/cadastro.schema";
+import { LoginInput } from "../schemas/login.schema";
+import { criarAluno } from "./aluno.service";
+import { criarProfessor } from "./professor.service";
 
 export async function cadastrarAluno(data: CadastroInput) {
   const aluno = await criarAluno(data);
