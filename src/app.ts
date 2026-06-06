@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import type { Request, Response, NextFunction } from "express";
 import authRouter from "./routes/auth.routes.js";
+import userRouter from "./routes/user.routes.js";
 import { AppError } from "./errors/AppError.js";
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(express.json());
 
 // ── Rotas ────────────────────────────────────────────────────────
 app.use("/auth", authRouter);
+app.use("/users", userRouter);
 
 // Health check
 app.get("/", (_req, res) => {
