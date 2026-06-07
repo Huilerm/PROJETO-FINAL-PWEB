@@ -7,9 +7,10 @@
     "dev": "tsx watch src/app.ts",
     "start": "tsx src/app.ts",
     "build": "tsc",
-    "db:migrate": "npx prisma migrate dev",
-    "db:generate": "npx prisma generate",
-    "db:studio": "npx prisma studio"
+    "migrate": "npx prisma migrate dev",
+    "generate": "npx prisma generate",
+    "studio": "npx prisma studio",
+    "seed": "ts-node prisma/seed.ts"
   },
   "repository": {
     "type": "git",

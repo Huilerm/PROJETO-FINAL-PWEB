@@ -20,18 +20,28 @@ export type PermissoesModel = runtime.Types.Result.DefaultSelection<Prisma.$Perm
 
 export type AggregatePermissoes = {
   _count: PermissoesCountAggregateOutputType | null
+  _avg: PermissoesAvgAggregateOutputType | null
+  _sum: PermissoesSumAggregateOutputType | null
   _min: PermissoesMinAggregateOutputType | null
   _max: PermissoesMaxAggregateOutputType | null
 }
 
+export type PermissoesAvgAggregateOutputType = {
+  id: number | null
+}
+
+export type PermissoesSumAggregateOutputType = {
+  id: number | null
+}
+
 export type PermissoesMinAggregateOutputType = {
-  id: string | null
+  id: number | null
   permissao: string | null
   desc: string | null
 }
 
 export type PermissoesMaxAggregateOutputType = {
-  id: string | null
+  id: number | null
   permissao: string | null
   desc: string | null
 }
@@ -43,6 +53,14 @@ export type PermissoesCountAggregateOutputType = {
   _all: number
 }
 
+
+export type PermissoesAvgAggregateInputType = {
+  id?: true
+}
+
+export type PermissoesSumAggregateInputType = {
+  id?: true
+}
 
 export type PermissoesMinAggregateInputType = {
   id?: true
@@ -101,6 +119,18 @@ export type PermissoesAggregateArgs<ExtArgs extends runtime.Types.Extensions.Int
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: PermissoesAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: PermissoesSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: PermissoesMinAggregateInputType
@@ -131,15 +161,19 @@ export type PermissoesGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   _count?: PermissoesCountAggregateInputType | true
+  _avg?: PermissoesAvgAggregateInputType
+  _sum?: PermissoesSumAggregateInputType
   _min?: PermissoesMinAggregateInputType
   _max?: PermissoesMaxAggregateInputType
 }
 
 export type PermissoesGroupByOutputType = {
-  id: string
+  id: number
   permissao: string
   desc: string | null
   _count: PermissoesCountAggregateOutputType | null
+  _avg: PermissoesAvgAggregateOutputType | null
+  _sum: PermissoesSumAggregateOutputType | null
   _min: PermissoesMinAggregateOutputType | null
   _max: PermissoesMaxAggregateOutputType | null
 }
@@ -163,7 +197,7 @@ export type PermissoesWhereInput = {
   AND?: Prisma.PermissoesWhereInput | Prisma.PermissoesWhereInput[]
   OR?: Prisma.PermissoesWhereInput[]
   NOT?: Prisma.PermissoesWhereInput | Prisma.PermissoesWhereInput[]
-  id?: Prisma.StringFilter<"Permissoes"> | string
+  id?: Prisma.IntFilter<"Permissoes"> | number
   permissao?: Prisma.StringFilter<"Permissoes"> | string
   desc?: Prisma.StringNullableFilter<"Permissoes"> | string | null
   cargo?: Prisma.CargoListRelationFilter
@@ -177,7 +211,7 @@ export type PermissoesOrderByWithRelationInput = {
 }
 
 export type PermissoesWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
+  id?: number
   AND?: Prisma.PermissoesWhereInput | Prisma.PermissoesWhereInput[]
   OR?: Prisma.PermissoesWhereInput[]
   NOT?: Prisma.PermissoesWhereInput | Prisma.PermissoesWhereInput[]
@@ -191,61 +225,60 @@ export type PermissoesOrderByWithAggregationInput = {
   permissao?: Prisma.SortOrder
   desc?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PermissoesCountOrderByAggregateInput
+  _avg?: Prisma.PermissoesAvgOrderByAggregateInput
   _max?: Prisma.PermissoesMaxOrderByAggregateInput
   _min?: Prisma.PermissoesMinOrderByAggregateInput
+  _sum?: Prisma.PermissoesSumOrderByAggregateInput
 }
 
 export type PermissoesScalarWhereWithAggregatesInput = {
   AND?: Prisma.PermissoesScalarWhereWithAggregatesInput | Prisma.PermissoesScalarWhereWithAggregatesInput[]
   OR?: Prisma.PermissoesScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PermissoesScalarWhereWithAggregatesInput | Prisma.PermissoesScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Permissoes"> | string
+  id?: Prisma.IntWithAggregatesFilter<"Permissoes"> | number
   permissao?: Prisma.StringWithAggregatesFilter<"Permissoes"> | string
   desc?: Prisma.StringNullableWithAggregatesFilter<"Permissoes"> | string | null
 }
 
 export type PermissoesCreateInput = {
-  id?: string
   permissao: string
   desc?: string | null
   cargo?: Prisma.CargoCreateNestedManyWithoutPermissoesInput
 }
 
 export type PermissoesUncheckedCreateInput = {
-  id?: string
+  id?: number
   permissao: string
   desc?: string | null
   cargo?: Prisma.CargoUncheckedCreateNestedManyWithoutPermissoesInput
 }
 
 export type PermissoesUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   permissao?: Prisma.StringFieldUpdateOperationsInput | string
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cargo?: Prisma.CargoUpdateManyWithoutPermissoesNestedInput
 }
 
 export type PermissoesUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   permissao?: Prisma.StringFieldUpdateOperationsInput | string
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cargo?: Prisma.CargoUncheckedUpdateManyWithoutPermissoesNestedInput
 }
 
 export type PermissoesCreateManyInput = {
-  id?: string
+  id?: number
   permissao: string
   desc?: string | null
 }
 
 export type PermissoesUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   permissao?: Prisma.StringFieldUpdateOperationsInput | string
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PermissoesUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   permissao?: Prisma.StringFieldUpdateOperationsInput | string
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -266,6 +299,10 @@ export type PermissoesCountOrderByAggregateInput = {
   desc?: Prisma.SortOrder
 }
 
+export type PermissoesAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+}
+
 export type PermissoesMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   permissao?: Prisma.SortOrder
@@ -276,6 +313,10 @@ export type PermissoesMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   permissao?: Prisma.SortOrder
   desc?: Prisma.SortOrder
+}
+
+export type PermissoesSumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
 }
 
 export type PermissoesCreateNestedManyWithoutCargoInput = {
@@ -317,13 +358,12 @@ export type PermissoesUncheckedUpdateManyWithoutCargoNestedInput = {
 }
 
 export type PermissoesCreateWithoutCargoInput = {
-  id?: string
   permissao: string
   desc?: string | null
 }
 
 export type PermissoesUncheckedCreateWithoutCargoInput = {
-  id?: string
+  id?: number
   permissao: string
   desc?: string | null
 }
@@ -353,25 +393,24 @@ export type PermissoesScalarWhereInput = {
   AND?: Prisma.PermissoesScalarWhereInput | Prisma.PermissoesScalarWhereInput[]
   OR?: Prisma.PermissoesScalarWhereInput[]
   NOT?: Prisma.PermissoesScalarWhereInput | Prisma.PermissoesScalarWhereInput[]
-  id?: Prisma.StringFilter<"Permissoes"> | string
+  id?: Prisma.IntFilter<"Permissoes"> | number
   permissao?: Prisma.StringFilter<"Permissoes"> | string
   desc?: Prisma.StringNullableFilter<"Permissoes"> | string | null
 }
 
 export type PermissoesUpdateWithoutCargoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   permissao?: Prisma.StringFieldUpdateOperationsInput | string
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PermissoesUncheckedUpdateWithoutCargoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   permissao?: Prisma.StringFieldUpdateOperationsInput | string
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PermissoesUncheckedUpdateManyWithoutCargoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   permissao?: Prisma.StringFieldUpdateOperationsInput | string
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -447,7 +486,7 @@ export type $PermissoesPayload<ExtArgs extends runtime.Types.Extensions.Internal
     cargo: Prisma.$CargoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
+    id: number
     permissao: string
     desc: string | null
   }, ExtArgs["result"]["permissoes"]>
@@ -874,7 +913,7 @@ export interface Prisma__PermissoesClient<T, Null = never, ExtArgs extends runti
  * Fields of the Permissoes model
  */
 export interface PermissoesFieldRefs {
-  readonly id: Prisma.FieldRef<"Permissoes", 'String'>
+  readonly id: Prisma.FieldRef<"Permissoes", 'Int'>
   readonly permissao: Prisma.FieldRef<"Permissoes", 'String'>
   readonly desc: Prisma.FieldRef<"Permissoes", 'String'>
 }
