@@ -96,7 +96,15 @@ export async function createUser(data: CadastroInput) {
       },
     });
 
-    // Insere novo usuário ao sistame
+    // Procura e valida o cargo inserido no registro
+    const cargo = await tx.cargo.findFirst({
+      where: { cargo: data.cargo },
+    });
+    if (!cargo) {
+      throw new AppError(`Cargo ${data.cargo} não encontrado no sistema`, 500);
+    }
+
+    // Insere novo usuário ao sistema
     const usuario = await tx.usuario.create({
       data: {
         nome: data.nome,
@@ -108,6 +116,7 @@ export async function createUser(data: CadastroInput) {
         sexo: data.sexo,
         raca: data.raca,
         fkIdentidade: identidade.id,
+        cargos: { connect: { id: cargo.id } },
       },
     });
 
