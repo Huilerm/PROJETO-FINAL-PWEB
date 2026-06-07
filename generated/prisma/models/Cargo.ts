@@ -20,19 +20,29 @@ export type CargoModel = runtime.Types.Result.DefaultSelection<Prisma.$CargoPayl
 
 export type AggregateCargo = {
   _count: CargoCountAggregateOutputType | null
+  _avg: CargoAvgAggregateOutputType | null
+  _sum: CargoSumAggregateOutputType | null
   _min: CargoMinAggregateOutputType | null
   _max: CargoMaxAggregateOutputType | null
 }
 
+export type CargoAvgAggregateOutputType = {
+  id: number | null
+}
+
+export type CargoSumAggregateOutputType = {
+  id: number | null
+}
+
 export type CargoMinAggregateOutputType = {
-  id: string | null
-  cargo: string | null
+  id: number | null
+  cargo: $Enums.Cargos | null
   desc: string | null
 }
 
 export type CargoMaxAggregateOutputType = {
-  id: string | null
-  cargo: string | null
+  id: number | null
+  cargo: $Enums.Cargos | null
   desc: string | null
 }
 
@@ -43,6 +53,14 @@ export type CargoCountAggregateOutputType = {
   _all: number
 }
 
+
+export type CargoAvgAggregateInputType = {
+  id?: true
+}
+
+export type CargoSumAggregateInputType = {
+  id?: true
+}
 
 export type CargoMinAggregateInputType = {
   id?: true
@@ -101,6 +119,18 @@ export type CargoAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CargoAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CargoSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CargoMinAggregateInputType
@@ -131,15 +161,19 @@ export type CargoGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: CargoCountAggregateInputType | true
+  _avg?: CargoAvgAggregateInputType
+  _sum?: CargoSumAggregateInputType
   _min?: CargoMinAggregateInputType
   _max?: CargoMaxAggregateInputType
 }
 
 export type CargoGroupByOutputType = {
-  id: string
-  cargo: string
+  id: number
+  cargo: $Enums.Cargos
   desc: string | null
   _count: CargoCountAggregateOutputType | null
+  _avg: CargoAvgAggregateOutputType | null
+  _sum: CargoSumAggregateOutputType | null
   _min: CargoMinAggregateOutputType | null
   _max: CargoMaxAggregateOutputType | null
 }
@@ -163,8 +197,8 @@ export type CargoWhereInput = {
   AND?: Prisma.CargoWhereInput | Prisma.CargoWhereInput[]
   OR?: Prisma.CargoWhereInput[]
   NOT?: Prisma.CargoWhereInput | Prisma.CargoWhereInput[]
-  id?: Prisma.StringFilter<"Cargo"> | string
-  cargo?: Prisma.StringFilter<"Cargo"> | string
+  id?: Prisma.IntFilter<"Cargo"> | number
+  cargo?: Prisma.EnumCargosFilter<"Cargo"> | $Enums.Cargos
   desc?: Prisma.StringNullableFilter<"Cargo"> | string | null
   usuario?: Prisma.UsuarioListRelationFilter
   permissoes?: Prisma.PermissoesListRelationFilter
@@ -179,11 +213,11 @@ export type CargoOrderByWithRelationInput = {
 }
 
 export type CargoWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
+  id?: number
   AND?: Prisma.CargoWhereInput | Prisma.CargoWhereInput[]
   OR?: Prisma.CargoWhereInput[]
   NOT?: Prisma.CargoWhereInput | Prisma.CargoWhereInput[]
-  cargo?: Prisma.StringFilter<"Cargo"> | string
+  cargo?: Prisma.EnumCargosFilter<"Cargo"> | $Enums.Cargos
   desc?: Prisma.StringNullableFilter<"Cargo"> | string | null
   usuario?: Prisma.UsuarioListRelationFilter
   permissoes?: Prisma.PermissoesListRelationFilter
@@ -194,66 +228,65 @@ export type CargoOrderByWithAggregationInput = {
   cargo?: Prisma.SortOrder
   desc?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CargoCountOrderByAggregateInput
+  _avg?: Prisma.CargoAvgOrderByAggregateInput
   _max?: Prisma.CargoMaxOrderByAggregateInput
   _min?: Prisma.CargoMinOrderByAggregateInput
+  _sum?: Prisma.CargoSumOrderByAggregateInput
 }
 
 export type CargoScalarWhereWithAggregatesInput = {
   AND?: Prisma.CargoScalarWhereWithAggregatesInput | Prisma.CargoScalarWhereWithAggregatesInput[]
   OR?: Prisma.CargoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CargoScalarWhereWithAggregatesInput | Prisma.CargoScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Cargo"> | string
-  cargo?: Prisma.StringWithAggregatesFilter<"Cargo"> | string
+  id?: Prisma.IntWithAggregatesFilter<"Cargo"> | number
+  cargo?: Prisma.EnumCargosWithAggregatesFilter<"Cargo"> | $Enums.Cargos
   desc?: Prisma.StringNullableWithAggregatesFilter<"Cargo"> | string | null
 }
 
 export type CargoCreateInput = {
-  id?: string
-  cargo: string
+  cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioCreateNestedManyWithoutCargosInput
   permissoes?: Prisma.PermissoesCreateNestedManyWithoutCargoInput
 }
 
 export type CargoUncheckedCreateInput = {
-  id?: string
-  cargo: string
+  id?: number
+  cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCargosInput
   permissoes?: Prisma.PermissoesUncheckedCreateNestedManyWithoutCargoInput
 }
 
 export type CargoUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuario?: Prisma.UsuarioUpdateManyWithoutCargosNestedInput
   permissoes?: Prisma.PermissoesUpdateManyWithoutCargoNestedInput
 }
 
 export type CargoUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuario?: Prisma.UsuarioUncheckedUpdateManyWithoutCargosNestedInput
   permissoes?: Prisma.PermissoesUncheckedUpdateManyWithoutCargoNestedInput
 }
 
 export type CargoCreateManyInput = {
-  id?: string
-  cargo: string
+  id?: number
+  cargo: $Enums.Cargos
   desc?: string | null
 }
 
 export type CargoUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CargoUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -273,6 +306,10 @@ export type CargoCountOrderByAggregateInput = {
   desc?: Prisma.SortOrder
 }
 
+export type CargoAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+}
+
 export type CargoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cargo?: Prisma.SortOrder
@@ -283,6 +320,10 @@ export type CargoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cargo?: Prisma.SortOrder
   desc?: Prisma.SortOrder
+}
+
+export type CargoSumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
 }
 
 export type CargoCreateNestedManyWithoutUsuarioInput = {
@@ -321,6 +362,10 @@ export type CargoUncheckedUpdateManyWithoutUsuarioNestedInput = {
   update?: Prisma.CargoUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.CargoUpdateWithWhereUniqueWithoutUsuarioInput[]
   updateMany?: Prisma.CargoUpdateManyWithWhereWithoutUsuarioInput | Prisma.CargoUpdateManyWithWhereWithoutUsuarioInput[]
   deleteMany?: Prisma.CargoScalarWhereInput | Prisma.CargoScalarWhereInput[]
+}
+
+export type EnumCargosFieldUpdateOperationsInput = {
+  set?: $Enums.Cargos
 }
 
 export type CargoCreateNestedManyWithoutPermissoesInput = {
@@ -362,15 +407,14 @@ export type CargoUncheckedUpdateManyWithoutPermissoesNestedInput = {
 }
 
 export type CargoCreateWithoutUsuarioInput = {
-  id?: string
-  cargo: string
+  cargo: $Enums.Cargos
   desc?: string | null
   permissoes?: Prisma.PermissoesCreateNestedManyWithoutCargoInput
 }
 
 export type CargoUncheckedCreateWithoutUsuarioInput = {
-  id?: string
-  cargo: string
+  id?: number
+  cargo: $Enums.Cargos
   desc?: string | null
   permissoes?: Prisma.PermissoesUncheckedCreateNestedManyWithoutCargoInput
 }
@@ -400,21 +444,20 @@ export type CargoScalarWhereInput = {
   AND?: Prisma.CargoScalarWhereInput | Prisma.CargoScalarWhereInput[]
   OR?: Prisma.CargoScalarWhereInput[]
   NOT?: Prisma.CargoScalarWhereInput | Prisma.CargoScalarWhereInput[]
-  id?: Prisma.StringFilter<"Cargo"> | string
-  cargo?: Prisma.StringFilter<"Cargo"> | string
+  id?: Prisma.IntFilter<"Cargo"> | number
+  cargo?: Prisma.EnumCargosFilter<"Cargo"> | $Enums.Cargos
   desc?: Prisma.StringNullableFilter<"Cargo"> | string | null
 }
 
 export type CargoCreateWithoutPermissoesInput = {
-  id?: string
-  cargo: string
+  cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioCreateNestedManyWithoutCargosInput
 }
 
 export type CargoUncheckedCreateWithoutPermissoesInput = {
-  id?: string
-  cargo: string
+  id?: number
+  cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCargosInput
 }
@@ -441,42 +484,40 @@ export type CargoUpdateManyWithWhereWithoutPermissoesInput = {
 }
 
 export type CargoUpdateWithoutUsuarioInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permissoes?: Prisma.PermissoesUpdateManyWithoutCargoNestedInput
 }
 
 export type CargoUncheckedUpdateWithoutUsuarioInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permissoes?: Prisma.PermissoesUncheckedUpdateManyWithoutCargoNestedInput
 }
 
 export type CargoUncheckedUpdateManyWithoutUsuarioInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CargoUpdateWithoutPermissoesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuario?: Prisma.UsuarioUpdateManyWithoutCargosNestedInput
 }
 
 export type CargoUncheckedUpdateWithoutPermissoesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuario?: Prisma.UsuarioUncheckedUpdateManyWithoutCargosNestedInput
 }
 
 export type CargoUncheckedUpdateManyWithoutPermissoesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  cargo?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -563,8 +604,8 @@ export type $CargoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     permissoes: Prisma.$PermissoesPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    cargo: string
+    id: number
+    cargo: $Enums.Cargos
     desc: string | null
   }, ExtArgs["result"]["cargo"]>
   composites: {}
@@ -991,8 +1032,8 @@ export interface Prisma__CargoClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the Cargo model
  */
 export interface CargoFieldRefs {
-  readonly id: Prisma.FieldRef<"Cargo", 'String'>
-  readonly cargo: Prisma.FieldRef<"Cargo", 'String'>
+  readonly id: Prisma.FieldRef<"Cargo", 'Int'>
+  readonly cargo: Prisma.FieldRef<"Cargo", 'Cargos'>
   readonly desc: Prisma.FieldRef<"Cargo", 'String'>
 }
     

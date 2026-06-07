@@ -171,8 +171,8 @@ model Auditoria {
 }
 
 model Cargo {
-  id    String  @id @default(uuid())
-  cargo String
+  id    Int  @id @default(autoincrement())
+  cargo Cargos
   desc  String?
 
   usuario    Usuario[]
@@ -232,4 +232,11 @@ enum Acao {
   CREATE
   UPDATE
   DELETE
+}
+
+enum Cargos {
+  ALUNO
+  PROFESSOR
+  ADMIN
+  DEPPI
 }

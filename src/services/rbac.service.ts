@@ -1,32 +1,32 @@
 import { prisma } from "../lib/prisma";
 
 export class RbacService {
-    async obterPermissoes(usuarioId: string): Promise<string[]> {        
-        const usuario = await prisma.usuario.findUnique({
-            where: { id: usuarioId },
-            select: {
-                cargos: {
-                    select: {
-                        permissoes: {
-                            select: {
-                                permissao: true
-                            }
-                        }
-                    }
-                }
-            }
-        });
+  async obterPermissoes(usuarioId: string): Promise<string[]> {
+    const usuario = await prisma.usuario.findUnique({
+      where: { id: usuarioId },
+      select: {
+        cargos: {
+          select: {
+            permissoes: {
+              select: {
+                permissao: true,
+              },
+            },
+          },
+        },
+      },
+    });
 
-        if (!usuario) return [];
+    if (!usuario) return [];
 
-        const permissoesTotais: string[] = [];
-        
-        usuario.cargos.forEach((cargo) => {
-            cargo.permissoes.forEach((p) => {
-                permissoesTotais.push(p.permissao);
-            });
-        });
+    const permissoesTotais: string[] = [];
 
-        return permissoesTotais;
-    }
+    usuario.cargos.forEach((cargo) => {
+      cargo.permissoes.forEach((p) => {
+        permissoesTotais.push(p.permissao);
+      });
+    });
+
+    return permissoesTotais;
+  }
 }
