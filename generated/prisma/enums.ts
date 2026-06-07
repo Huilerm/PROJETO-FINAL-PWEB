@@ -68,3 +68,13 @@ export const Acao = {
 } as const
 
 export type Acao = (typeof Acao)[keyof typeof Acao]
+
+
+export const Cargos = {
+  ALUNO: 'ALUNO',
+  PROFESSOR: 'PROFESSOR',
+  ADMIN: 'ADMIN',
+  DEPPI: 'DEPPI'
+} as const
+
+export type Cargos = (typeof Cargos)[keyof typeof Cargos]

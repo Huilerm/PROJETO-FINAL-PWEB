@@ -1682,6 +1682,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
+
+/**
+ * Reference to a field of type 'Cargos'
+ */
+export type EnumCargosFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Cargos'>
+    
+
+
+/**
+ * Reference to a field of type 'Cargos[]'
+ */
+export type ListEnumCargosFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Cargos[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */

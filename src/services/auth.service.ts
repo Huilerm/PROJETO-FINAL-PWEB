@@ -4,35 +4,36 @@ import { generateToken } from "../utils/jwt";
 import { AppError } from "../errors/AppError";
 import { CadastroInput } from "../schemas/cadastro.schema";
 import { LoginInput } from "../schemas/login.schema";
-import { criarAluno } from "./aluno.service";
-import { criarProfessor } from "./professor.service";
+import { createUser } from "./register.service";
 
 export async function cadastrarAluno(data: CadastroInput) {
-  const aluno = await criarAluno(data);
-  const token = generateToken(aluno.usuario.id, aluno.aluno.id, ["ALUNO"]);
+  const aluno = await createUser(data);
+  const token = generateToken(aluno!.usuario.id, aluno!.aluno!.id, ["ALUNO"]);
 
   return {
     token,
     usuario: {
-      id: aluno.usuario.id,
-      nome: aluno.usuario.nome,
-      email: aluno.usuario.email,
-      matricula: aluno.aluno.matricula
+      id: aluno!.usuario.id,
+      nome: aluno!.usuario.nome,
+      email: aluno!.usuario.email,
+      matricula: aluno?.aluno!.matricula,
     },
   };
 }
 
 export async function cadastrarProfessor(data: CadastroInput) {
-  const professor = await criarProfessor(data);
-  const token = generateToken(professor.usuario.id, professor.professor.id, ["PROFESSOR"]);
+  const professor = await createUser(data);
+  const token = generateToken(professor!.usuario.id, professor!.professor!.id, [
+    "PROFESSOR",
+  ]);
 
   return {
     token,
     usuario: {
-      id: professor.usuario.id,
-      nome: professor.usuario.nome,
-      email: professor.usuario.email,
-      matricula: professor.professor.siap
+      id: professor?.usuario.id,
+      nome: professor?.usuario.nome,
+      email: professor?.usuario.email,
+      matricula: professor?.professor!.siap,
     },
   };
 }
@@ -43,7 +44,7 @@ export async function login(data: LoginInput) {
     include: {
       alunos: true,
       professor: true,
-      cargos: true
+      cargos: true,
     },
   });
 
@@ -56,11 +57,13 @@ export async function login(data: LoginInput) {
     throw new AppError("Email ou senha inválidos", 401);
   }
 
-  const roleId: string | null = usuario.alunos?.id ?? usuario.professor?.id ?? null;
+  const roleId: string | null =
+    usuario.alunos?.id ?? usuario.professor?.id ?? null;
   const permissoes = usuario.cargos.map((c) => c.cargo);
 
   if (usuario.alunos && !permissoes.includes("ALUNO")) permissoes.push("ALUNO");
-  if (usuario.professor && !permissoes.includes("PROFESSOR")) permissoes.push("PROFESSOR");
+  if (usuario.professor && !permissoes.includes("PROFESSOR"))
+    permissoes.push("PROFESSOR");
 
   const token = generateToken(usuario.id, roleId, permissoes);
 
@@ -72,7 +75,7 @@ export async function login(data: LoginInput) {
       email: usuario.email,
       cargos: permissoes,
       alunoId: usuario.alunos?.id,
-      professorId: usuario.professor?.id
+      professorId: usuario.professor?.id,
     },
   };
 }

@@ -300,6 +300,23 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>
 }
 
+export type EnumCargosFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cargos | Prisma.EnumCargosFieldRefInput<$PrismaModel>
+  in?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCargosFilter<$PrismaModel> | $Enums.Cargos
+}
+
+export type EnumCargosWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cargos | Prisma.EnumCargosFieldRefInput<$PrismaModel>
+  in?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCargosWithAggregatesFilter<$PrismaModel> | $Enums.Cargos
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCargosFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCargosFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -559,6 +576,23 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumCargosFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cargos | Prisma.EnumCargosFieldRefInput<$PrismaModel>
+  in?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCargosFilter<$PrismaModel> | $Enums.Cargos
+}
+
+export type NestedEnumCargosWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cargos | Prisma.EnumCargosFieldRefInput<$PrismaModel>
+  in?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cargos[] | Prisma.ListEnumCargosFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCargosWithAggregatesFilter<$PrismaModel> | $Enums.Cargos
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCargosFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCargosFilter<$PrismaModel>
 }
 
 

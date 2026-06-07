@@ -10,7 +10,7 @@ export async function listarUsuarios() {
       nome: true,
       email: true,
       criadoEm: true,
-      cargos: { select: { cargo: true } }
+      cargos: { select: { cargo: true } },
     },
   });
 }
@@ -18,25 +18,28 @@ export async function listarUsuarios() {
 export async function listarUsuario(id: string) {
   const usuario = await prisma.usuario.findUnique({
     where: { id },
-    include: { 
+    include: {
       cargos: true,
       alunos: true,
-      professor: true
-    }
+      professor: true,
+    },
   });
 
   if (!usuario) throw new AppError("Usuário não encontrado", 404);
   return usuario;
-};
+}
 
-export async function atualizarUsuario(id: string, data: atualizarUsuarioInput) {
+export async function atualizarUsuario(
+  id: string,
+  data: atualizarUsuarioInput,
+) {
   const usuario = await prisma.usuario.findUnique({
-    where: { id }
+    where: { id },
   });
-  if(!usuario) throw new AppError("Usuário não encontrado", 404);
+  if (!usuario) throw new AppError("Usuário não encontrado", 404);
 
   let senhaHash = usuario.senha;
-  if(data.senha) {
+  if (data.senha) {
     senhaHash = await bcrypt.hash(data.senha, 10);
   }
 
@@ -45,11 +48,10 @@ export async function atualizarUsuario(id: string, data: atualizarUsuarioInput) 
     data: {
       nome: data.nome ?? usuario.nome,
       nomeSocial: data.nomeSocial ?? usuario.nomeSocial,
-      senha: senhaHash
+      senha: senhaHash,
     },
     select: { id: true, nome: true, email: true },
   });
 
   return usuarioAtualizado;
 }
-
