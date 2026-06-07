@@ -244,6 +244,7 @@ export type CargoScalarWhereWithAggregatesInput = {
 }
 
 export type CargoCreateInput = {
+  id: number
   cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioCreateNestedManyWithoutCargosInput
@@ -251,7 +252,7 @@ export type CargoCreateInput = {
 }
 
 export type CargoUncheckedCreateInput = {
-  id?: number
+  id: number
   cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCargosInput
@@ -259,6 +260,7 @@ export type CargoUncheckedCreateInput = {
 }
 
 export type CargoUpdateInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuario?: Prisma.UsuarioUpdateManyWithoutCargosNestedInput
@@ -274,12 +276,13 @@ export type CargoUncheckedUpdateInput = {
 }
 
 export type CargoCreateManyInput = {
-  id?: number
+  id: number
   cargo: $Enums.Cargos
   desc?: string | null
 }
 
 export type CargoUpdateManyMutationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -407,13 +410,14 @@ export type CargoUncheckedUpdateManyWithoutPermissoesNestedInput = {
 }
 
 export type CargoCreateWithoutUsuarioInput = {
+  id: number
   cargo: $Enums.Cargos
   desc?: string | null
   permissoes?: Prisma.PermissoesCreateNestedManyWithoutCargoInput
 }
 
 export type CargoUncheckedCreateWithoutUsuarioInput = {
-  id?: number
+  id: number
   cargo: $Enums.Cargos
   desc?: string | null
   permissoes?: Prisma.PermissoesUncheckedCreateNestedManyWithoutCargoInput
@@ -450,13 +454,14 @@ export type CargoScalarWhereInput = {
 }
 
 export type CargoCreateWithoutPermissoesInput = {
+  id: number
   cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioCreateNestedManyWithoutCargosInput
 }
 
 export type CargoUncheckedCreateWithoutPermissoesInput = {
-  id?: number
+  id: number
   cargo: $Enums.Cargos
   desc?: string | null
   usuario?: Prisma.UsuarioUncheckedCreateNestedManyWithoutCargosInput
@@ -484,6 +489,7 @@ export type CargoUpdateManyWithWhereWithoutPermissoesInput = {
 }
 
 export type CargoUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permissoes?: Prisma.PermissoesUpdateManyWithoutCargoNestedInput
@@ -503,6 +509,7 @@ export type CargoUncheckedUpdateManyWithoutUsuarioInput = {
 }
 
 export type CargoUpdateWithoutPermissoesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   cargo?: Prisma.EnumCargosFieldUpdateOperationsInput | $Enums.Cargos
   desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuario?: Prisma.UsuarioUpdateManyWithoutCargosNestedInput

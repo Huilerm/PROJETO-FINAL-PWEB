@@ -182,7 +182,7 @@ model Cargo {
 }
 
 model Permissoes {
-  id        String  @id @default(uuid())
+  id        Int  @id @default(autoincrement())
   permissao String
   desc      String?
 
