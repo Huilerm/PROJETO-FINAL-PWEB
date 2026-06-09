@@ -33,7 +33,7 @@ export const cadastroSchema = z.object({
   // Código de Usuário (opcional — se omitida, é gerada automaticamente)
   matricula: z.string().optional(),
   siap: z.string().optional(),
-  id: z.string().optional(),
+  id: z.string().optional(), // Para cadastro de admin/deppi
 });
 
 export type CadastroInput = z.infer<typeof cadastroSchema>;
