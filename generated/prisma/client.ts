@@ -101,3 +101,8 @@ export type Cargo = Prisma.CargoModel
  * 
  */
 export type Permissoes = Prisma.PermissoesModel
+/**
+ * Model Historico
+ * 
+ */
+export type Historico = Prisma.HistoricoModel

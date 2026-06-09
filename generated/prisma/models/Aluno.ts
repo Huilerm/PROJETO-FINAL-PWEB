@@ -167,6 +167,7 @@ export type AlunoWhereInput = {
   matricula?: Prisma.StringFilter<"Aluno"> | string
   fkUsuario?: Prisma.StringFilter<"Aluno"> | string
   inscricaos?: Prisma.InscricaoListRelationFilter
+  historico?: Prisma.XOR<Prisma.HistoricoNullableScalarRelationFilter, Prisma.HistoricoWhereInput> | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }
 
@@ -175,6 +176,7 @@ export type AlunoOrderByWithRelationInput = {
   matricula?: Prisma.SortOrder
   fkUsuario?: Prisma.SortOrder
   inscricaos?: Prisma.InscricaoOrderByRelationAggregateInput
+  historico?: Prisma.HistoricoOrderByWithRelationInput
   usuario?: Prisma.UsuarioOrderByWithRelationInput
 }
 
@@ -186,6 +188,7 @@ export type AlunoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AlunoWhereInput[]
   NOT?: Prisma.AlunoWhereInput | Prisma.AlunoWhereInput[]
   inscricaos?: Prisma.InscricaoListRelationFilter
+  historico?: Prisma.XOR<Prisma.HistoricoNullableScalarRelationFilter, Prisma.HistoricoWhereInput> | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }, "id" | "matricula" | "fkUsuario">
 
@@ -211,6 +214,7 @@ export type AlunoCreateInput = {
   id?: string
   matricula: string
   inscricaos?: Prisma.InscricaoCreateNestedManyWithoutAlunoInput
+  historico?: Prisma.HistoricoCreateNestedOneWithoutAlunoInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutAlunosInput
 }
 
@@ -219,12 +223,14 @@ export type AlunoUncheckedCreateInput = {
   matricula: string
   fkUsuario: string
   inscricaos?: Prisma.InscricaoUncheckedCreateNestedManyWithoutAlunoInput
+  historico?: Prisma.HistoricoUncheckedCreateNestedOneWithoutAlunoInput
 }
 
 export type AlunoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   matricula?: Prisma.StringFieldUpdateOperationsInput | string
   inscricaos?: Prisma.InscricaoUpdateManyWithoutAlunoNestedInput
+  historico?: Prisma.HistoricoUpdateOneWithoutAlunoNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAlunosNestedInput
 }
 
@@ -233,6 +239,7 @@ export type AlunoUncheckedUpdateInput = {
   matricula?: Prisma.StringFieldUpdateOperationsInput | string
   fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
   inscricaos?: Prisma.InscricaoUncheckedUpdateManyWithoutAlunoNestedInput
+  historico?: Prisma.HistoricoUncheckedUpdateOneWithoutAlunoNestedInput
 }
 
 export type AlunoCreateManyInput = {
@@ -326,16 +333,32 @@ export type AlunoUpdateOneRequiredWithoutInscricaosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AlunoUpdateToOneWithWhereWithoutInscricaosInput, Prisma.AlunoUpdateWithoutInscricaosInput>, Prisma.AlunoUncheckedUpdateWithoutInscricaosInput>
 }
 
+export type AlunoCreateNestedOneWithoutHistoricoInput = {
+  create?: Prisma.XOR<Prisma.AlunoCreateWithoutHistoricoInput, Prisma.AlunoUncheckedCreateWithoutHistoricoInput>
+  connectOrCreate?: Prisma.AlunoCreateOrConnectWithoutHistoricoInput
+  connect?: Prisma.AlunoWhereUniqueInput
+}
+
+export type AlunoUpdateOneRequiredWithoutHistoricoNestedInput = {
+  create?: Prisma.XOR<Prisma.AlunoCreateWithoutHistoricoInput, Prisma.AlunoUncheckedCreateWithoutHistoricoInput>
+  connectOrCreate?: Prisma.AlunoCreateOrConnectWithoutHistoricoInput
+  upsert?: Prisma.AlunoUpsertWithoutHistoricoInput
+  connect?: Prisma.AlunoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AlunoUpdateToOneWithWhereWithoutHistoricoInput, Prisma.AlunoUpdateWithoutHistoricoInput>, Prisma.AlunoUncheckedUpdateWithoutHistoricoInput>
+}
+
 export type AlunoCreateWithoutUsuarioInput = {
   id?: string
   matricula: string
   inscricaos?: Prisma.InscricaoCreateNestedManyWithoutAlunoInput
+  historico?: Prisma.HistoricoCreateNestedOneWithoutAlunoInput
 }
 
 export type AlunoUncheckedCreateWithoutUsuarioInput = {
   id?: string
   matricula: string
   inscricaos?: Prisma.InscricaoUncheckedCreateNestedManyWithoutAlunoInput
+  historico?: Prisma.HistoricoUncheckedCreateNestedOneWithoutAlunoInput
 }
 
 export type AlunoCreateOrConnectWithoutUsuarioInput = {
@@ -358,17 +381,20 @@ export type AlunoUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   matricula?: Prisma.StringFieldUpdateOperationsInput | string
   inscricaos?: Prisma.InscricaoUpdateManyWithoutAlunoNestedInput
+  historico?: Prisma.HistoricoUpdateOneWithoutAlunoNestedInput
 }
 
 export type AlunoUncheckedUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   matricula?: Prisma.StringFieldUpdateOperationsInput | string
   inscricaos?: Prisma.InscricaoUncheckedUpdateManyWithoutAlunoNestedInput
+  historico?: Prisma.HistoricoUncheckedUpdateOneWithoutAlunoNestedInput
 }
 
 export type AlunoCreateWithoutInscricaosInput = {
   id?: string
   matricula: string
+  historico?: Prisma.HistoricoCreateNestedOneWithoutAlunoInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutAlunosInput
 }
 
@@ -376,6 +402,7 @@ export type AlunoUncheckedCreateWithoutInscricaosInput = {
   id?: string
   matricula: string
   fkUsuario: string
+  historico?: Prisma.HistoricoUncheckedCreateNestedOneWithoutAlunoInput
 }
 
 export type AlunoCreateOrConnectWithoutInscricaosInput = {
@@ -397,6 +424,7 @@ export type AlunoUpdateToOneWithWhereWithoutInscricaosInput = {
 export type AlunoUpdateWithoutInscricaosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   matricula?: Prisma.StringFieldUpdateOperationsInput | string
+  historico?: Prisma.HistoricoUpdateOneWithoutAlunoNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAlunosNestedInput
 }
 
@@ -404,6 +432,51 @@ export type AlunoUncheckedUpdateWithoutInscricaosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   matricula?: Prisma.StringFieldUpdateOperationsInput | string
   fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
+  historico?: Prisma.HistoricoUncheckedUpdateOneWithoutAlunoNestedInput
+}
+
+export type AlunoCreateWithoutHistoricoInput = {
+  id?: string
+  matricula: string
+  inscricaos?: Prisma.InscricaoCreateNestedManyWithoutAlunoInput
+  usuario: Prisma.UsuarioCreateNestedOneWithoutAlunosInput
+}
+
+export type AlunoUncheckedCreateWithoutHistoricoInput = {
+  id?: string
+  matricula: string
+  fkUsuario: string
+  inscricaos?: Prisma.InscricaoUncheckedCreateNestedManyWithoutAlunoInput
+}
+
+export type AlunoCreateOrConnectWithoutHistoricoInput = {
+  where: Prisma.AlunoWhereUniqueInput
+  create: Prisma.XOR<Prisma.AlunoCreateWithoutHistoricoInput, Prisma.AlunoUncheckedCreateWithoutHistoricoInput>
+}
+
+export type AlunoUpsertWithoutHistoricoInput = {
+  update: Prisma.XOR<Prisma.AlunoUpdateWithoutHistoricoInput, Prisma.AlunoUncheckedUpdateWithoutHistoricoInput>
+  create: Prisma.XOR<Prisma.AlunoCreateWithoutHistoricoInput, Prisma.AlunoUncheckedCreateWithoutHistoricoInput>
+  where?: Prisma.AlunoWhereInput
+}
+
+export type AlunoUpdateToOneWithWhereWithoutHistoricoInput = {
+  where?: Prisma.AlunoWhereInput
+  data: Prisma.XOR<Prisma.AlunoUpdateWithoutHistoricoInput, Prisma.AlunoUncheckedUpdateWithoutHistoricoInput>
+}
+
+export type AlunoUpdateWithoutHistoricoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  matricula?: Prisma.StringFieldUpdateOperationsInput | string
+  inscricaos?: Prisma.InscricaoUpdateManyWithoutAlunoNestedInput
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAlunosNestedInput
+}
+
+export type AlunoUncheckedUpdateWithoutHistoricoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  matricula?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
+  inscricaos?: Prisma.InscricaoUncheckedUpdateManyWithoutAlunoNestedInput
 }
 
 
@@ -442,6 +515,7 @@ export type AlunoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   matricula?: boolean
   fkUsuario?: boolean
   inscricaos?: boolean | Prisma.Aluno$inscricaosArgs<ExtArgs>
+  historico?: boolean | Prisma.Aluno$historicoArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AlunoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aluno"]>
@@ -469,6 +543,7 @@ export type AlunoSelectScalar = {
 export type AlunoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "matricula" | "fkUsuario", ExtArgs["result"]["aluno"]>
 export type AlunoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   inscricaos?: boolean | Prisma.Aluno$inscricaosArgs<ExtArgs>
+  historico?: boolean | Prisma.Aluno$historicoArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AlunoCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -483,6 +558,7 @@ export type $AlunoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Aluno"
   objects: {
     inscricaos: Prisma.$InscricaoPayload<ExtArgs>[]
+    historico: Prisma.$HistoricoPayload<ExtArgs> | null
     usuario: Prisma.$UsuarioPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -884,6 +960,7 @@ readonly fields: AlunoFieldRefs;
 export interface Prisma__AlunoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   inscricaos<T extends Prisma.Aluno$inscricaosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Aluno$inscricaosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InscricaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  historico<T extends Prisma.Aluno$historicoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Aluno$historicoArgs<ExtArgs>>): Prisma.Prisma__HistoricoClient<runtime.Types.Result.GetResult<Prisma.$HistoricoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   usuario<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1339,6 +1416,25 @@ export type Aluno$inscricaosArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.InscricaoScalarFieldEnum | Prisma.InscricaoScalarFieldEnum[]
+}
+
+/**
+ * Aluno.historico
+ */
+export type Aluno$historicoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Historico
+   */
+  select?: Prisma.HistoricoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Historico
+   */
+  omit?: Prisma.HistoricoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HistoricoInclude<ExtArgs> | null
+  where?: Prisma.HistoricoWhereInput
 }
 
 /**

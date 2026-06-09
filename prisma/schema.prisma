@@ -28,6 +28,7 @@ model Usuario {
 
   fkIdentidade String     @unique @map("fk_identidade")
   identidade   Identidade @relation(fields: [fkIdentidade], references: [id])
+  historico    Historico?
 
   @@map("usuario")
 }
@@ -38,6 +39,7 @@ model Aluno {
   matricula String @unique
 
   inscricaos Inscricao[]
+  historico  Historico?
 
   fkUsuario String  @unique @map("fk_usuario")
   usuario   Usuario @relation(fields: [fkUsuario], references: [id])
@@ -116,6 +118,7 @@ model Inscricao {
 
   status        StatusInscricao @default(PENDENTE) @map("curso_status")
   rendaFamiliar RendaFamiliar?
+  historico     Historico?
 
   fkAluno String @map("fk_aluno")
   aluno   Aluno  @relation(fields: [fkAluno], references: [id])
@@ -171,7 +174,7 @@ model Auditoria {
 }
 
 model Cargo {
-  id    Int  @id
+  id    Int     @id
   cargo Cargos
   desc  String?
 
@@ -182,13 +185,33 @@ model Cargo {
 }
 
 model Permissoes {
-  id        Int  @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   permissao String
   desc      String?
 
   cargo Cargo[]
 
   @@map("permissoes")
+}
+
+model Historico {
+  id Int @id @default(autoincrement())
+
+  alteracao       String
+  descricao       String
+  statusAnterior  StatusInscricao @map("status_anterior")
+  statusAtual     StatusInscricao @map("status_atual")
+  dataModificacao DateTime        @default(now()) @map("data_modificacao")
+
+  fkAluno              String @unique @map("fk_aluno")
+  fkInscricao          String @unique @map("fk_inscricao")
+  fkUsuarioResponsavel String @unique @map("fk_usuario_responsavel")
+
+  aluno     Aluno     @relation(fields: [fkAluno], references: [id])
+  inscricao Inscricao @relation(fields: [fkInscricao], references: [id])
+  usuario   Usuario   @relation(fields: [fkUsuarioResponsavel], references: [id])
+
+  @@map("historico")
 }
 
 enum StatusCurso {

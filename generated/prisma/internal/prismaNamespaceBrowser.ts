@@ -62,7 +62,8 @@ export const ModelName = {
   RendaFamiliar: 'RendaFamiliar',
   Auditoria: 'Auditoria',
   Cargo: 'Cargo',
-  Permissoes: 'Permissoes'
+  Permissoes: 'Permissoes',
+  Historico: 'Historico'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -219,6 +220,20 @@ export const PermissoesScalarFieldEnum = {
 } as const
 
 export type PermissoesScalarFieldEnum = (typeof PermissoesScalarFieldEnum)[keyof typeof PermissoesScalarFieldEnum]
+
+
+export const HistoricoScalarFieldEnum = {
+  id: 'id',
+  alteracao: 'alteracao',
+  descricao: 'descricao',
+  statusAnterior: 'statusAnterior',
+  statusAtual: 'statusAtual',
+  dataModificacao: 'dataModificacao',
+  fkAluno: 'fkAluno',
+  fkInscricao: 'fkInscricao'
+} as const
+
+export type HistoricoScalarFieldEnum = (typeof HistoricoScalarFieldEnum)[keyof typeof HistoricoScalarFieldEnum]
 
 
 export const SortOrder = {
