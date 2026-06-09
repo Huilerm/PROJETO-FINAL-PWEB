@@ -395,7 +395,8 @@ export const ModelName = {
   RendaFamiliar: 'RendaFamiliar',
   Auditoria: 'Auditoria',
   Cargo: 'Cargo',
-  Permissoes: 'Permissoes'
+  Permissoes: 'Permissoes',
+  Historico: 'Historico'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "aluno" | "professor" | "curso" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes"
+    modelProps: "usuario" | "aluno" | "professor" | "curso" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes" | "historico"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1303,6 +1304,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Historico: {
+      payload: Prisma.$HistoricoPayload<ExtArgs>
+      fields: Prisma.HistoricoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.HistoricoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.HistoricoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>
+        }
+        findFirst: {
+          args: Prisma.HistoricoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.HistoricoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>
+        }
+        findMany: {
+          args: Prisma.HistoricoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>[]
+        }
+        create: {
+          args: Prisma.HistoricoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>
+        }
+        createMany: {
+          args: Prisma.HistoricoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.HistoricoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>[]
+        }
+        delete: {
+          args: Prisma.HistoricoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>
+        }
+        update: {
+          args: Prisma.HistoricoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>
+        }
+        deleteMany: {
+          args: Prisma.HistoricoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.HistoricoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.HistoricoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>[]
+        }
+        upsert: {
+          args: Prisma.HistoricoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HistoricoPayload>
+        }
+        aggregate: {
+          args: Prisma.HistoricoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHistorico>
+        }
+        groupBy: {
+          args: Prisma.HistoricoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HistoricoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.HistoricoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HistoricoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1480,6 +1555,20 @@ export const PermissoesScalarFieldEnum = {
 } as const
 
 export type PermissoesScalarFieldEnum = (typeof PermissoesScalarFieldEnum)[keyof typeof PermissoesScalarFieldEnum]
+
+
+export const HistoricoScalarFieldEnum = {
+  id: 'id',
+  alteracao: 'alteracao',
+  descricao: 'descricao',
+  statusAnterior: 'statusAnterior',
+  statusAtual: 'statusAtual',
+  dataModificacao: 'dataModificacao',
+  fkAluno: 'fkAluno',
+  fkInscricao: 'fkInscricao'
+} as const
+
+export type HistoricoScalarFieldEnum = (typeof HistoricoScalarFieldEnum)[keyof typeof HistoricoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1818,6 +1907,7 @@ export type GlobalOmitConfig = {
   auditoria?: Prisma.AuditoriaOmit
   cargo?: Prisma.CargoOmit
   permissoes?: Prisma.PermissoesOmit
+  historico?: Prisma.HistoricoOmit
 }
 
 /* Types for Logging */

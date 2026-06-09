@@ -8,7 +8,7 @@ export const cadastroSchema = z.object({
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Data deve estar no formato YYYY-MM-DD"),
   naturalidade: z.string().min(2, "Naturalidade é obrigatória"),
-  email: z.string().email("E-mail inválido"),
+  email: z.email("E-mail inválido"),
   senha: z.string().min(6, "Senha deve ter ao menos 6 caracteres"),
   sexo: z.enum(["MASCULINO", "FEMININO"]),
   raca: z.enum([
