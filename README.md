@@ -35,3 +35,40 @@ Após o container subir, execute o banco de dados no sistema:
 
 ## Rotas do Sistema
 
+Rotas para Registro (com autenticação):
+
+    /auth/cadastro
+
+Para cadastro de usuário, é necessário fornecer as seguintes informações:
+
+    {
+	    nome,
+	    dataNasc,
+	    naturalidade,
+	    email,
+	    senha,
+	    sexo,
+	    raca,
+	    cargo,
+	    rg,
+	    cpf,
+	    orgaoEmissor,
+	    estado,
+	    dataEmissao,
+	    matricula/siap
+    }
+
+Para o Acesso do usuário, precisa fornecer as seguintes informações:
+
+    /auth/login
+
+Fornecer as seguintes informações
+
+    {
+	    email,
+	    senha
+    }
+
+Para o acesso as informações do usuário logado:
+
+    /auth/me
