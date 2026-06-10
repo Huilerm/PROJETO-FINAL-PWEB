@@ -12,6 +12,6 @@ userRouter.get("/", authMiddleware, verificarPermissao("ADMIN"), listar);
 userRouter.get("/me", authMiddleware, perfil);
 
 // PATCH /users/me — atualiza nome, nomeSocial ou senha do usuário logado
-userRouter.patch("/me", authMiddleware, atualizar);
+userRouter.patch("/atualizar", authMiddleware, atualizar);
 
 export default userRouter;

@@ -6,8 +6,7 @@ O sistema está sendo desenvolvido para a disciplina de Programação Web no cur
 
 ## Tecnologias
 
-![Node](https://skillicons.dev/icons?i=nodejs&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=typescript&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=prisma&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=express&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=docker&theme=dark) 
-
+![Node](https://skillicons.dev/icons?i=nodejs&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=typescript&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=prisma&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=express&theme=dark) ![TypeScript](https://skillicons.dev/icons?i=docker&theme=dark)
 
 ## Download do Sistema
 
@@ -35,6 +34,8 @@ Após o container subir, execute o banco de dados no sistema:
 
 ## Rotas do Sistema
 
+### Rotas via autenticação
+
 Rotas para Registro (com autenticação):
 
     /auth/cadastro
@@ -42,20 +43,20 @@ Rotas para Registro (com autenticação):
 Para cadastro de usuário, é necessário fornecer as seguintes informações:
 
     {
-	    nome,
-	    dataNasc,
-	    naturalidade,
-	    email,
-	    senha,
-	    sexo,
-	    raca,
-	    cargo,
-	    rg,
-	    cpf,
-	    orgaoEmissor,
-	    estado,
-	    dataEmissao,
-	    matricula/siap
+        nome,
+        dataNasc,
+        naturalidade,
+        email,
+        senha,
+        sexo,
+        raca,
+        cargo,
+        rg,
+        cpf,
+        orgaoEmissor,
+        estado,
+        dataEmissao,
+        matricula/siap
     }
 
 Para o Acesso do usuário, precisa fornecer as seguintes informações:
@@ -65,10 +66,46 @@ Para o Acesso do usuário, precisa fornecer as seguintes informações:
 Fornecer as seguintes informações
 
     {
-	    email,
-	    senha
+        email,
+        senha
     }
 
 Para o acesso as informações do usuário logado:
 
     /auth/me
+
+### Rotas de usuário logado
+
+Com permissão de ADMIN, utilizar a seguinte rota para listar todos os usuários
+
+    /users
+
+Para verifcar o perfil logado, utilizar a seguinte rota:
+
+    /users/me
+
+Com o usuário logado, acessar a seguinte rota para atualizar alguns dados:
+
+    /users/atualizar
+
+As informações a ser fornecidas:
+
+    {
+    	nome?,
+    	nomeSocial?,
+    	senha?
+    }
+
+### Rota exclusvia de ADMIN
+
+Para cadastro de novo ADMIN ou DEPPI com poucas informações:
+
+    /admin/cadastro
+
+Informações a serem fornecidas:
+
+    {
+    	id,
+    	nome,
+    	email
+    }
