@@ -14,8 +14,13 @@ model Usuario {
   nomeSocial   String?  @map("nome_social")
   dataNasc     DateTime @map("data_nasc")
   naturalidade String
-  email        String   @unique
+  emailInstitucional        String   @unique @map("email_institucional")
+  emailSecundario String @map("email_secundario")
   senha        String
+
+  nomeMae String @map("nome_mae")
+  nomePai String @map("nome_pai")
+
 
   criadoEm     DateTime @default(now()) @map("criado_em")
   atualizadoEm DateTime @updatedAt @map("atualizado_em")
@@ -27,6 +32,9 @@ model Usuario {
   cargos    Cargo[]
 
   fkIdentidade String     @unique @map("fk_identidade")
+  fkEndereco Int @map("fk_endereco")
+
+  endereco Endereco @relation(fields: [fkEndereco], references: [id])
   identidade   Identidade @relation(fields: [fkIdentidade], references: [id])
   historico    Historico?
 
@@ -50,7 +58,40 @@ model Aluno {
 model Professor {
   id String @id @default(uuid())
 
-  siap String @unique
+  siape String @unique
+  emailSiape String @unique @map("email_siape")
+  telefonesInstiticionais String[] @map("telefones_institicionais")
+  telefonesPessoais String[] @map("telefones_pessoais")
+  emPGD Boolean
+  titulacao String
+  escolaridade String
+  grupoSanguineo String @map("grupo_sanguineo") 
+
+  setorSuap String @map("setor_suap")
+  lotacaoSiape String @map("lotacao_siape")
+  exercicioSiape String @map("execicio_siape")
+  situacao String
+  regimeTrabalho String @map("regime_trabalho")
+  jornadaTrabalho String @map("jornada_trabalho")
+  operadorRaioX Boolean @map("operador_raiox")
+
+  inicioServicoPublico DateTime @map("inicio_servico_publico") @db.Date
+  dataDePosseInstituicao DateTime @map("data_posse_instituicao") @db.Date
+  inicioServicoInstituicao DateTime @map("inicio_servico_instituicao") @db.Date
+  tempoServicoInstituicaao String @map("tempo_servico_instituicao")
+  dataPosseCargo DateTime @map("data_posse_cargo") @db.Date
+  inicioExercicioCargo DateTime @map("inicio_exercicio_cargo") @db.Date
+  tempoServicoCargo DateTime @map("tempo_servico_cargo") @db.Date
+  cargoInstitucional String @map("cargo_institucional")
+  classeCargo String @map("classe_cargo")
+  padrao String @map("padrao")
+  grupoCargo String @map("grupo_cargo")
+  codigoVaga Int @map("codigo_vaga")
+  NCE String?
+
+  qtdDependentes Int @map("qtd_dependentes")
+
+  pisPasep String @map("pis_pasep")
 
   alocacoes AlocacaoProfessor[]
 
@@ -58,6 +99,28 @@ model Professor {
   usuario   Usuario @relation(fields: [fkUsuario], references: [id])
 
   @@map("professor")
+}
+
+model Endereco {
+  id Int @id @default(autoincrement())
+
+  rua String
+  bairro String
+  numero Int
+  cep Int
+
+  usuario Usuario[]
+  @@map("endereco")
+}
+
+model DadosBancarios {
+  id String @id @default(uuid())
+
+  banco String
+  agencia Int
+  cc Int
+
+  @@map("dados_bancarios")
 }
 
 model Curso {
@@ -95,7 +158,7 @@ model AlocacaoProfessor {
   dataAlocacao DateTime @default(now()) @map("data_alocacao")
 
   @@unique([fkProfessor, fkCurso])
-  @@map("alocacoes_professores")
+  @@map("alocacao_professor ")
 }
 
 model Instituicao {
@@ -126,7 +189,7 @@ model Inscricao {
   fkCurso String @map("fk_curso")
   curso   Curso  @relation(fields: [fkCurso], references: [id])
 
-  @@map("inscricoes")
+  @@map("inscricao")
 }
 
 model Identidade {
@@ -136,11 +199,22 @@ model Identidade {
   cpf          String   @unique
   orgaoEmissor String   @map("orgao_emissor")
   estado       String
-  dataEmissao  DateTime @map("data_emissao") @db.Date
+  dataExpedicao  DateTime @map("data_expedicao") @db.Date
 
   usuario Usuario?
 
-  @@map("identidades")
+  @@map("identidade")
+}
+
+model TituloEleitor {
+  id String @id @default(uuid())
+
+  numero Int
+  zonaEleitoral String @map("zona_eleitoral")
+  secaoEleitoral String @map("secao_eleitoral")
+  UF String
+
+  @@map("titulo_eleitor")
 }
 
 model RendaFamiliar {
@@ -152,7 +226,7 @@ model RendaFamiliar {
   fkInscricao String    @unique @map("fk_inscricao")
   inscricao   Inscricao @relation(fields: [fkInscricao], references: [id])
 
-  @@map("rendas_familiares")
+  @@map("renda_familiar")
 }
 
 model Auditoria {
@@ -170,7 +244,7 @@ model Auditoria {
   dataModificacao DateTime @default(now()) @map("data_modificacao")
 
   @@index([tabelaModificada, idModificado])
-  @@map("auditorias")
+  @@map("auditoria")
 }
 
 model Cargo {
