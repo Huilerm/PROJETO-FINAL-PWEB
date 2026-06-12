@@ -54,11 +54,14 @@ export const ModelName = {
   Usuario: 'Usuario',
   Aluno: 'Aluno',
   Professor: 'Professor',
+  Endereco: 'Endereco',
+  DadosBancarios: 'DadosBancarios',
   Curso: 'Curso',
   AlocacaoProfessor: 'AlocacaoProfessor',
   Instituicao: 'Instituicao',
   Inscricao: 'Inscricao',
   Identidade: 'Identidade',
+  TituloEleitor: 'TituloEleitor',
   RendaFamiliar: 'RendaFamiliar',
   Auditoria: 'Auditoria',
   Cargo: 'Cargo',
@@ -88,13 +91,17 @@ export const UsuarioScalarFieldEnum = {
   nomeSocial: 'nomeSocial',
   dataNasc: 'dataNasc',
   naturalidade: 'naturalidade',
-  email: 'email',
+  emailInstitucional: 'emailInstitucional',
+  emailSecundario: 'emailSecundario',
   senha: 'senha',
+  nomeMae: 'nomeMae',
+  nomePai: 'nomePai',
   criadoEm: 'criadoEm',
   atualizadoEm: 'atualizadoEm',
   sexo: 'sexo',
   raca: 'raca',
-  fkIdentidade: 'fkIdentidade'
+  fkIdentidade: 'fkIdentidade',
+  fkEndereco: 'fkEndereco'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
@@ -111,11 +118,61 @@ export type AlunoScalarFieldEnum = (typeof AlunoScalarFieldEnum)[keyof typeof Al
 
 export const ProfessorScalarFieldEnum = {
   id: 'id',
-  siap: 'siap',
+  siape: 'siape',
+  emailSiape: 'emailSiape',
+  telefonesInstiticionais: 'telefonesInstiticionais',
+  telefonesPessoais: 'telefonesPessoais',
+  emPGD: 'emPGD',
+  titulacao: 'titulacao',
+  escolaridade: 'escolaridade',
+  grupoSanguineo: 'grupoSanguineo',
+  setorSuap: 'setorSuap',
+  lotacaoSiape: 'lotacaoSiape',
+  exercicioSiape: 'exercicioSiape',
+  situacao: 'situacao',
+  regimeTrabalho: 'regimeTrabalho',
+  jornadaTrabalho: 'jornadaTrabalho',
+  operadorRaioX: 'operadorRaioX',
+  inicioServicoPublico: 'inicioServicoPublico',
+  dataDePosseInstituicao: 'dataDePosseInstituicao',
+  inicioServicoInstituicao: 'inicioServicoInstituicao',
+  tempoServicoInstituicaao: 'tempoServicoInstituicaao',
+  dataPosseCargo: 'dataPosseCargo',
+  inicioExercicioCargo: 'inicioExercicioCargo',
+  tempoServicoCargo: 'tempoServicoCargo',
+  cargoInstitucional: 'cargoInstitucional',
+  classeCargo: 'classeCargo',
+  padrao: 'padrao',
+  grupoCargo: 'grupoCargo',
+  codigoVaga: 'codigoVaga',
+  NCE: 'NCE',
+  qtdDependentes: 'qtdDependentes',
+  pisPasep: 'pisPasep',
   fkUsuario: 'fkUsuario'
 } as const
 
 export type ProfessorScalarFieldEnum = (typeof ProfessorScalarFieldEnum)[keyof typeof ProfessorScalarFieldEnum]
+
+
+export const EnderecoScalarFieldEnum = {
+  id: 'id',
+  rua: 'rua',
+  bairro: 'bairro',
+  numero: 'numero',
+  cep: 'cep'
+} as const
+
+export type EnderecoScalarFieldEnum = (typeof EnderecoScalarFieldEnum)[keyof typeof EnderecoScalarFieldEnum]
+
+
+export const DadosBancariosScalarFieldEnum = {
+  id: 'id',
+  banco: 'banco',
+  agencia: 'agencia',
+  cc: 'cc'
+} as const
+
+export type DadosBancariosScalarFieldEnum = (typeof DadosBancariosScalarFieldEnum)[keyof typeof DadosBancariosScalarFieldEnum]
 
 
 export const CursoScalarFieldEnum = {
@@ -174,10 +231,21 @@ export const IdentidadeScalarFieldEnum = {
   cpf: 'cpf',
   orgaoEmissor: 'orgaoEmissor',
   estado: 'estado',
-  dataEmissao: 'dataEmissao'
+  dataExpedicao: 'dataExpedicao'
 } as const
 
 export type IdentidadeScalarFieldEnum = (typeof IdentidadeScalarFieldEnum)[keyof typeof IdentidadeScalarFieldEnum]
+
+
+export const TituloEleitorScalarFieldEnum = {
+  id: 'id',
+  numero: 'numero',
+  zonaEleitoral: 'zonaEleitoral',
+  secaoEleitoral: 'secaoEleitoral',
+  UF: 'UF'
+} as const
+
+export type TituloEleitorScalarFieldEnum = (typeof TituloEleitorScalarFieldEnum)[keyof typeof TituloEleitorScalarFieldEnum]
 
 
 export const RendaFamiliarScalarFieldEnum = {
@@ -230,7 +298,8 @@ export const HistoricoScalarFieldEnum = {
   statusAtual: 'statusAtual',
   dataModificacao: 'dataModificacao',
   fkAluno: 'fkAluno',
-  fkInscricao: 'fkInscricao'
+  fkInscricao: 'fkInscricao',
+  fkUsuarioResponsavel: 'fkUsuarioResponsavel'
 } as const
 
 export type HistoricoScalarFieldEnum = (typeof HistoricoScalarFieldEnum)[keyof typeof HistoricoScalarFieldEnum]
