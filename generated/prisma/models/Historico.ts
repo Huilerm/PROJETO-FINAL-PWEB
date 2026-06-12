@@ -43,6 +43,7 @@ export type HistoricoMinAggregateOutputType = {
   dataModificacao: Date | null
   fkAluno: string | null
   fkInscricao: string | null
+  fkUsuarioResponsavel: string | null
 }
 
 export type HistoricoMaxAggregateOutputType = {
@@ -54,6 +55,7 @@ export type HistoricoMaxAggregateOutputType = {
   dataModificacao: Date | null
   fkAluno: string | null
   fkInscricao: string | null
+  fkUsuarioResponsavel: string | null
 }
 
 export type HistoricoCountAggregateOutputType = {
@@ -65,6 +67,7 @@ export type HistoricoCountAggregateOutputType = {
   dataModificacao: number
   fkAluno: number
   fkInscricao: number
+  fkUsuarioResponsavel: number
   _all: number
 }
 
@@ -86,6 +89,7 @@ export type HistoricoMinAggregateInputType = {
   dataModificacao?: true
   fkAluno?: true
   fkInscricao?: true
+  fkUsuarioResponsavel?: true
 }
 
 export type HistoricoMaxAggregateInputType = {
@@ -97,6 +101,7 @@ export type HistoricoMaxAggregateInputType = {
   dataModificacao?: true
   fkAluno?: true
   fkInscricao?: true
+  fkUsuarioResponsavel?: true
 }
 
 export type HistoricoCountAggregateInputType = {
@@ -108,6 +113,7 @@ export type HistoricoCountAggregateInputType = {
   dataModificacao?: true
   fkAluno?: true
   fkInscricao?: true
+  fkUsuarioResponsavel?: true
   _all?: true
 }
 
@@ -206,6 +212,7 @@ export type HistoricoGroupByOutputType = {
   dataModificacao: Date
   fkAluno: string
   fkInscricao: string
+  fkUsuarioResponsavel: string
   _count: HistoricoCountAggregateOutputType | null
   _avg: HistoricoAvgAggregateOutputType | null
   _sum: HistoricoSumAggregateOutputType | null
@@ -240,8 +247,10 @@ export type HistoricoWhereInput = {
   dataModificacao?: Prisma.DateTimeFilter<"Historico"> | Date | string
   fkAluno?: Prisma.StringFilter<"Historico"> | string
   fkInscricao?: Prisma.StringFilter<"Historico"> | string
+  fkUsuarioResponsavel?: Prisma.StringFilter<"Historico"> | string
   aluno?: Prisma.XOR<Prisma.AlunoScalarRelationFilter, Prisma.AlunoWhereInput>
   inscricao?: Prisma.XOR<Prisma.InscricaoScalarRelationFilter, Prisma.InscricaoWhereInput>
+  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }
 
 export type HistoricoOrderByWithRelationInput = {
@@ -253,14 +262,17 @@ export type HistoricoOrderByWithRelationInput = {
   dataModificacao?: Prisma.SortOrder
   fkAluno?: Prisma.SortOrder
   fkInscricao?: Prisma.SortOrder
+  fkUsuarioResponsavel?: Prisma.SortOrder
   aluno?: Prisma.AlunoOrderByWithRelationInput
   inscricao?: Prisma.InscricaoOrderByWithRelationInput
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
 }
 
 export type HistoricoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   fkAluno?: string
   fkInscricao?: string
+  fkUsuarioResponsavel?: string
   AND?: Prisma.HistoricoWhereInput | Prisma.HistoricoWhereInput[]
   OR?: Prisma.HistoricoWhereInput[]
   NOT?: Prisma.HistoricoWhereInput | Prisma.HistoricoWhereInput[]
@@ -271,7 +283,8 @@ export type HistoricoWhereUniqueInput = Prisma.AtLeast<{
   dataModificacao?: Prisma.DateTimeFilter<"Historico"> | Date | string
   aluno?: Prisma.XOR<Prisma.AlunoScalarRelationFilter, Prisma.AlunoWhereInput>
   inscricao?: Prisma.XOR<Prisma.InscricaoScalarRelationFilter, Prisma.InscricaoWhereInput>
-}, "id" | "fkAluno" | "fkInscricao">
+  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
+}, "id" | "fkAluno" | "fkInscricao" | "fkUsuarioResponsavel">
 
 export type HistoricoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -282,6 +295,7 @@ export type HistoricoOrderByWithAggregationInput = {
   dataModificacao?: Prisma.SortOrder
   fkAluno?: Prisma.SortOrder
   fkInscricao?: Prisma.SortOrder
+  fkUsuarioResponsavel?: Prisma.SortOrder
   _count?: Prisma.HistoricoCountOrderByAggregateInput
   _avg?: Prisma.HistoricoAvgOrderByAggregateInput
   _max?: Prisma.HistoricoMaxOrderByAggregateInput
@@ -301,6 +315,7 @@ export type HistoricoScalarWhereWithAggregatesInput = {
   dataModificacao?: Prisma.DateTimeWithAggregatesFilter<"Historico"> | Date | string
   fkAluno?: Prisma.StringWithAggregatesFilter<"Historico"> | string
   fkInscricao?: Prisma.StringWithAggregatesFilter<"Historico"> | string
+  fkUsuarioResponsavel?: Prisma.StringWithAggregatesFilter<"Historico"> | string
 }
 
 export type HistoricoCreateInput = {
@@ -311,6 +326,7 @@ export type HistoricoCreateInput = {
   dataModificacao?: Date | string
   aluno: Prisma.AlunoCreateNestedOneWithoutHistoricoInput
   inscricao: Prisma.InscricaoCreateNestedOneWithoutHistoricoInput
+  usuario: Prisma.UsuarioCreateNestedOneWithoutHistoricoInput
 }
 
 export type HistoricoUncheckedCreateInput = {
@@ -322,6 +338,7 @@ export type HistoricoUncheckedCreateInput = {
   dataModificacao?: Date | string
   fkAluno: string
   fkInscricao: string
+  fkUsuarioResponsavel: string
 }
 
 export type HistoricoUpdateInput = {
@@ -332,6 +349,7 @@ export type HistoricoUpdateInput = {
   dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aluno?: Prisma.AlunoUpdateOneRequiredWithoutHistoricoNestedInput
   inscricao?: Prisma.InscricaoUpdateOneRequiredWithoutHistoricoNestedInput
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutHistoricoNestedInput
 }
 
 export type HistoricoUncheckedUpdateInput = {
@@ -343,6 +361,7 @@ export type HistoricoUncheckedUpdateInput = {
   dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
   fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type HistoricoCreateManyInput = {
@@ -354,6 +373,7 @@ export type HistoricoCreateManyInput = {
   dataModificacao?: Date | string
   fkAluno: string
   fkInscricao: string
+  fkUsuarioResponsavel: string
 }
 
 export type HistoricoUpdateManyMutationInput = {
@@ -373,6 +393,7 @@ export type HistoricoUncheckedUpdateManyInput = {
   dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
   fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type HistoricoNullableScalarRelationFilter = {
@@ -389,6 +410,7 @@ export type HistoricoCountOrderByAggregateInput = {
   dataModificacao?: Prisma.SortOrder
   fkAluno?: Prisma.SortOrder
   fkInscricao?: Prisma.SortOrder
+  fkUsuarioResponsavel?: Prisma.SortOrder
 }
 
 export type HistoricoAvgOrderByAggregateInput = {
@@ -404,6 +426,7 @@ export type HistoricoMaxOrderByAggregateInput = {
   dataModificacao?: Prisma.SortOrder
   fkAluno?: Prisma.SortOrder
   fkInscricao?: Prisma.SortOrder
+  fkUsuarioResponsavel?: Prisma.SortOrder
 }
 
 export type HistoricoMinOrderByAggregateInput = {
@@ -415,10 +438,43 @@ export type HistoricoMinOrderByAggregateInput = {
   dataModificacao?: Prisma.SortOrder
   fkAluno?: Prisma.SortOrder
   fkInscricao?: Prisma.SortOrder
+  fkUsuarioResponsavel?: Prisma.SortOrder
 }
 
 export type HistoricoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+}
+
+export type HistoricoCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.HistoricoWhereUniqueInput
+}
+
+export type HistoricoUncheckedCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.HistoricoWhereUniqueInput
+}
+
+export type HistoricoUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.HistoricoUpsertWithoutUsuarioInput
+  disconnect?: Prisma.HistoricoWhereInput | boolean
+  delete?: Prisma.HistoricoWhereInput | boolean
+  connect?: Prisma.HistoricoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutUsuarioInput, Prisma.HistoricoUpdateWithoutUsuarioInput>, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type HistoricoUncheckedUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.HistoricoUpsertWithoutUsuarioInput
+  disconnect?: Prisma.HistoricoWhereInput | boolean
+  delete?: Prisma.HistoricoWhereInput | boolean
+  connect?: Prisma.HistoricoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutUsuarioInput, Prisma.HistoricoUpdateWithoutUsuarioInput>, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
 }
 
 export type HistoricoCreateNestedOneWithoutAlunoInput = {
@@ -485,6 +541,64 @@ export type HistoricoUncheckedUpdateOneWithoutInscricaoNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutInscricaoInput, Prisma.HistoricoUpdateWithoutInscricaoInput>, Prisma.HistoricoUncheckedUpdateWithoutInscricaoInput>
 }
 
+export type HistoricoCreateWithoutUsuarioInput = {
+  alteracao: string
+  descricao: string
+  statusAnterior: $Enums.StatusInscricao
+  statusAtual: $Enums.StatusInscricao
+  dataModificacao?: Date | string
+  aluno: Prisma.AlunoCreateNestedOneWithoutHistoricoInput
+  inscricao: Prisma.InscricaoCreateNestedOneWithoutHistoricoInput
+}
+
+export type HistoricoUncheckedCreateWithoutUsuarioInput = {
+  id?: number
+  alteracao: string
+  descricao: string
+  statusAnterior: $Enums.StatusInscricao
+  statusAtual: $Enums.StatusInscricao
+  dataModificacao?: Date | string
+  fkAluno: string
+  fkInscricao: string
+}
+
+export type HistoricoCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.HistoricoWhereUniqueInput
+  create: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
+}
+
+export type HistoricoUpsertWithoutUsuarioInput = {
+  update: Prisma.XOR<Prisma.HistoricoUpdateWithoutUsuarioInput, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
+  where?: Prisma.HistoricoWhereInput
+}
+
+export type HistoricoUpdateToOneWithWhereWithoutUsuarioInput = {
+  where?: Prisma.HistoricoWhereInput
+  data: Prisma.XOR<Prisma.HistoricoUpdateWithoutUsuarioInput, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type HistoricoUpdateWithoutUsuarioInput = {
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aluno?: Prisma.AlunoUpdateOneRequiredWithoutHistoricoNestedInput
+  inscricao?: Prisma.InscricaoUpdateOneRequiredWithoutHistoricoNestedInput
+}
+
+export type HistoricoUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
+  fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
 export type HistoricoCreateWithoutAlunoInput = {
   alteracao: string
   descricao: string
@@ -492,6 +606,7 @@ export type HistoricoCreateWithoutAlunoInput = {
   statusAtual: $Enums.StatusInscricao
   dataModificacao?: Date | string
   inscricao: Prisma.InscricaoCreateNestedOneWithoutHistoricoInput
+  usuario: Prisma.UsuarioCreateNestedOneWithoutHistoricoInput
 }
 
 export type HistoricoUncheckedCreateWithoutAlunoInput = {
@@ -502,6 +617,7 @@ export type HistoricoUncheckedCreateWithoutAlunoInput = {
   statusAtual: $Enums.StatusInscricao
   dataModificacao?: Date | string
   fkInscricao: string
+  fkUsuarioResponsavel: string
 }
 
 export type HistoricoCreateOrConnectWithoutAlunoInput = {
@@ -527,6 +643,7 @@ export type HistoricoUpdateWithoutAlunoInput = {
   statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inscricao?: Prisma.InscricaoUpdateOneRequiredWithoutHistoricoNestedInput
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutHistoricoNestedInput
 }
 
 export type HistoricoUncheckedUpdateWithoutAlunoInput = {
@@ -537,6 +654,7 @@ export type HistoricoUncheckedUpdateWithoutAlunoInput = {
   statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type HistoricoCreateWithoutInscricaoInput = {
@@ -546,6 +664,7 @@ export type HistoricoCreateWithoutInscricaoInput = {
   statusAtual: $Enums.StatusInscricao
   dataModificacao?: Date | string
   aluno: Prisma.AlunoCreateNestedOneWithoutHistoricoInput
+  usuario: Prisma.UsuarioCreateNestedOneWithoutHistoricoInput
 }
 
 export type HistoricoUncheckedCreateWithoutInscricaoInput = {
@@ -556,6 +675,7 @@ export type HistoricoUncheckedCreateWithoutInscricaoInput = {
   statusAtual: $Enums.StatusInscricao
   dataModificacao?: Date | string
   fkAluno: string
+  fkUsuarioResponsavel: string
 }
 
 export type HistoricoCreateOrConnectWithoutInscricaoInput = {
@@ -581,6 +701,7 @@ export type HistoricoUpdateWithoutInscricaoInput = {
   statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   aluno?: Prisma.AlunoUpdateOneRequiredWithoutHistoricoNestedInput
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutHistoricoNestedInput
 }
 
 export type HistoricoUncheckedUpdateWithoutInscricaoInput = {
@@ -591,6 +712,7 @@ export type HistoricoUncheckedUpdateWithoutInscricaoInput = {
   statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -604,8 +726,10 @@ export type HistoricoSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   dataModificacao?: boolean
   fkAluno?: boolean
   fkInscricao?: boolean
+  fkUsuarioResponsavel?: boolean
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   inscricao?: boolean | Prisma.InscricaoDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["historico"]>
 
 export type HistoricoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -617,8 +741,10 @@ export type HistoricoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   dataModificacao?: boolean
   fkAluno?: boolean
   fkInscricao?: boolean
+  fkUsuarioResponsavel?: boolean
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   inscricao?: boolean | Prisma.InscricaoDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["historico"]>
 
 export type HistoricoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -630,8 +756,10 @@ export type HistoricoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   dataModificacao?: boolean
   fkAluno?: boolean
   fkInscricao?: boolean
+  fkUsuarioResponsavel?: boolean
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   inscricao?: boolean | Prisma.InscricaoDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["historico"]>
 
 export type HistoricoSelectScalar = {
@@ -643,20 +771,24 @@ export type HistoricoSelectScalar = {
   dataModificacao?: boolean
   fkAluno?: boolean
   fkInscricao?: boolean
+  fkUsuarioResponsavel?: boolean
 }
 
-export type HistoricoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "alteracao" | "descricao" | "statusAnterior" | "statusAtual" | "dataModificacao" | "fkAluno" | "fkInscricao", ExtArgs["result"]["historico"]>
+export type HistoricoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "alteracao" | "descricao" | "statusAnterior" | "statusAtual" | "dataModificacao" | "fkAluno" | "fkInscricao" | "fkUsuarioResponsavel", ExtArgs["result"]["historico"]>
 export type HistoricoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   inscricao?: boolean | Prisma.InscricaoDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }
 export type HistoricoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   inscricao?: boolean | Prisma.InscricaoDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }
 export type HistoricoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   inscricao?: boolean | Prisma.InscricaoDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }
 
 export type $HistoricoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -664,6 +796,7 @@ export type $HistoricoPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     aluno: Prisma.$AlunoPayload<ExtArgs>
     inscricao: Prisma.$InscricaoPayload<ExtArgs>
+    usuario: Prisma.$UsuarioPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -674,6 +807,7 @@ export type $HistoricoPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     dataModificacao: Date
     fkAluno: string
     fkInscricao: string
+    fkUsuarioResponsavel: string
   }, ExtArgs["result"]["historico"]>
   composites: {}
 }
@@ -1070,6 +1204,7 @@ export interface Prisma__HistoricoClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   aluno<T extends Prisma.AlunoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AlunoDefaultArgs<ExtArgs>>): Prisma.Prisma__AlunoClient<runtime.Types.Result.GetResult<Prisma.$AlunoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   inscricao<T extends Prisma.InscricaoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InscricaoDefaultArgs<ExtArgs>>): Prisma.Prisma__InscricaoClient<runtime.Types.Result.GetResult<Prisma.$InscricaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  usuario<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1107,6 +1242,7 @@ export interface HistoricoFieldRefs {
   readonly dataModificacao: Prisma.FieldRef<"Historico", 'DateTime'>
   readonly fkAluno: Prisma.FieldRef<"Historico", 'String'>
   readonly fkInscricao: Prisma.FieldRef<"Historico", 'String'>
+  readonly fkUsuarioResponsavel: Prisma.FieldRef<"Historico", 'String'>
 }
     
 

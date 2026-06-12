@@ -10,17 +10,16 @@ datasource db {
 model Usuario {
   id String @id @default(uuid())
 
-  nome         String
-  nomeSocial   String?  @map("nome_social")
-  dataNasc     DateTime @map("data_nasc")
-  naturalidade String
-  emailInstitucional        String   @unique @map("email_institucional")
-  emailSecundario String @map("email_secundario")
-  senha        String
+  nome               String
+  nomeSocial         String?  @map("nome_social")
+  dataNasc           DateTime @map("data_nasc")
+  naturalidade       String
+  emailInstitucional String   @unique @map("email_institucional")
+  emailSecundario    String   @map("email_secundario")
+  senha              String
 
   nomeMae String @map("nome_mae")
   nomePai String @map("nome_pai")
-
 
   criadoEm     DateTime @default(now()) @map("criado_em")
   atualizadoEm DateTime @updatedAt @map("atualizado_em")
@@ -31,12 +30,12 @@ model Usuario {
   professor Professor?
   cargos    Cargo[]
 
-  fkIdentidade String     @unique @map("fk_identidade")
-  fkEndereco Int @map("fk_endereco")
+  fkIdentidade String @unique @map("fk_identidade")
+  fkEndereco   Int    @map("fk_endereco")
 
-  endereco Endereco @relation(fields: [fkEndereco], references: [id])
-  identidade   Identidade @relation(fields: [fkIdentidade], references: [id])
-  historico    Historico?
+  endereco   Endereco   @relation(fields: [fkEndereco], references: [id])
+  identidade Identidade @relation(fields: [fkIdentidade], references: [id])
+  historico  Historico?
 
   @@map("usuario")
 }
@@ -58,36 +57,36 @@ model Aluno {
 model Professor {
   id String @id @default(uuid())
 
-  siape String @unique
-  emailSiape String @unique @map("email_siape")
+  siape                   String   @unique
+  emailSiape              String   @unique @map("email_siape")
   telefonesInstiticionais String[] @map("telefones_institicionais")
-  telefonesPessoais String[] @map("telefones_pessoais")
-  emPGD Boolean
-  titulacao String
-  escolaridade String
-  grupoSanguineo String @map("grupo_sanguineo") 
+  telefonesPessoais       String[] @map("telefones_pessoais")
+  emPGD                   Boolean
+  titulacao               String
+  escolaridade            String
+  grupoSanguineo          String   @map("grupo_sanguineo")
 
-  setorSuap String @map("setor_suap")
-  lotacaoSiape String @map("lotacao_siape")
-  exercicioSiape String @map("execicio_siape")
-  situacao String
-  regimeTrabalho String @map("regime_trabalho")
-  jornadaTrabalho String @map("jornada_trabalho")
-  operadorRaioX Boolean @map("operador_raiox")
+  setorSuap       String  @map("setor_suap")
+  lotacaoSiape    String  @map("lotacao_siape")
+  exercicioSiape  String  @map("execicio_siape")
+  situacao        String
+  regimeTrabalho  String  @map("regime_trabalho")
+  jornadaTrabalho String  @map("jornada_trabalho")
+  operadorRaioX   Boolean @map("operador_raiox")
 
-  inicioServicoPublico DateTime @map("inicio_servico_publico") @db.Date
-  dataDePosseInstituicao DateTime @map("data_posse_instituicao") @db.Date
+  inicioServicoPublico     DateTime @map("inicio_servico_publico") @db.Date
+  dataDePosseInstituicao   DateTime @map("data_posse_instituicao") @db.Date
   inicioServicoInstituicao DateTime @map("inicio_servico_instituicao") @db.Date
-  tempoServicoInstituicaao String @map("tempo_servico_instituicao")
-  dataPosseCargo DateTime @map("data_posse_cargo") @db.Date
-  inicioExercicioCargo DateTime @map("inicio_exercicio_cargo") @db.Date
-  tempoServicoCargo DateTime @map("tempo_servico_cargo") @db.Date
-  cargoInstitucional String @map("cargo_institucional")
-  classeCargo String @map("classe_cargo")
-  padrao String @map("padrao")
-  grupoCargo String @map("grupo_cargo")
-  codigoVaga Int @map("codigo_vaga")
-  NCE String?
+  tempoServicoInstituicaao String   @map("tempo_servico_instituicao")
+  dataPosseCargo           DateTime @map("data_posse_cargo") @db.Date
+  inicioExercicioCargo     DateTime @map("inicio_exercicio_cargo") @db.Date
+  tempoServicoCargo        DateTime @map("tempo_servico_cargo") @db.Date
+  cargoInstitucional       String   @map("cargo_institucional")
+  classeCargo              String   @map("classe_cargo")
+  padrao                   String   @map("padrao")
+  grupoCargo               String   @map("grupo_cargo")
+  codigoVaga               Int      @map("codigo_vaga")
+  NCE                      String?
 
   qtdDependentes Int @map("qtd_dependentes")
 
@@ -104,21 +103,22 @@ model Professor {
 model Endereco {
   id Int @id @default(autoincrement())
 
-  rua String
+  rua    String
   bairro String
   numero Int
-  cep Int
+  cep    Int
 
   usuario Usuario[]
+
   @@map("endereco")
 }
 
 model DadosBancarios {
   id String @id @default(uuid())
 
-  banco String
+  banco   String
   agencia Int
-  cc Int
+  cc      Int
 
   @@map("dados_bancarios")
 }
@@ -195,11 +195,11 @@ model Inscricao {
 model Identidade {
   id String @id @default(uuid())
 
-  rg           String   @unique
-  cpf          String   @unique
-  orgaoEmissor String   @map("orgao_emissor")
-  estado       String
-  dataExpedicao  DateTime @map("data_expedicao") @db.Date
+  rg            String   @unique
+  cpf           String   @unique
+  orgaoEmissor  String   @map("orgao_emissor")
+  estado        String
+  dataExpedicao DateTime @map("data_expedicao") @db.Date
 
   usuario Usuario?
 
@@ -209,10 +209,10 @@ model Identidade {
 model TituloEleitor {
   id String @id @default(uuid())
 
-  numero Int
-  zonaEleitoral String @map("zona_eleitoral")
+  numero         Int
+  zonaEleitoral  String @map("zona_eleitoral")
   secaoEleitoral String @map("secao_eleitoral")
-  UF String
+  UF             String
 
   @@map("titulo_eleitor")
 }

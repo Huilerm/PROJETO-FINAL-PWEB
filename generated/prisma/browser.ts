@@ -33,6 +33,16 @@ export type Aluno = Prisma.AlunoModel
  */
 export type Professor = Prisma.ProfessorModel
 /**
+ * Model Endereco
+ * 
+ */
+export type Endereco = Prisma.EnderecoModel
+/**
+ * Model DadosBancarios
+ * 
+ */
+export type DadosBancarios = Prisma.DadosBancariosModel
+/**
  * Model Curso
  * 
  */
@@ -57,6 +67,11 @@ export type Inscricao = Prisma.InscricaoModel
  * 
  */
 export type Identidade = Prisma.IdentidadeModel
+/**
+ * Model TituloEleitor
+ * 
+ */
+export type TituloEleitor = Prisma.TituloEleitorModel
 /**
  * Model RendaFamiliar
  * 

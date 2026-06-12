@@ -387,11 +387,14 @@ export const ModelName = {
   Usuario: 'Usuario',
   Aluno: 'Aluno',
   Professor: 'Professor',
+  Endereco: 'Endereco',
+  DadosBancarios: 'DadosBancarios',
   Curso: 'Curso',
   AlocacaoProfessor: 'AlocacaoProfessor',
   Instituicao: 'Instituicao',
   Inscricao: 'Inscricao',
   Identidade: 'Identidade',
+  TituloEleitor: 'TituloEleitor',
   RendaFamiliar: 'RendaFamiliar',
   Auditoria: 'Auditoria',
   Cargo: 'Cargo',
@@ -412,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "aluno" | "professor" | "curso" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes" | "historico"
+    modelProps: "usuario" | "aluno" | "professor" | "endereco" | "dadosBancarios" | "curso" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "tituloEleitor" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes" | "historico"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -635,6 +638,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ProfessorCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ProfessorCountAggregateOutputType> | number
+        }
+      }
+    }
+    Endereco: {
+      payload: Prisma.$EnderecoPayload<ExtArgs>
+      fields: Prisma.EnderecoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnderecoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnderecoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+        }
+        findFirst: {
+          args: Prisma.EnderecoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnderecoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+        }
+        findMany: {
+          args: Prisma.EnderecoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>[]
+        }
+        create: {
+          args: Prisma.EnderecoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+        }
+        createMany: {
+          args: Prisma.EnderecoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnderecoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>[]
+        }
+        delete: {
+          args: Prisma.EnderecoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+        }
+        update: {
+          args: Prisma.EnderecoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnderecoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnderecoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnderecoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>[]
+        }
+        upsert: {
+          args: Prisma.EnderecoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+        }
+        aggregate: {
+          args: Prisma.EnderecoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEndereco>
+        }
+        groupBy: {
+          args: Prisma.EnderecoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnderecoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnderecoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnderecoCountAggregateOutputType> | number
+        }
+      }
+    }
+    DadosBancarios: {
+      payload: Prisma.$DadosBancariosPayload<ExtArgs>
+      fields: Prisma.DadosBancariosFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DadosBancariosFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DadosBancariosFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>
+        }
+        findFirst: {
+          args: Prisma.DadosBancariosFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DadosBancariosFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>
+        }
+        findMany: {
+          args: Prisma.DadosBancariosFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>[]
+        }
+        create: {
+          args: Prisma.DadosBancariosCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>
+        }
+        createMany: {
+          args: Prisma.DadosBancariosCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DadosBancariosCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>[]
+        }
+        delete: {
+          args: Prisma.DadosBancariosDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>
+        }
+        update: {
+          args: Prisma.DadosBancariosUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>
+        }
+        deleteMany: {
+          args: Prisma.DadosBancariosDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DadosBancariosUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DadosBancariosUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>[]
+        }
+        upsert: {
+          args: Prisma.DadosBancariosUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosBancariosPayload>
+        }
+        aggregate: {
+          args: Prisma.DadosBancariosAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDadosBancarios>
+        }
+        groupBy: {
+          args: Prisma.DadosBancariosGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DadosBancariosGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DadosBancariosCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DadosBancariosCountAggregateOutputType> | number
         }
       }
     }
@@ -1005,6 +1156,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.IdentidadeCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.IdentidadeCountAggregateOutputType> | number
+        }
+      }
+    }
+    TituloEleitor: {
+      payload: Prisma.$TituloEleitorPayload<ExtArgs>
+      fields: Prisma.TituloEleitorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TituloEleitorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TituloEleitorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>
+        }
+        findFirst: {
+          args: Prisma.TituloEleitorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TituloEleitorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>
+        }
+        findMany: {
+          args: Prisma.TituloEleitorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>[]
+        }
+        create: {
+          args: Prisma.TituloEleitorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>
+        }
+        createMany: {
+          args: Prisma.TituloEleitorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TituloEleitorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>[]
+        }
+        delete: {
+          args: Prisma.TituloEleitorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>
+        }
+        update: {
+          args: Prisma.TituloEleitorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>
+        }
+        deleteMany: {
+          args: Prisma.TituloEleitorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TituloEleitorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TituloEleitorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>[]
+        }
+        upsert: {
+          args: Prisma.TituloEleitorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TituloEleitorPayload>
+        }
+        aggregate: {
+          args: Prisma.TituloEleitorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTituloEleitor>
+        }
+        groupBy: {
+          args: Prisma.TituloEleitorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TituloEleitorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TituloEleitorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TituloEleitorCountAggregateOutputType> | number
         }
       }
     }
@@ -1423,13 +1648,17 @@ export const UsuarioScalarFieldEnum = {
   nomeSocial: 'nomeSocial',
   dataNasc: 'dataNasc',
   naturalidade: 'naturalidade',
-  email: 'email',
+  emailInstitucional: 'emailInstitucional',
+  emailSecundario: 'emailSecundario',
   senha: 'senha',
+  nomeMae: 'nomeMae',
+  nomePai: 'nomePai',
   criadoEm: 'criadoEm',
   atualizadoEm: 'atualizadoEm',
   sexo: 'sexo',
   raca: 'raca',
-  fkIdentidade: 'fkIdentidade'
+  fkIdentidade: 'fkIdentidade',
+  fkEndereco: 'fkEndereco'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
@@ -1446,11 +1675,61 @@ export type AlunoScalarFieldEnum = (typeof AlunoScalarFieldEnum)[keyof typeof Al
 
 export const ProfessorScalarFieldEnum = {
   id: 'id',
-  siap: 'siap',
+  siape: 'siape',
+  emailSiape: 'emailSiape',
+  telefonesInstiticionais: 'telefonesInstiticionais',
+  telefonesPessoais: 'telefonesPessoais',
+  emPGD: 'emPGD',
+  titulacao: 'titulacao',
+  escolaridade: 'escolaridade',
+  grupoSanguineo: 'grupoSanguineo',
+  setorSuap: 'setorSuap',
+  lotacaoSiape: 'lotacaoSiape',
+  exercicioSiape: 'exercicioSiape',
+  situacao: 'situacao',
+  regimeTrabalho: 'regimeTrabalho',
+  jornadaTrabalho: 'jornadaTrabalho',
+  operadorRaioX: 'operadorRaioX',
+  inicioServicoPublico: 'inicioServicoPublico',
+  dataDePosseInstituicao: 'dataDePosseInstituicao',
+  inicioServicoInstituicao: 'inicioServicoInstituicao',
+  tempoServicoInstituicaao: 'tempoServicoInstituicaao',
+  dataPosseCargo: 'dataPosseCargo',
+  inicioExercicioCargo: 'inicioExercicioCargo',
+  tempoServicoCargo: 'tempoServicoCargo',
+  cargoInstitucional: 'cargoInstitucional',
+  classeCargo: 'classeCargo',
+  padrao: 'padrao',
+  grupoCargo: 'grupoCargo',
+  codigoVaga: 'codigoVaga',
+  NCE: 'NCE',
+  qtdDependentes: 'qtdDependentes',
+  pisPasep: 'pisPasep',
   fkUsuario: 'fkUsuario'
 } as const
 
 export type ProfessorScalarFieldEnum = (typeof ProfessorScalarFieldEnum)[keyof typeof ProfessorScalarFieldEnum]
+
+
+export const EnderecoScalarFieldEnum = {
+  id: 'id',
+  rua: 'rua',
+  bairro: 'bairro',
+  numero: 'numero',
+  cep: 'cep'
+} as const
+
+export type EnderecoScalarFieldEnum = (typeof EnderecoScalarFieldEnum)[keyof typeof EnderecoScalarFieldEnum]
+
+
+export const DadosBancariosScalarFieldEnum = {
+  id: 'id',
+  banco: 'banco',
+  agencia: 'agencia',
+  cc: 'cc'
+} as const
+
+export type DadosBancariosScalarFieldEnum = (typeof DadosBancariosScalarFieldEnum)[keyof typeof DadosBancariosScalarFieldEnum]
 
 
 export const CursoScalarFieldEnum = {
@@ -1509,10 +1788,21 @@ export const IdentidadeScalarFieldEnum = {
   cpf: 'cpf',
   orgaoEmissor: 'orgaoEmissor',
   estado: 'estado',
-  dataEmissao: 'dataEmissao'
+  dataExpedicao: 'dataExpedicao'
 } as const
 
 export type IdentidadeScalarFieldEnum = (typeof IdentidadeScalarFieldEnum)[keyof typeof IdentidadeScalarFieldEnum]
+
+
+export const TituloEleitorScalarFieldEnum = {
+  id: 'id',
+  numero: 'numero',
+  zonaEleitoral: 'zonaEleitoral',
+  secaoEleitoral: 'secaoEleitoral',
+  UF: 'UF'
+} as const
+
+export type TituloEleitorScalarFieldEnum = (typeof TituloEleitorScalarFieldEnum)[keyof typeof TituloEleitorScalarFieldEnum]
 
 
 export const RendaFamiliarScalarFieldEnum = {
@@ -1565,7 +1855,8 @@ export const HistoricoScalarFieldEnum = {
   statusAtual: 'statusAtual',
   dataModificacao: 'dataModificacao',
   fkAluno: 'fkAluno',
-  fkInscricao: 'fkInscricao'
+  fkInscricao: 'fkInscricao',
+  fkUsuarioResponsavel: 'fkUsuarioResponsavel'
 } as const
 
 export type HistoricoScalarFieldEnum = (typeof HistoricoScalarFieldEnum)[keyof typeof HistoricoScalarFieldEnum]
@@ -1685,6 +1976,13 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1898,11 +2196,14 @@ export type GlobalOmitConfig = {
   usuario?: Prisma.UsuarioOmit
   aluno?: Prisma.AlunoOmit
   professor?: Prisma.ProfessorOmit
+  endereco?: Prisma.EnderecoOmit
+  dadosBancarios?: Prisma.DadosBancariosOmit
   curso?: Prisma.CursoOmit
   alocacaoProfessor?: Prisma.AlocacaoProfessorOmit
   instituicao?: Prisma.InstituicaoOmit
   inscricao?: Prisma.InscricaoOmit
   identidade?: Prisma.IdentidadeOmit
+  tituloEleitor?: Prisma.TituloEleitorOmit
   rendaFamiliar?: Prisma.RendaFamiliarOmit
   auditoria?: Prisma.AuditoriaOmit
   cargo?: Prisma.CargoOmit

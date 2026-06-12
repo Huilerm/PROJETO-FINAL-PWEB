@@ -524,14 +524,6 @@ export type CursoCreatediasSemanaInput = {
   set: $Enums.DiasSemana[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type EnumStatusCursoFieldUpdateOperationsInput = {
   set?: $Enums.StatusCurso
 }
