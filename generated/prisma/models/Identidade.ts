@@ -30,7 +30,7 @@ export type IdentidadeMinAggregateOutputType = {
   cpf: string | null
   orgaoEmissor: string | null
   estado: string | null
-  dataEmissao: Date | null
+  dataExpedicao: Date | null
 }
 
 export type IdentidadeMaxAggregateOutputType = {
@@ -39,7 +39,7 @@ export type IdentidadeMaxAggregateOutputType = {
   cpf: string | null
   orgaoEmissor: string | null
   estado: string | null
-  dataEmissao: Date | null
+  dataExpedicao: Date | null
 }
 
 export type IdentidadeCountAggregateOutputType = {
@@ -48,7 +48,7 @@ export type IdentidadeCountAggregateOutputType = {
   cpf: number
   orgaoEmissor: number
   estado: number
-  dataEmissao: number
+  dataExpedicao: number
   _all: number
 }
 
@@ -59,7 +59,7 @@ export type IdentidadeMinAggregateInputType = {
   cpf?: true
   orgaoEmissor?: true
   estado?: true
-  dataEmissao?: true
+  dataExpedicao?: true
 }
 
 export type IdentidadeMaxAggregateInputType = {
@@ -68,7 +68,7 @@ export type IdentidadeMaxAggregateInputType = {
   cpf?: true
   orgaoEmissor?: true
   estado?: true
-  dataEmissao?: true
+  dataExpedicao?: true
 }
 
 export type IdentidadeCountAggregateInputType = {
@@ -77,7 +77,7 @@ export type IdentidadeCountAggregateInputType = {
   cpf?: true
   orgaoEmissor?: true
   estado?: true
-  dataEmissao?: true
+  dataExpedicao?: true
   _all?: true
 }
 
@@ -159,7 +159,7 @@ export type IdentidadeGroupByOutputType = {
   cpf: string
   orgaoEmissor: string
   estado: string
-  dataEmissao: Date
+  dataExpedicao: Date
   _count: IdentidadeCountAggregateOutputType | null
   _min: IdentidadeMinAggregateOutputType | null
   _max: IdentidadeMaxAggregateOutputType | null
@@ -189,7 +189,7 @@ export type IdentidadeWhereInput = {
   cpf?: Prisma.StringFilter<"Identidade"> | string
   orgaoEmissor?: Prisma.StringFilter<"Identidade"> | string
   estado?: Prisma.StringFilter<"Identidade"> | string
-  dataEmissao?: Prisma.DateTimeFilter<"Identidade"> | Date | string
+  dataExpedicao?: Prisma.DateTimeFilter<"Identidade"> | Date | string
   usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
 }
 
@@ -199,7 +199,7 @@ export type IdentidadeOrderByWithRelationInput = {
   cpf?: Prisma.SortOrder
   orgaoEmissor?: Prisma.SortOrder
   estado?: Prisma.SortOrder
-  dataEmissao?: Prisma.SortOrder
+  dataExpedicao?: Prisma.SortOrder
   usuario?: Prisma.UsuarioOrderByWithRelationInput
 }
 
@@ -212,7 +212,7 @@ export type IdentidadeWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.IdentidadeWhereInput | Prisma.IdentidadeWhereInput[]
   orgaoEmissor?: Prisma.StringFilter<"Identidade"> | string
   estado?: Prisma.StringFilter<"Identidade"> | string
-  dataEmissao?: Prisma.DateTimeFilter<"Identidade"> | Date | string
+  dataExpedicao?: Prisma.DateTimeFilter<"Identidade"> | Date | string
   usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
 }, "id" | "rg" | "cpf">
 
@@ -222,7 +222,7 @@ export type IdentidadeOrderByWithAggregationInput = {
   cpf?: Prisma.SortOrder
   orgaoEmissor?: Prisma.SortOrder
   estado?: Prisma.SortOrder
-  dataEmissao?: Prisma.SortOrder
+  dataExpedicao?: Prisma.SortOrder
   _count?: Prisma.IdentidadeCountOrderByAggregateInput
   _max?: Prisma.IdentidadeMaxOrderByAggregateInput
   _min?: Prisma.IdentidadeMinOrderByAggregateInput
@@ -237,7 +237,7 @@ export type IdentidadeScalarWhereWithAggregatesInput = {
   cpf?: Prisma.StringWithAggregatesFilter<"Identidade"> | string
   orgaoEmissor?: Prisma.StringWithAggregatesFilter<"Identidade"> | string
   estado?: Prisma.StringWithAggregatesFilter<"Identidade"> | string
-  dataEmissao?: Prisma.DateTimeWithAggregatesFilter<"Identidade"> | Date | string
+  dataExpedicao?: Prisma.DateTimeWithAggregatesFilter<"Identidade"> | Date | string
 }
 
 export type IdentidadeCreateInput = {
@@ -246,7 +246,7 @@ export type IdentidadeCreateInput = {
   cpf: string
   orgaoEmissor: string
   estado: string
-  dataEmissao: Date | string
+  dataExpedicao: Date | string
   usuario?: Prisma.UsuarioCreateNestedOneWithoutIdentidadeInput
 }
 
@@ -256,7 +256,7 @@ export type IdentidadeUncheckedCreateInput = {
   cpf: string
   orgaoEmissor: string
   estado: string
-  dataEmissao: Date | string
+  dataExpedicao: Date | string
   usuario?: Prisma.UsuarioUncheckedCreateNestedOneWithoutIdentidadeInput
 }
 
@@ -266,7 +266,7 @@ export type IdentidadeUpdateInput = {
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   orgaoEmissor?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
-  dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataExpedicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuario?: Prisma.UsuarioUpdateOneWithoutIdentidadeNestedInput
 }
 
@@ -276,7 +276,7 @@ export type IdentidadeUncheckedUpdateInput = {
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   orgaoEmissor?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
-  dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataExpedicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuario?: Prisma.UsuarioUncheckedUpdateOneWithoutIdentidadeNestedInput
 }
 
@@ -286,7 +286,7 @@ export type IdentidadeCreateManyInput = {
   cpf: string
   orgaoEmissor: string
   estado: string
-  dataEmissao: Date | string
+  dataExpedicao: Date | string
 }
 
 export type IdentidadeUpdateManyMutationInput = {
@@ -295,7 +295,7 @@ export type IdentidadeUpdateManyMutationInput = {
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   orgaoEmissor?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
-  dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataExpedicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IdentidadeUncheckedUpdateManyInput = {
@@ -304,7 +304,7 @@ export type IdentidadeUncheckedUpdateManyInput = {
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   orgaoEmissor?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
-  dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataExpedicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IdentidadeScalarRelationFilter = {
@@ -318,7 +318,7 @@ export type IdentidadeCountOrderByAggregateInput = {
   cpf?: Prisma.SortOrder
   orgaoEmissor?: Prisma.SortOrder
   estado?: Prisma.SortOrder
-  dataEmissao?: Prisma.SortOrder
+  dataExpedicao?: Prisma.SortOrder
 }
 
 export type IdentidadeMaxOrderByAggregateInput = {
@@ -327,7 +327,7 @@ export type IdentidadeMaxOrderByAggregateInput = {
   cpf?: Prisma.SortOrder
   orgaoEmissor?: Prisma.SortOrder
   estado?: Prisma.SortOrder
-  dataEmissao?: Prisma.SortOrder
+  dataExpedicao?: Prisma.SortOrder
 }
 
 export type IdentidadeMinOrderByAggregateInput = {
@@ -336,7 +336,7 @@ export type IdentidadeMinOrderByAggregateInput = {
   cpf?: Prisma.SortOrder
   orgaoEmissor?: Prisma.SortOrder
   estado?: Prisma.SortOrder
-  dataEmissao?: Prisma.SortOrder
+  dataExpedicao?: Prisma.SortOrder
 }
 
 export type IdentidadeCreateNestedOneWithoutUsuarioInput = {
@@ -359,7 +359,7 @@ export type IdentidadeCreateWithoutUsuarioInput = {
   cpf: string
   orgaoEmissor: string
   estado: string
-  dataEmissao: Date | string
+  dataExpedicao: Date | string
 }
 
 export type IdentidadeUncheckedCreateWithoutUsuarioInput = {
@@ -368,7 +368,7 @@ export type IdentidadeUncheckedCreateWithoutUsuarioInput = {
   cpf: string
   orgaoEmissor: string
   estado: string
-  dataEmissao: Date | string
+  dataExpedicao: Date | string
 }
 
 export type IdentidadeCreateOrConnectWithoutUsuarioInput = {
@@ -393,7 +393,7 @@ export type IdentidadeUpdateWithoutUsuarioInput = {
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   orgaoEmissor?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
-  dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataExpedicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type IdentidadeUncheckedUpdateWithoutUsuarioInput = {
@@ -402,7 +402,7 @@ export type IdentidadeUncheckedUpdateWithoutUsuarioInput = {
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   orgaoEmissor?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
-  dataEmissao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataExpedicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -413,7 +413,7 @@ export type IdentidadeSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   cpf?: boolean
   orgaoEmissor?: boolean
   estado?: boolean
-  dataEmissao?: boolean
+  dataExpedicao?: boolean
   usuario?: boolean | Prisma.Identidade$usuarioArgs<ExtArgs>
 }, ExtArgs["result"]["identidade"]>
 
@@ -423,7 +423,7 @@ export type IdentidadeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   cpf?: boolean
   orgaoEmissor?: boolean
   estado?: boolean
-  dataEmissao?: boolean
+  dataExpedicao?: boolean
 }, ExtArgs["result"]["identidade"]>
 
 export type IdentidadeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -432,7 +432,7 @@ export type IdentidadeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   cpf?: boolean
   orgaoEmissor?: boolean
   estado?: boolean
-  dataEmissao?: boolean
+  dataExpedicao?: boolean
 }, ExtArgs["result"]["identidade"]>
 
 export type IdentidadeSelectScalar = {
@@ -441,10 +441,10 @@ export type IdentidadeSelectScalar = {
   cpf?: boolean
   orgaoEmissor?: boolean
   estado?: boolean
-  dataEmissao?: boolean
+  dataExpedicao?: boolean
 }
 
-export type IdentidadeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rg" | "cpf" | "orgaoEmissor" | "estado" | "dataEmissao", ExtArgs["result"]["identidade"]>
+export type IdentidadeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rg" | "cpf" | "orgaoEmissor" | "estado" | "dataExpedicao", ExtArgs["result"]["identidade"]>
 export type IdentidadeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuario?: boolean | Prisma.Identidade$usuarioArgs<ExtArgs>
 }
@@ -462,7 +462,7 @@ export type $IdentidadePayload<ExtArgs extends runtime.Types.Extensions.Internal
     cpf: string
     orgaoEmissor: string
     estado: string
-    dataEmissao: Date
+    dataExpedicao: Date
   }, ExtArgs["result"]["identidade"]>
   composites: {}
 }
@@ -892,7 +892,7 @@ export interface IdentidadeFieldRefs {
   readonly cpf: Prisma.FieldRef<"Identidade", 'String'>
   readonly orgaoEmissor: Prisma.FieldRef<"Identidade", 'String'>
   readonly estado: Prisma.FieldRef<"Identidade", 'String'>
-  readonly dataEmissao: Prisma.FieldRef<"Identidade", 'DateTime'>
+  readonly dataExpedicao: Prisma.FieldRef<"Identidade", 'DateTime'>
 }
     
 

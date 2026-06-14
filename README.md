@@ -70,10 +70,6 @@ Fornecer as seguintes informações
         senha
     }
 
-Para o acesso as informações do usuário logado:
-
-    /auth/me
-
 ### Rotas de usuário logado
 
 Com permissão de ADMIN, utilizar a seguinte rota para listar todos os usuários
