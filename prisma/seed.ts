@@ -155,4 +155,13 @@ async function main() {
   }
 }
 
+const endereco = await prisma.endereco.create({
+  data: {
+    rua: "Rua Teste",
+    bairro: "Centro",
+    numero: 123,
+    cep: 60000000,
+  },
+});
+
 main();

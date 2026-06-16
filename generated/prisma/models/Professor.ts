@@ -340,35 +340,35 @@ export type ProfessorGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type ProfessorGroupByOutputType = {
   id: string
   siape: string
-  emailSiape: string
+  emailSiape: string | null
   telefonesInstiticionais: string[]
   telefonesPessoais: string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date
-  dataDePosseInstituicao: Date
-  inicioServicoInstituicao: Date
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date
-  inicioExercicioCargo: Date
-  tempoServicoCargo: Date
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD: boolean | null
+  titulacao: string | null
+  escolaridade: string | null
+  grupoSanguineo: string | null
+  setorSuap: string | null
+  lotacaoSiape: string | null
+  exercicioSiape: string | null
+  situacao: string | null
+  regimeTrabalho: string | null
+  jornadaTrabalho: string | null
+  operadorRaioX: boolean | null
+  inicioServicoPublico: Date | null
+  dataDePosseInstituicao: Date | null
+  inicioServicoInstituicao: Date | null
+  tempoServicoInstituicaao: string | null
+  dataPosseCargo: Date | null
+  inicioExercicioCargo: Date | null
+  tempoServicoCargo: Date | null
+  cargoInstitucional: string | null
+  classeCargo: string | null
+  padrao: string | null
+  grupoCargo: string | null
+  codigoVaga: number | null
   NCE: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes: number | null
+  pisPasep: string | null
   fkUsuario: string
   _count: ProfessorCountAggregateOutputType | null
   _avg: ProfessorAvgAggregateOutputType | null
@@ -398,35 +398,35 @@ export type ProfessorWhereInput = {
   NOT?: Prisma.ProfessorWhereInput | Prisma.ProfessorWhereInput[]
   id?: Prisma.StringFilter<"Professor"> | string
   siape?: Prisma.StringFilter<"Professor"> | string
-  emailSiape?: Prisma.StringFilter<"Professor"> | string
+  emailSiape?: Prisma.StringNullableFilter<"Professor"> | string | null
   telefonesInstiticionais?: Prisma.StringNullableListFilter<"Professor">
   telefonesPessoais?: Prisma.StringNullableListFilter<"Professor">
-  emPGD?: Prisma.BoolFilter<"Professor"> | boolean
-  titulacao?: Prisma.StringFilter<"Professor"> | string
-  escolaridade?: Prisma.StringFilter<"Professor"> | string
-  grupoSanguineo?: Prisma.StringFilter<"Professor"> | string
-  setorSuap?: Prisma.StringFilter<"Professor"> | string
-  lotacaoSiape?: Prisma.StringFilter<"Professor"> | string
-  exercicioSiape?: Prisma.StringFilter<"Professor"> | string
-  situacao?: Prisma.StringFilter<"Professor"> | string
-  regimeTrabalho?: Prisma.StringFilter<"Professor"> | string
-  jornadaTrabalho?: Prisma.StringFilter<"Professor"> | string
-  operadorRaioX?: Prisma.BoolFilter<"Professor"> | boolean
-  inicioServicoPublico?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFilter<"Professor"> | string
-  dataPosseCargo?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  cargoInstitucional?: Prisma.StringFilter<"Professor"> | string
-  classeCargo?: Prisma.StringFilter<"Professor"> | string
-  padrao?: Prisma.StringFilter<"Professor"> | string
-  grupoCargo?: Prisma.StringFilter<"Professor"> | string
-  codigoVaga?: Prisma.IntFilter<"Professor"> | number
+  emPGD?: Prisma.BoolNullableFilter<"Professor"> | boolean | null
+  titulacao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  escolaridade?: Prisma.StringNullableFilter<"Professor"> | string | null
+  grupoSanguineo?: Prisma.StringNullableFilter<"Professor"> | string | null
+  setorSuap?: Prisma.StringNullableFilter<"Professor"> | string | null
+  lotacaoSiape?: Prisma.StringNullableFilter<"Professor"> | string | null
+  exercicioSiape?: Prisma.StringNullableFilter<"Professor"> | string | null
+  situacao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  regimeTrabalho?: Prisma.StringNullableFilter<"Professor"> | string | null
+  jornadaTrabalho?: Prisma.StringNullableFilter<"Professor"> | string | null
+  operadorRaioX?: Prisma.BoolNullableFilter<"Professor"> | boolean | null
+  inicioServicoPublico?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  dataDePosseInstituicao?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  inicioServicoInstituicao?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  tempoServicoInstituicaao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  dataPosseCargo?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  inicioExercicioCargo?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  tempoServicoCargo?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  cargoInstitucional?: Prisma.StringNullableFilter<"Professor"> | string | null
+  classeCargo?: Prisma.StringNullableFilter<"Professor"> | string | null
+  padrao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  grupoCargo?: Prisma.StringNullableFilter<"Professor"> | string | null
+  codigoVaga?: Prisma.IntNullableFilter<"Professor"> | number | null
   NCE?: Prisma.StringNullableFilter<"Professor"> | string | null
-  qtdDependentes?: Prisma.IntFilter<"Professor"> | number
-  pisPasep?: Prisma.StringFilter<"Professor"> | string
+  qtdDependentes?: Prisma.IntNullableFilter<"Professor"> | number | null
+  pisPasep?: Prisma.StringNullableFilter<"Professor"> | string | null
   fkUsuario?: Prisma.StringFilter<"Professor"> | string
   alocacoes?: Prisma.AlocacaoProfessorListRelationFilter
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
@@ -435,35 +435,35 @@ export type ProfessorWhereInput = {
 export type ProfessorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   siape?: Prisma.SortOrder
-  emailSiape?: Prisma.SortOrder
+  emailSiape?: Prisma.SortOrderInput | Prisma.SortOrder
   telefonesInstiticionais?: Prisma.SortOrder
   telefonesPessoais?: Prisma.SortOrder
-  emPGD?: Prisma.SortOrder
-  titulacao?: Prisma.SortOrder
-  escolaridade?: Prisma.SortOrder
-  grupoSanguineo?: Prisma.SortOrder
-  setorSuap?: Prisma.SortOrder
-  lotacaoSiape?: Prisma.SortOrder
-  exercicioSiape?: Prisma.SortOrder
-  situacao?: Prisma.SortOrder
-  regimeTrabalho?: Prisma.SortOrder
-  jornadaTrabalho?: Prisma.SortOrder
-  operadorRaioX?: Prisma.SortOrder
-  inicioServicoPublico?: Prisma.SortOrder
-  dataDePosseInstituicao?: Prisma.SortOrder
-  inicioServicoInstituicao?: Prisma.SortOrder
-  tempoServicoInstituicaao?: Prisma.SortOrder
-  dataPosseCargo?: Prisma.SortOrder
-  inicioExercicioCargo?: Prisma.SortOrder
-  tempoServicoCargo?: Prisma.SortOrder
-  cargoInstitucional?: Prisma.SortOrder
-  classeCargo?: Prisma.SortOrder
-  padrao?: Prisma.SortOrder
-  grupoCargo?: Prisma.SortOrder
-  codigoVaga?: Prisma.SortOrder
+  emPGD?: Prisma.SortOrderInput | Prisma.SortOrder
+  titulacao?: Prisma.SortOrderInput | Prisma.SortOrder
+  escolaridade?: Prisma.SortOrderInput | Prisma.SortOrder
+  grupoSanguineo?: Prisma.SortOrderInput | Prisma.SortOrder
+  setorSuap?: Prisma.SortOrderInput | Prisma.SortOrder
+  lotacaoSiape?: Prisma.SortOrderInput | Prisma.SortOrder
+  exercicioSiape?: Prisma.SortOrderInput | Prisma.SortOrder
+  situacao?: Prisma.SortOrderInput | Prisma.SortOrder
+  regimeTrabalho?: Prisma.SortOrderInput | Prisma.SortOrder
+  jornadaTrabalho?: Prisma.SortOrderInput | Prisma.SortOrder
+  operadorRaioX?: Prisma.SortOrderInput | Prisma.SortOrder
+  inicioServicoPublico?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataDePosseInstituicao?: Prisma.SortOrderInput | Prisma.SortOrder
+  inicioServicoInstituicao?: Prisma.SortOrderInput | Prisma.SortOrder
+  tempoServicoInstituicaao?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataPosseCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  inicioExercicioCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  tempoServicoCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  cargoInstitucional?: Prisma.SortOrderInput | Prisma.SortOrder
+  classeCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  padrao?: Prisma.SortOrderInput | Prisma.SortOrder
+  grupoCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  codigoVaga?: Prisma.SortOrderInput | Prisma.SortOrder
   NCE?: Prisma.SortOrderInput | Prisma.SortOrder
-  qtdDependentes?: Prisma.SortOrder
-  pisPasep?: Prisma.SortOrder
+  qtdDependentes?: Prisma.SortOrderInput | Prisma.SortOrder
+  pisPasep?: Prisma.SortOrderInput | Prisma.SortOrder
   fkUsuario?: Prisma.SortOrder
   alocacoes?: Prisma.AlocacaoProfessorOrderByRelationAggregateInput
   usuario?: Prisma.UsuarioOrderByWithRelationInput
@@ -479,32 +479,32 @@ export type ProfessorWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ProfessorWhereInput | Prisma.ProfessorWhereInput[]
   telefonesInstiticionais?: Prisma.StringNullableListFilter<"Professor">
   telefonesPessoais?: Prisma.StringNullableListFilter<"Professor">
-  emPGD?: Prisma.BoolFilter<"Professor"> | boolean
-  titulacao?: Prisma.StringFilter<"Professor"> | string
-  escolaridade?: Prisma.StringFilter<"Professor"> | string
-  grupoSanguineo?: Prisma.StringFilter<"Professor"> | string
-  setorSuap?: Prisma.StringFilter<"Professor"> | string
-  lotacaoSiape?: Prisma.StringFilter<"Professor"> | string
-  exercicioSiape?: Prisma.StringFilter<"Professor"> | string
-  situacao?: Prisma.StringFilter<"Professor"> | string
-  regimeTrabalho?: Prisma.StringFilter<"Professor"> | string
-  jornadaTrabalho?: Prisma.StringFilter<"Professor"> | string
-  operadorRaioX?: Prisma.BoolFilter<"Professor"> | boolean
-  inicioServicoPublico?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFilter<"Professor"> | string
-  dataPosseCargo?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFilter<"Professor"> | Date | string
-  cargoInstitucional?: Prisma.StringFilter<"Professor"> | string
-  classeCargo?: Prisma.StringFilter<"Professor"> | string
-  padrao?: Prisma.StringFilter<"Professor"> | string
-  grupoCargo?: Prisma.StringFilter<"Professor"> | string
-  codigoVaga?: Prisma.IntFilter<"Professor"> | number
+  emPGD?: Prisma.BoolNullableFilter<"Professor"> | boolean | null
+  titulacao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  escolaridade?: Prisma.StringNullableFilter<"Professor"> | string | null
+  grupoSanguineo?: Prisma.StringNullableFilter<"Professor"> | string | null
+  setorSuap?: Prisma.StringNullableFilter<"Professor"> | string | null
+  lotacaoSiape?: Prisma.StringNullableFilter<"Professor"> | string | null
+  exercicioSiape?: Prisma.StringNullableFilter<"Professor"> | string | null
+  situacao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  regimeTrabalho?: Prisma.StringNullableFilter<"Professor"> | string | null
+  jornadaTrabalho?: Prisma.StringNullableFilter<"Professor"> | string | null
+  operadorRaioX?: Prisma.BoolNullableFilter<"Professor"> | boolean | null
+  inicioServicoPublico?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  dataDePosseInstituicao?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  inicioServicoInstituicao?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  tempoServicoInstituicaao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  dataPosseCargo?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  inicioExercicioCargo?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  tempoServicoCargo?: Prisma.DateTimeNullableFilter<"Professor"> | Date | string | null
+  cargoInstitucional?: Prisma.StringNullableFilter<"Professor"> | string | null
+  classeCargo?: Prisma.StringNullableFilter<"Professor"> | string | null
+  padrao?: Prisma.StringNullableFilter<"Professor"> | string | null
+  grupoCargo?: Prisma.StringNullableFilter<"Professor"> | string | null
+  codigoVaga?: Prisma.IntNullableFilter<"Professor"> | number | null
   NCE?: Prisma.StringNullableFilter<"Professor"> | string | null
-  qtdDependentes?: Prisma.IntFilter<"Professor"> | number
-  pisPasep?: Prisma.StringFilter<"Professor"> | string
+  qtdDependentes?: Prisma.IntNullableFilter<"Professor"> | number | null
+  pisPasep?: Prisma.StringNullableFilter<"Professor"> | string | null
   alocacoes?: Prisma.AlocacaoProfessorListRelationFilter
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }, "id" | "siape" | "emailSiape" | "fkUsuario">
@@ -512,35 +512,35 @@ export type ProfessorWhereUniqueInput = Prisma.AtLeast<{
 export type ProfessorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   siape?: Prisma.SortOrder
-  emailSiape?: Prisma.SortOrder
+  emailSiape?: Prisma.SortOrderInput | Prisma.SortOrder
   telefonesInstiticionais?: Prisma.SortOrder
   telefonesPessoais?: Prisma.SortOrder
-  emPGD?: Prisma.SortOrder
-  titulacao?: Prisma.SortOrder
-  escolaridade?: Prisma.SortOrder
-  grupoSanguineo?: Prisma.SortOrder
-  setorSuap?: Prisma.SortOrder
-  lotacaoSiape?: Prisma.SortOrder
-  exercicioSiape?: Prisma.SortOrder
-  situacao?: Prisma.SortOrder
-  regimeTrabalho?: Prisma.SortOrder
-  jornadaTrabalho?: Prisma.SortOrder
-  operadorRaioX?: Prisma.SortOrder
-  inicioServicoPublico?: Prisma.SortOrder
-  dataDePosseInstituicao?: Prisma.SortOrder
-  inicioServicoInstituicao?: Prisma.SortOrder
-  tempoServicoInstituicaao?: Prisma.SortOrder
-  dataPosseCargo?: Prisma.SortOrder
-  inicioExercicioCargo?: Prisma.SortOrder
-  tempoServicoCargo?: Prisma.SortOrder
-  cargoInstitucional?: Prisma.SortOrder
-  classeCargo?: Prisma.SortOrder
-  padrao?: Prisma.SortOrder
-  grupoCargo?: Prisma.SortOrder
-  codigoVaga?: Prisma.SortOrder
+  emPGD?: Prisma.SortOrderInput | Prisma.SortOrder
+  titulacao?: Prisma.SortOrderInput | Prisma.SortOrder
+  escolaridade?: Prisma.SortOrderInput | Prisma.SortOrder
+  grupoSanguineo?: Prisma.SortOrderInput | Prisma.SortOrder
+  setorSuap?: Prisma.SortOrderInput | Prisma.SortOrder
+  lotacaoSiape?: Prisma.SortOrderInput | Prisma.SortOrder
+  exercicioSiape?: Prisma.SortOrderInput | Prisma.SortOrder
+  situacao?: Prisma.SortOrderInput | Prisma.SortOrder
+  regimeTrabalho?: Prisma.SortOrderInput | Prisma.SortOrder
+  jornadaTrabalho?: Prisma.SortOrderInput | Prisma.SortOrder
+  operadorRaioX?: Prisma.SortOrderInput | Prisma.SortOrder
+  inicioServicoPublico?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataDePosseInstituicao?: Prisma.SortOrderInput | Prisma.SortOrder
+  inicioServicoInstituicao?: Prisma.SortOrderInput | Prisma.SortOrder
+  tempoServicoInstituicaao?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataPosseCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  inicioExercicioCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  tempoServicoCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  cargoInstitucional?: Prisma.SortOrderInput | Prisma.SortOrder
+  classeCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  padrao?: Prisma.SortOrderInput | Prisma.SortOrder
+  grupoCargo?: Prisma.SortOrderInput | Prisma.SortOrder
+  codigoVaga?: Prisma.SortOrderInput | Prisma.SortOrder
   NCE?: Prisma.SortOrderInput | Prisma.SortOrder
-  qtdDependentes?: Prisma.SortOrder
-  pisPasep?: Prisma.SortOrder
+  qtdDependentes?: Prisma.SortOrderInput | Prisma.SortOrder
+  pisPasep?: Prisma.SortOrderInput | Prisma.SortOrder
   fkUsuario?: Prisma.SortOrder
   _count?: Prisma.ProfessorCountOrderByAggregateInput
   _avg?: Prisma.ProfessorAvgOrderByAggregateInput
@@ -555,70 +555,70 @@ export type ProfessorScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProfessorScalarWhereWithAggregatesInput | Prisma.ProfessorScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Professor"> | string
   siape?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  emailSiape?: Prisma.StringWithAggregatesFilter<"Professor"> | string
+  emailSiape?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
   telefonesInstiticionais?: Prisma.StringNullableListFilter<"Professor">
   telefonesPessoais?: Prisma.StringNullableListFilter<"Professor">
-  emPGD?: Prisma.BoolWithAggregatesFilter<"Professor"> | boolean
-  titulacao?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  escolaridade?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  grupoSanguineo?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  setorSuap?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  lotacaoSiape?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  exercicioSiape?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  situacao?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  regimeTrabalho?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  jornadaTrabalho?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  operadorRaioX?: Prisma.BoolWithAggregatesFilter<"Professor"> | boolean
-  inicioServicoPublico?: Prisma.DateTimeWithAggregatesFilter<"Professor"> | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeWithAggregatesFilter<"Professor"> | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeWithAggregatesFilter<"Professor"> | Date | string
-  tempoServicoInstituicaao?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  dataPosseCargo?: Prisma.DateTimeWithAggregatesFilter<"Professor"> | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeWithAggregatesFilter<"Professor"> | Date | string
-  tempoServicoCargo?: Prisma.DateTimeWithAggregatesFilter<"Professor"> | Date | string
-  cargoInstitucional?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  classeCargo?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  padrao?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  grupoCargo?: Prisma.StringWithAggregatesFilter<"Professor"> | string
-  codigoVaga?: Prisma.IntWithAggregatesFilter<"Professor"> | number
+  emPGD?: Prisma.BoolNullableWithAggregatesFilter<"Professor"> | boolean | null
+  titulacao?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  escolaridade?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  grupoSanguineo?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  setorSuap?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  lotacaoSiape?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  exercicioSiape?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  situacao?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  regimeTrabalho?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  jornadaTrabalho?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  operadorRaioX?: Prisma.BoolNullableWithAggregatesFilter<"Professor"> | boolean | null
+  inicioServicoPublico?: Prisma.DateTimeNullableWithAggregatesFilter<"Professor"> | Date | string | null
+  dataDePosseInstituicao?: Prisma.DateTimeNullableWithAggregatesFilter<"Professor"> | Date | string | null
+  inicioServicoInstituicao?: Prisma.DateTimeNullableWithAggregatesFilter<"Professor"> | Date | string | null
+  tempoServicoInstituicaao?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  dataPosseCargo?: Prisma.DateTimeNullableWithAggregatesFilter<"Professor"> | Date | string | null
+  inicioExercicioCargo?: Prisma.DateTimeNullableWithAggregatesFilter<"Professor"> | Date | string | null
+  tempoServicoCargo?: Prisma.DateTimeNullableWithAggregatesFilter<"Professor"> | Date | string | null
+  cargoInstitucional?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  classeCargo?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  padrao?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  grupoCargo?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  codigoVaga?: Prisma.IntNullableWithAggregatesFilter<"Professor"> | number | null
   NCE?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
-  qtdDependentes?: Prisma.IntWithAggregatesFilter<"Professor"> | number
-  pisPasep?: Prisma.StringWithAggregatesFilter<"Professor"> | string
+  qtdDependentes?: Prisma.IntNullableWithAggregatesFilter<"Professor"> | number | null
+  pisPasep?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
   fkUsuario?: Prisma.StringWithAggregatesFilter<"Professor"> | string
 }
 
 export type ProfessorCreateInput = {
   id?: string
   siape: string
-  emailSiape: string
+  emailSiape?: string | null
   telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date | string
-  dataDePosseInstituicao: Date | string
-  inicioServicoInstituicao: Date | string
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date | string
-  inicioExercicioCargo: Date | string
-  tempoServicoCargo: Date | string
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD?: boolean | null
+  titulacao?: string | null
+  escolaridade?: string | null
+  grupoSanguineo?: string | null
+  setorSuap?: string | null
+  lotacaoSiape?: string | null
+  exercicioSiape?: string | null
+  situacao?: string | null
+  regimeTrabalho?: string | null
+  jornadaTrabalho?: string | null
+  operadorRaioX?: boolean | null
+  inicioServicoPublico?: Date | string | null
+  dataDePosseInstituicao?: Date | string | null
+  inicioServicoInstituicao?: Date | string | null
+  tempoServicoInstituicaao?: string | null
+  dataPosseCargo?: Date | string | null
+  inicioExercicioCargo?: Date | string | null
+  tempoServicoCargo?: Date | string | null
+  cargoInstitucional?: string | null
+  classeCargo?: string | null
+  padrao?: string | null
+  grupoCargo?: string | null
+  codigoVaga?: number | null
   NCE?: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes?: number | null
+  pisPasep?: string | null
   alocacoes?: Prisma.AlocacaoProfessorCreateNestedManyWithoutProfessorInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfessorInput
 }
@@ -626,35 +626,35 @@ export type ProfessorCreateInput = {
 export type ProfessorUncheckedCreateInput = {
   id?: string
   siape: string
-  emailSiape: string
+  emailSiape?: string | null
   telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date | string
-  dataDePosseInstituicao: Date | string
-  inicioServicoInstituicao: Date | string
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date | string
-  inicioExercicioCargo: Date | string
-  tempoServicoCargo: Date | string
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD?: boolean | null
+  titulacao?: string | null
+  escolaridade?: string | null
+  grupoSanguineo?: string | null
+  setorSuap?: string | null
+  lotacaoSiape?: string | null
+  exercicioSiape?: string | null
+  situacao?: string | null
+  regimeTrabalho?: string | null
+  jornadaTrabalho?: string | null
+  operadorRaioX?: boolean | null
+  inicioServicoPublico?: Date | string | null
+  dataDePosseInstituicao?: Date | string | null
+  inicioServicoInstituicao?: Date | string | null
+  tempoServicoInstituicaao?: string | null
+  dataPosseCargo?: Date | string | null
+  inicioExercicioCargo?: Date | string | null
+  tempoServicoCargo?: Date | string | null
+  cargoInstitucional?: string | null
+  classeCargo?: string | null
+  padrao?: string | null
+  grupoCargo?: string | null
+  codigoVaga?: number | null
   NCE?: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes?: number | null
+  pisPasep?: string | null
   fkUsuario: string
   alocacoes?: Prisma.AlocacaoProfessorUncheckedCreateNestedManyWithoutProfessorInput
 }
@@ -662,35 +662,35 @@ export type ProfessorUncheckedCreateInput = {
 export type ProfessorUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   alocacoes?: Prisma.AlocacaoProfessorUpdateManyWithoutProfessorNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfessorNestedInput
 }
@@ -698,35 +698,35 @@ export type ProfessorUpdateInput = {
 export type ProfessorUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
   alocacoes?: Prisma.AlocacaoProfessorUncheckedUpdateManyWithoutProfessorNestedInput
 }
@@ -734,104 +734,104 @@ export type ProfessorUncheckedUpdateInput = {
 export type ProfessorCreateManyInput = {
   id?: string
   siape: string
-  emailSiape: string
+  emailSiape?: string | null
   telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date | string
-  dataDePosseInstituicao: Date | string
-  inicioServicoInstituicao: Date | string
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date | string
-  inicioExercicioCargo: Date | string
-  tempoServicoCargo: Date | string
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD?: boolean | null
+  titulacao?: string | null
+  escolaridade?: string | null
+  grupoSanguineo?: string | null
+  setorSuap?: string | null
+  lotacaoSiape?: string | null
+  exercicioSiape?: string | null
+  situacao?: string | null
+  regimeTrabalho?: string | null
+  jornadaTrabalho?: string | null
+  operadorRaioX?: boolean | null
+  inicioServicoPublico?: Date | string | null
+  dataDePosseInstituicao?: Date | string | null
+  inicioServicoInstituicao?: Date | string | null
+  tempoServicoInstituicaao?: string | null
+  dataPosseCargo?: Date | string | null
+  inicioExercicioCargo?: Date | string | null
+  tempoServicoCargo?: Date | string | null
+  cargoInstitucional?: string | null
+  classeCargo?: string | null
+  padrao?: string | null
+  grupoCargo?: string | null
+  codigoVaga?: number | null
   NCE?: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes?: number | null
+  pisPasep?: string | null
   fkUsuario: string
 }
 
 export type ProfessorUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ProfessorUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -1014,8 +1014,20 @@ export type ProfessorUpdatetelefonesPessoaisInput = {
   push?: string | string[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type ProfessorCreateNestedOneWithoutAlocacoesInput = {
@@ -1035,70 +1047,70 @@ export type ProfessorUpdateOneRequiredWithoutAlocacoesNestedInput = {
 export type ProfessorCreateWithoutUsuarioInput = {
   id?: string
   siape: string
-  emailSiape: string
+  emailSiape?: string | null
   telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date | string
-  dataDePosseInstituicao: Date | string
-  inicioServicoInstituicao: Date | string
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date | string
-  inicioExercicioCargo: Date | string
-  tempoServicoCargo: Date | string
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD?: boolean | null
+  titulacao?: string | null
+  escolaridade?: string | null
+  grupoSanguineo?: string | null
+  setorSuap?: string | null
+  lotacaoSiape?: string | null
+  exercicioSiape?: string | null
+  situacao?: string | null
+  regimeTrabalho?: string | null
+  jornadaTrabalho?: string | null
+  operadorRaioX?: boolean | null
+  inicioServicoPublico?: Date | string | null
+  dataDePosseInstituicao?: Date | string | null
+  inicioServicoInstituicao?: Date | string | null
+  tempoServicoInstituicaao?: string | null
+  dataPosseCargo?: Date | string | null
+  inicioExercicioCargo?: Date | string | null
+  tempoServicoCargo?: Date | string | null
+  cargoInstitucional?: string | null
+  classeCargo?: string | null
+  padrao?: string | null
+  grupoCargo?: string | null
+  codigoVaga?: number | null
   NCE?: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes?: number | null
+  pisPasep?: string | null
   alocacoes?: Prisma.AlocacaoProfessorCreateNestedManyWithoutProfessorInput
 }
 
 export type ProfessorUncheckedCreateWithoutUsuarioInput = {
   id?: string
   siape: string
-  emailSiape: string
+  emailSiape?: string | null
   telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date | string
-  dataDePosseInstituicao: Date | string
-  inicioServicoInstituicao: Date | string
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date | string
-  inicioExercicioCargo: Date | string
-  tempoServicoCargo: Date | string
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD?: boolean | null
+  titulacao?: string | null
+  escolaridade?: string | null
+  grupoSanguineo?: string | null
+  setorSuap?: string | null
+  lotacaoSiape?: string | null
+  exercicioSiape?: string | null
+  situacao?: string | null
+  regimeTrabalho?: string | null
+  jornadaTrabalho?: string | null
+  operadorRaioX?: boolean | null
+  inicioServicoPublico?: Date | string | null
+  dataDePosseInstituicao?: Date | string | null
+  inicioServicoInstituicao?: Date | string | null
+  tempoServicoInstituicaao?: string | null
+  dataPosseCargo?: Date | string | null
+  inicioExercicioCargo?: Date | string | null
+  tempoServicoCargo?: Date | string | null
+  cargoInstitucional?: string | null
+  classeCargo?: string | null
+  padrao?: string | null
+  grupoCargo?: string | null
+  codigoVaga?: number | null
   NCE?: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes?: number | null
+  pisPasep?: string | null
   alocacoes?: Prisma.AlocacaoProfessorUncheckedCreateNestedManyWithoutProfessorInput
 }
 
@@ -1121,140 +1133,140 @@ export type ProfessorUpdateToOneWithWhereWithoutUsuarioInput = {
 export type ProfessorUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   alocacoes?: Prisma.AlocacaoProfessorUpdateManyWithoutProfessorNestedInput
 }
 
 export type ProfessorUncheckedUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   alocacoes?: Prisma.AlocacaoProfessorUncheckedUpdateManyWithoutProfessorNestedInput
 }
 
 export type ProfessorCreateWithoutAlocacoesInput = {
   id?: string
   siape: string
-  emailSiape: string
+  emailSiape?: string | null
   telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date | string
-  dataDePosseInstituicao: Date | string
-  inicioServicoInstituicao: Date | string
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date | string
-  inicioExercicioCargo: Date | string
-  tempoServicoCargo: Date | string
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD?: boolean | null
+  titulacao?: string | null
+  escolaridade?: string | null
+  grupoSanguineo?: string | null
+  setorSuap?: string | null
+  lotacaoSiape?: string | null
+  exercicioSiape?: string | null
+  situacao?: string | null
+  regimeTrabalho?: string | null
+  jornadaTrabalho?: string | null
+  operadorRaioX?: boolean | null
+  inicioServicoPublico?: Date | string | null
+  dataDePosseInstituicao?: Date | string | null
+  inicioServicoInstituicao?: Date | string | null
+  tempoServicoInstituicaao?: string | null
+  dataPosseCargo?: Date | string | null
+  inicioExercicioCargo?: Date | string | null
+  tempoServicoCargo?: Date | string | null
+  cargoInstitucional?: string | null
+  classeCargo?: string | null
+  padrao?: string | null
+  grupoCargo?: string | null
+  codigoVaga?: number | null
   NCE?: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes?: number | null
+  pisPasep?: string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfessorInput
 }
 
 export type ProfessorUncheckedCreateWithoutAlocacoesInput = {
   id?: string
   siape: string
-  emailSiape: string
+  emailSiape?: string | null
   telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
-  emPGD: boolean
-  titulacao: string
-  escolaridade: string
-  grupoSanguineo: string
-  setorSuap: string
-  lotacaoSiape: string
-  exercicioSiape: string
-  situacao: string
-  regimeTrabalho: string
-  jornadaTrabalho: string
-  operadorRaioX: boolean
-  inicioServicoPublico: Date | string
-  dataDePosseInstituicao: Date | string
-  inicioServicoInstituicao: Date | string
-  tempoServicoInstituicaao: string
-  dataPosseCargo: Date | string
-  inicioExercicioCargo: Date | string
-  tempoServicoCargo: Date | string
-  cargoInstitucional: string
-  classeCargo: string
-  padrao: string
-  grupoCargo: string
-  codigoVaga: number
+  emPGD?: boolean | null
+  titulacao?: string | null
+  escolaridade?: string | null
+  grupoSanguineo?: string | null
+  setorSuap?: string | null
+  lotacaoSiape?: string | null
+  exercicioSiape?: string | null
+  situacao?: string | null
+  regimeTrabalho?: string | null
+  jornadaTrabalho?: string | null
+  operadorRaioX?: boolean | null
+  inicioServicoPublico?: Date | string | null
+  dataDePosseInstituicao?: Date | string | null
+  inicioServicoInstituicao?: Date | string | null
+  tempoServicoInstituicaao?: string | null
+  dataPosseCargo?: Date | string | null
+  inicioExercicioCargo?: Date | string | null
+  tempoServicoCargo?: Date | string | null
+  cargoInstitucional?: string | null
+  classeCargo?: string | null
+  padrao?: string | null
+  grupoCargo?: string | null
+  codigoVaga?: number | null
   NCE?: string | null
-  qtdDependentes: number
-  pisPasep: string
+  qtdDependentes?: number | null
+  pisPasep?: string | null
   fkUsuario: string
 }
 
@@ -1277,70 +1289,70 @@ export type ProfessorUpdateToOneWithWhereWithoutAlocacoesInput = {
 export type ProfessorUpdateWithoutAlocacoesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfessorNestedInput
 }
 
 export type ProfessorUncheckedUpdateWithoutAlocacoesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
-  emailSiape?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
-  emPGD?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  titulacao?: Prisma.StringFieldUpdateOperationsInput | string
-  escolaridade?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoSanguineo?: Prisma.StringFieldUpdateOperationsInput | string
-  setorSuap?: Prisma.StringFieldUpdateOperationsInput | string
-  lotacaoSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  exercicioSiape?: Prisma.StringFieldUpdateOperationsInput | string
-  situacao?: Prisma.StringFieldUpdateOperationsInput | string
-  regimeTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  jornadaTrabalho?: Prisma.StringFieldUpdateOperationsInput | string
-  operadorRaioX?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  inicioServicoPublico?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataDePosseInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioServicoInstituicao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoInstituicaao?: Prisma.StringFieldUpdateOperationsInput | string
-  dataPosseCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inicioExercicioCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tempoServicoCargo?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cargoInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
-  classeCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  padrao?: Prisma.StringFieldUpdateOperationsInput | string
-  grupoCargo?: Prisma.StringFieldUpdateOperationsInput | string
-  codigoVaga?: Prisma.IntFieldUpdateOperationsInput | number
+  emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setorSuap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lotacaoSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exercicioSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  situacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  regimeTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jornadaTrabalho?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operadorRaioX?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  inicioServicoPublico?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataDePosseInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioServicoInstituicao?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoInstituicaao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataPosseCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inicioExercicioCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tempoServicoCargo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cargoInstitucional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  classeCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  padrao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grupoCargo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigoVaga?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   NCE?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qtdDependentes?: Prisma.IntFieldUpdateOperationsInput | number
-  pisPasep?: Prisma.StringFieldUpdateOperationsInput | string
+  qtdDependentes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pisPasep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -1542,35 +1554,35 @@ export type $ProfessorPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     siape: string
-    emailSiape: string
+    emailSiape: string | null
     telefonesInstiticionais: string[]
     telefonesPessoais: string[]
-    emPGD: boolean
-    titulacao: string
-    escolaridade: string
-    grupoSanguineo: string
-    setorSuap: string
-    lotacaoSiape: string
-    exercicioSiape: string
-    situacao: string
-    regimeTrabalho: string
-    jornadaTrabalho: string
-    operadorRaioX: boolean
-    inicioServicoPublico: Date
-    dataDePosseInstituicao: Date
-    inicioServicoInstituicao: Date
-    tempoServicoInstituicaao: string
-    dataPosseCargo: Date
-    inicioExercicioCargo: Date
-    tempoServicoCargo: Date
-    cargoInstitucional: string
-    classeCargo: string
-    padrao: string
-    grupoCargo: string
-    codigoVaga: number
+    emPGD: boolean | null
+    titulacao: string | null
+    escolaridade: string | null
+    grupoSanguineo: string | null
+    setorSuap: string | null
+    lotacaoSiape: string | null
+    exercicioSiape: string | null
+    situacao: string | null
+    regimeTrabalho: string | null
+    jornadaTrabalho: string | null
+    operadorRaioX: boolean | null
+    inicioServicoPublico: Date | null
+    dataDePosseInstituicao: Date | null
+    inicioServicoInstituicao: Date | null
+    tempoServicoInstituicaao: string | null
+    dataPosseCargo: Date | null
+    inicioExercicioCargo: Date | null
+    tempoServicoCargo: Date | null
+    cargoInstitucional: string | null
+    classeCargo: string | null
+    padrao: string | null
+    grupoCargo: string | null
+    codigoVaga: number | null
     NCE: string | null
-    qtdDependentes: number
-    pisPasep: string
+    qtdDependentes: number | null
+    pisPasep: string | null
     fkUsuario: string
   }, ExtArgs["result"]["professor"]>
   composites: {}

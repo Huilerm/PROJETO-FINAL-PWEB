@@ -40,21 +40,23 @@ async function verifySCode(
     }
     return matricula;
   } else if (userType === "PROFESSOR") {
-    let siap = data.siap ?? createSCode();
+    let siape = data.siape ?? createSCode();
     let verifySiap = await prisma.professor.findUnique({
-      where: { siap },
+      where: { siape },
     });
     while (verifySiap) {
-      siap = createSCode();
+      siape = createSCode();
       verifySiap = await prisma.professor.findUnique({
-        where: { siap },
+        where: { siape },
       });
     }
-    return siap;
+    return siape;
   }
 
   throw new Error(`Tipo de usuário inválido: ${userType}`);
 }
+
+
 
 // Cria Usuário
 export async function createUser(data: CadastroInput) {
@@ -64,7 +66,7 @@ export async function createUser(data: CadastroInput) {
 
   // Busca os dados dos usuários de acordo com a entrada
   const email = await prisma.usuario.findUnique({
-    where: { email: data.email },
+    where: { emailInstitucional: data.email },
   });
   const cpf = await prisma.identidade.findUnique({
     where: { cpf: cpfNormalizado },
@@ -92,7 +94,7 @@ export async function createUser(data: CadastroInput) {
         cpf: cpfNormalizado,
         orgaoEmissor: data.orgaoEmissor,
         estado: data.estado.toUpperCase(),
-        dataEmissao: new Date(data.dataEmissao),
+        dataExpedicao: new Date(data.dataEmissao),
       },
     });
 
@@ -104,21 +106,33 @@ export async function createUser(data: CadastroInput) {
       throw new AppError(`Cargo ${data.cargo} não encontrado no sistema`, 500);
     }
 
+    const endereco = await tx.endereco.findUnique({
+    where: { id: data.fkEndereco },
+  });
+
+  if (!endereco) {
+    throw new AppError(`Endereço ${data.fkEndereco} não encontrado`, 400);
+  }
+
     // Insere novo usuário ao sistema
     const usuario = await tx.usuario.create({
-      data: {
-        nome: data.nome,
-        nomeSocial: data.nomeSocial ?? null,
-        dataNasc: new Date(data.dataNasc),
-        naturalidade: data.naturalidade,
-        email: data.email,
-        senha: hashPassword,
-        sexo: data.sexo,
-        raca: data.raca,
-        fkIdentidade: identidade.id,
-        cargos: { connect: { id: cargo.id } },
-      },
-    });
+  data: {
+    nome: data.nome,
+    nomeSocial: data.nomeSocial ?? null,
+    dataNasc: new Date(data.dataNasc),
+    naturalidade: data.naturalidade,
+    emailInstitucional: data.email,
+    emailSecundario: data.email,
+    senha: hashPassword,
+    nomeMae: data.nomeMae,
+    nomePai: data.nomePai,
+    sexo: data.sexo,
+    raca: data.raca,
+    fkIdentidade: identidade.id,
+    fkEndereco: data.fkEndereco,
+    cargos: { connect: { id: cargo.id } },
+  },
+});
 
     // Verificação se o usuário é Aluno ou Professor
     if (data.cargo === "ALUNO") {
@@ -132,10 +146,10 @@ export async function createUser(data: CadastroInput) {
 
       return { usuario, aluno, identidade };
     } else if (data.cargo === "PROFESSOR") {
-      const siap = data.siap ?? (await verifySCode(data, "ALUNO"));
+      const siape = data.siape ?? (await verifySCode(data, "PROFESSOR"));
       const professor = await tx.professor.create({
         data: {
-          siap,
+          siape,
           fkUsuario: usuario.id,
         },
       });

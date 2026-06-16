@@ -270,9 +270,6 @@ export type HistoricoOrderByWithRelationInput = {
 
 export type HistoricoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  fkAluno?: string
-  fkInscricao?: string
-  fkUsuarioResponsavel?: string
   AND?: Prisma.HistoricoWhereInput | Prisma.HistoricoWhereInput[]
   OR?: Prisma.HistoricoWhereInput[]
   NOT?: Prisma.HistoricoWhereInput | Prisma.HistoricoWhereInput[]
@@ -281,10 +278,13 @@ export type HistoricoWhereUniqueInput = Prisma.AtLeast<{
   statusAnterior?: Prisma.EnumStatusInscricaoFilter<"Historico"> | $Enums.StatusInscricao
   statusAtual?: Prisma.EnumStatusInscricaoFilter<"Historico"> | $Enums.StatusInscricao
   dataModificacao?: Prisma.DateTimeFilter<"Historico"> | Date | string
+  fkAluno?: Prisma.StringFilter<"Historico"> | string
+  fkInscricao?: Prisma.StringFilter<"Historico"> | string
+  fkUsuarioResponsavel?: Prisma.StringFilter<"Historico"> | string
   aluno?: Prisma.XOR<Prisma.AlunoScalarRelationFilter, Prisma.AlunoWhereInput>
   inscricao?: Prisma.XOR<Prisma.InscricaoScalarRelationFilter, Prisma.InscricaoWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
-}, "id" | "fkAluno" | "fkInscricao" | "fkUsuarioResponsavel">
+}, "id">
 
 export type HistoricoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -396,9 +396,14 @@ export type HistoricoUncheckedUpdateManyInput = {
   fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type HistoricoNullableScalarRelationFilter = {
-  is?: Prisma.HistoricoWhereInput | null
-  isNot?: Prisma.HistoricoWhereInput | null
+export type HistoricoListRelationFilter = {
+  every?: Prisma.HistoricoWhereInput
+  some?: Prisma.HistoricoWhereInput
+  none?: Prisma.HistoricoWhereInput
+}
+
+export type HistoricoOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type HistoricoCountOrderByAggregateInput = {
@@ -445,100 +450,130 @@ export type HistoricoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type HistoricoCreateNestedOneWithoutUsuarioInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
-  connect?: Prisma.HistoricoWhereUniqueInput
+export type HistoricoCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput> | Prisma.HistoricoCreateWithoutUsuarioInput[] | Prisma.HistoricoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput | Prisma.HistoricoCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.HistoricoCreateManyUsuarioInputEnvelope
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
 }
 
-export type HistoricoUncheckedCreateNestedOneWithoutUsuarioInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
-  connect?: Prisma.HistoricoWhereUniqueInput
+export type HistoricoUncheckedCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput> | Prisma.HistoricoCreateWithoutUsuarioInput[] | Prisma.HistoricoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput | Prisma.HistoricoCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.HistoricoCreateManyUsuarioInputEnvelope
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
 }
 
-export type HistoricoUpdateOneWithoutUsuarioNestedInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
-  upsert?: Prisma.HistoricoUpsertWithoutUsuarioInput
-  disconnect?: Prisma.HistoricoWhereInput | boolean
-  delete?: Prisma.HistoricoWhereInput | boolean
-  connect?: Prisma.HistoricoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutUsuarioInput, Prisma.HistoricoUpdateWithoutUsuarioInput>, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
+export type HistoricoUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput> | Prisma.HistoricoCreateWithoutUsuarioInput[] | Prisma.HistoricoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput | Prisma.HistoricoCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.HistoricoUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.HistoricoUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.HistoricoCreateManyUsuarioInputEnvelope
+  set?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  disconnect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  delete?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  update?: Prisma.HistoricoUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.HistoricoUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.HistoricoUpdateManyWithWhereWithoutUsuarioInput | Prisma.HistoricoUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
 }
 
-export type HistoricoUncheckedUpdateOneWithoutUsuarioNestedInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput
-  upsert?: Prisma.HistoricoUpsertWithoutUsuarioInput
-  disconnect?: Prisma.HistoricoWhereInput | boolean
-  delete?: Prisma.HistoricoWhereInput | boolean
-  connect?: Prisma.HistoricoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutUsuarioInput, Prisma.HistoricoUpdateWithoutUsuarioInput>, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
+export type HistoricoUncheckedUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput> | Prisma.HistoricoCreateWithoutUsuarioInput[] | Prisma.HistoricoUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutUsuarioInput | Prisma.HistoricoCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.HistoricoUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.HistoricoUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.HistoricoCreateManyUsuarioInputEnvelope
+  set?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  disconnect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  delete?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  update?: Prisma.HistoricoUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.HistoricoUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.HistoricoUpdateManyWithWhereWithoutUsuarioInput | Prisma.HistoricoUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
 }
 
-export type HistoricoCreateNestedOneWithoutAlunoInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput
-  connect?: Prisma.HistoricoWhereUniqueInput
+export type HistoricoCreateNestedManyWithoutAlunoInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput> | Prisma.HistoricoCreateWithoutAlunoInput[] | Prisma.HistoricoUncheckedCreateWithoutAlunoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput | Prisma.HistoricoCreateOrConnectWithoutAlunoInput[]
+  createMany?: Prisma.HistoricoCreateManyAlunoInputEnvelope
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
 }
 
-export type HistoricoUncheckedCreateNestedOneWithoutAlunoInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput
-  connect?: Prisma.HistoricoWhereUniqueInput
+export type HistoricoUncheckedCreateNestedManyWithoutAlunoInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput> | Prisma.HistoricoCreateWithoutAlunoInput[] | Prisma.HistoricoUncheckedCreateWithoutAlunoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput | Prisma.HistoricoCreateOrConnectWithoutAlunoInput[]
+  createMany?: Prisma.HistoricoCreateManyAlunoInputEnvelope
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
 }
 
-export type HistoricoUpdateOneWithoutAlunoNestedInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput
-  upsert?: Prisma.HistoricoUpsertWithoutAlunoInput
-  disconnect?: Prisma.HistoricoWhereInput | boolean
-  delete?: Prisma.HistoricoWhereInput | boolean
-  connect?: Prisma.HistoricoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutAlunoInput, Prisma.HistoricoUpdateWithoutAlunoInput>, Prisma.HistoricoUncheckedUpdateWithoutAlunoInput>
+export type HistoricoUpdateManyWithoutAlunoNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput> | Prisma.HistoricoCreateWithoutAlunoInput[] | Prisma.HistoricoUncheckedCreateWithoutAlunoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput | Prisma.HistoricoCreateOrConnectWithoutAlunoInput[]
+  upsert?: Prisma.HistoricoUpsertWithWhereUniqueWithoutAlunoInput | Prisma.HistoricoUpsertWithWhereUniqueWithoutAlunoInput[]
+  createMany?: Prisma.HistoricoCreateManyAlunoInputEnvelope
+  set?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  disconnect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  delete?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  update?: Prisma.HistoricoUpdateWithWhereUniqueWithoutAlunoInput | Prisma.HistoricoUpdateWithWhereUniqueWithoutAlunoInput[]
+  updateMany?: Prisma.HistoricoUpdateManyWithWhereWithoutAlunoInput | Prisma.HistoricoUpdateManyWithWhereWithoutAlunoInput[]
+  deleteMany?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
 }
 
-export type HistoricoUncheckedUpdateOneWithoutAlunoNestedInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput
-  upsert?: Prisma.HistoricoUpsertWithoutAlunoInput
-  disconnect?: Prisma.HistoricoWhereInput | boolean
-  delete?: Prisma.HistoricoWhereInput | boolean
-  connect?: Prisma.HistoricoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutAlunoInput, Prisma.HistoricoUpdateWithoutAlunoInput>, Prisma.HistoricoUncheckedUpdateWithoutAlunoInput>
+export type HistoricoUncheckedUpdateManyWithoutAlunoNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput> | Prisma.HistoricoCreateWithoutAlunoInput[] | Prisma.HistoricoUncheckedCreateWithoutAlunoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutAlunoInput | Prisma.HistoricoCreateOrConnectWithoutAlunoInput[]
+  upsert?: Prisma.HistoricoUpsertWithWhereUniqueWithoutAlunoInput | Prisma.HistoricoUpsertWithWhereUniqueWithoutAlunoInput[]
+  createMany?: Prisma.HistoricoCreateManyAlunoInputEnvelope
+  set?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  disconnect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  delete?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  update?: Prisma.HistoricoUpdateWithWhereUniqueWithoutAlunoInput | Prisma.HistoricoUpdateWithWhereUniqueWithoutAlunoInput[]
+  updateMany?: Prisma.HistoricoUpdateManyWithWhereWithoutAlunoInput | Prisma.HistoricoUpdateManyWithWhereWithoutAlunoInput[]
+  deleteMany?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
 }
 
-export type HistoricoCreateNestedOneWithoutInscricaoInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput
-  connect?: Prisma.HistoricoWhereUniqueInput
+export type HistoricoCreateNestedManyWithoutInscricaoInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput> | Prisma.HistoricoCreateWithoutInscricaoInput[] | Prisma.HistoricoUncheckedCreateWithoutInscricaoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput | Prisma.HistoricoCreateOrConnectWithoutInscricaoInput[]
+  createMany?: Prisma.HistoricoCreateManyInscricaoInputEnvelope
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
 }
 
-export type HistoricoUncheckedCreateNestedOneWithoutInscricaoInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput
-  connect?: Prisma.HistoricoWhereUniqueInput
+export type HistoricoUncheckedCreateNestedManyWithoutInscricaoInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput> | Prisma.HistoricoCreateWithoutInscricaoInput[] | Prisma.HistoricoUncheckedCreateWithoutInscricaoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput | Prisma.HistoricoCreateOrConnectWithoutInscricaoInput[]
+  createMany?: Prisma.HistoricoCreateManyInscricaoInputEnvelope
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
 }
 
-export type HistoricoUpdateOneWithoutInscricaoNestedInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput
-  upsert?: Prisma.HistoricoUpsertWithoutInscricaoInput
-  disconnect?: Prisma.HistoricoWhereInput | boolean
-  delete?: Prisma.HistoricoWhereInput | boolean
-  connect?: Prisma.HistoricoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutInscricaoInput, Prisma.HistoricoUpdateWithoutInscricaoInput>, Prisma.HistoricoUncheckedUpdateWithoutInscricaoInput>
+export type HistoricoUpdateManyWithoutInscricaoNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput> | Prisma.HistoricoCreateWithoutInscricaoInput[] | Prisma.HistoricoUncheckedCreateWithoutInscricaoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput | Prisma.HistoricoCreateOrConnectWithoutInscricaoInput[]
+  upsert?: Prisma.HistoricoUpsertWithWhereUniqueWithoutInscricaoInput | Prisma.HistoricoUpsertWithWhereUniqueWithoutInscricaoInput[]
+  createMany?: Prisma.HistoricoCreateManyInscricaoInputEnvelope
+  set?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  disconnect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  delete?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  update?: Prisma.HistoricoUpdateWithWhereUniqueWithoutInscricaoInput | Prisma.HistoricoUpdateWithWhereUniqueWithoutInscricaoInput[]
+  updateMany?: Prisma.HistoricoUpdateManyWithWhereWithoutInscricaoInput | Prisma.HistoricoUpdateManyWithWhereWithoutInscricaoInput[]
+  deleteMany?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
 }
 
-export type HistoricoUncheckedUpdateOneWithoutInscricaoNestedInput = {
-  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput>
-  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput
-  upsert?: Prisma.HistoricoUpsertWithoutInscricaoInput
-  disconnect?: Prisma.HistoricoWhereInput | boolean
-  delete?: Prisma.HistoricoWhereInput | boolean
-  connect?: Prisma.HistoricoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoricoUpdateToOneWithWhereWithoutInscricaoInput, Prisma.HistoricoUpdateWithoutInscricaoInput>, Prisma.HistoricoUncheckedUpdateWithoutInscricaoInput>
+export type HistoricoUncheckedUpdateManyWithoutInscricaoNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput> | Prisma.HistoricoCreateWithoutInscricaoInput[] | Prisma.HistoricoUncheckedCreateWithoutInscricaoInput[]
+  connectOrCreate?: Prisma.HistoricoCreateOrConnectWithoutInscricaoInput | Prisma.HistoricoCreateOrConnectWithoutInscricaoInput[]
+  upsert?: Prisma.HistoricoUpsertWithWhereUniqueWithoutInscricaoInput | Prisma.HistoricoUpsertWithWhereUniqueWithoutInscricaoInput[]
+  createMany?: Prisma.HistoricoCreateManyInscricaoInputEnvelope
+  set?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  disconnect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  delete?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  connect?: Prisma.HistoricoWhereUniqueInput | Prisma.HistoricoWhereUniqueInput[]
+  update?: Prisma.HistoricoUpdateWithWhereUniqueWithoutInscricaoInput | Prisma.HistoricoUpdateWithWhereUniqueWithoutInscricaoInput[]
+  updateMany?: Prisma.HistoricoUpdateManyWithWhereWithoutInscricaoInput | Prisma.HistoricoUpdateManyWithWhereWithoutInscricaoInput[]
+  deleteMany?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
 }
 
 export type HistoricoCreateWithoutUsuarioInput = {
@@ -567,36 +602,40 @@ export type HistoricoCreateOrConnectWithoutUsuarioInput = {
   create: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
 }
 
-export type HistoricoUpsertWithoutUsuarioInput = {
-  update: Prisma.XOR<Prisma.HistoricoUpdateWithoutUsuarioInput, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
-  create: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
-  where?: Prisma.HistoricoWhereInput
+export type HistoricoCreateManyUsuarioInputEnvelope = {
+  data: Prisma.HistoricoCreateManyUsuarioInput | Prisma.HistoricoCreateManyUsuarioInput[]
+  skipDuplicates?: boolean
 }
 
-export type HistoricoUpdateToOneWithWhereWithoutUsuarioInput = {
-  where?: Prisma.HistoricoWhereInput
+export type HistoricoUpsertWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.HistoricoWhereUniqueInput
+  update: Prisma.XOR<Prisma.HistoricoUpdateWithoutUsuarioInput, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.HistoricoCreateWithoutUsuarioInput, Prisma.HistoricoUncheckedCreateWithoutUsuarioInput>
+}
+
+export type HistoricoUpdateWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.HistoricoWhereUniqueInput
   data: Prisma.XOR<Prisma.HistoricoUpdateWithoutUsuarioInput, Prisma.HistoricoUncheckedUpdateWithoutUsuarioInput>
 }
 
-export type HistoricoUpdateWithoutUsuarioInput = {
-  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
-  descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  aluno?: Prisma.AlunoUpdateOneRequiredWithoutHistoricoNestedInput
-  inscricao?: Prisma.InscricaoUpdateOneRequiredWithoutHistoricoNestedInput
+export type HistoricoUpdateManyWithWhereWithoutUsuarioInput = {
+  where: Prisma.HistoricoScalarWhereInput
+  data: Prisma.XOR<Prisma.HistoricoUpdateManyMutationInput, Prisma.HistoricoUncheckedUpdateManyWithoutUsuarioInput>
 }
 
-export type HistoricoUncheckedUpdateWithoutUsuarioInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
-  descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
-  fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+export type HistoricoScalarWhereInput = {
+  AND?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
+  OR?: Prisma.HistoricoScalarWhereInput[]
+  NOT?: Prisma.HistoricoScalarWhereInput | Prisma.HistoricoScalarWhereInput[]
+  id?: Prisma.IntFilter<"Historico"> | number
+  alteracao?: Prisma.StringFilter<"Historico"> | string
+  descricao?: Prisma.StringFilter<"Historico"> | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFilter<"Historico"> | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFilter<"Historico"> | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFilter<"Historico"> | Date | string
+  fkAluno?: Prisma.StringFilter<"Historico"> | string
+  fkInscricao?: Prisma.StringFilter<"Historico"> | string
+  fkUsuarioResponsavel?: Prisma.StringFilter<"Historico"> | string
 }
 
 export type HistoricoCreateWithoutAlunoInput = {
@@ -625,36 +664,25 @@ export type HistoricoCreateOrConnectWithoutAlunoInput = {
   create: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput>
 }
 
-export type HistoricoUpsertWithoutAlunoInput = {
-  update: Prisma.XOR<Prisma.HistoricoUpdateWithoutAlunoInput, Prisma.HistoricoUncheckedUpdateWithoutAlunoInput>
-  create: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput>
-  where?: Prisma.HistoricoWhereInput
+export type HistoricoCreateManyAlunoInputEnvelope = {
+  data: Prisma.HistoricoCreateManyAlunoInput | Prisma.HistoricoCreateManyAlunoInput[]
+  skipDuplicates?: boolean
 }
 
-export type HistoricoUpdateToOneWithWhereWithoutAlunoInput = {
-  where?: Prisma.HistoricoWhereInput
+export type HistoricoUpsertWithWhereUniqueWithoutAlunoInput = {
+  where: Prisma.HistoricoWhereUniqueInput
+  update: Prisma.XOR<Prisma.HistoricoUpdateWithoutAlunoInput, Prisma.HistoricoUncheckedUpdateWithoutAlunoInput>
+  create: Prisma.XOR<Prisma.HistoricoCreateWithoutAlunoInput, Prisma.HistoricoUncheckedCreateWithoutAlunoInput>
+}
+
+export type HistoricoUpdateWithWhereUniqueWithoutAlunoInput = {
+  where: Prisma.HistoricoWhereUniqueInput
   data: Prisma.XOR<Prisma.HistoricoUpdateWithoutAlunoInput, Prisma.HistoricoUncheckedUpdateWithoutAlunoInput>
 }
 
-export type HistoricoUpdateWithoutAlunoInput = {
-  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
-  descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inscricao?: Prisma.InscricaoUpdateOneRequiredWithoutHistoricoNestedInput
-  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutHistoricoNestedInput
-}
-
-export type HistoricoUncheckedUpdateWithoutAlunoInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
-  descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
-  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
-  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
+export type HistoricoUpdateManyWithWhereWithoutAlunoInput = {
+  where: Prisma.HistoricoScalarWhereInput
+  data: Prisma.XOR<Prisma.HistoricoUpdateManyMutationInput, Prisma.HistoricoUncheckedUpdateManyWithoutAlunoInput>
 }
 
 export type HistoricoCreateWithoutInscricaoInput = {
@@ -683,15 +711,122 @@ export type HistoricoCreateOrConnectWithoutInscricaoInput = {
   create: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput>
 }
 
-export type HistoricoUpsertWithoutInscricaoInput = {
-  update: Prisma.XOR<Prisma.HistoricoUpdateWithoutInscricaoInput, Prisma.HistoricoUncheckedUpdateWithoutInscricaoInput>
-  create: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput>
-  where?: Prisma.HistoricoWhereInput
+export type HistoricoCreateManyInscricaoInputEnvelope = {
+  data: Prisma.HistoricoCreateManyInscricaoInput | Prisma.HistoricoCreateManyInscricaoInput[]
+  skipDuplicates?: boolean
 }
 
-export type HistoricoUpdateToOneWithWhereWithoutInscricaoInput = {
-  where?: Prisma.HistoricoWhereInput
+export type HistoricoUpsertWithWhereUniqueWithoutInscricaoInput = {
+  where: Prisma.HistoricoWhereUniqueInput
+  update: Prisma.XOR<Prisma.HistoricoUpdateWithoutInscricaoInput, Prisma.HistoricoUncheckedUpdateWithoutInscricaoInput>
+  create: Prisma.XOR<Prisma.HistoricoCreateWithoutInscricaoInput, Prisma.HistoricoUncheckedCreateWithoutInscricaoInput>
+}
+
+export type HistoricoUpdateWithWhereUniqueWithoutInscricaoInput = {
+  where: Prisma.HistoricoWhereUniqueInput
   data: Prisma.XOR<Prisma.HistoricoUpdateWithoutInscricaoInput, Prisma.HistoricoUncheckedUpdateWithoutInscricaoInput>
+}
+
+export type HistoricoUpdateManyWithWhereWithoutInscricaoInput = {
+  where: Prisma.HistoricoScalarWhereInput
+  data: Prisma.XOR<Prisma.HistoricoUpdateManyMutationInput, Prisma.HistoricoUncheckedUpdateManyWithoutInscricaoInput>
+}
+
+export type HistoricoCreateManyUsuarioInput = {
+  id?: number
+  alteracao: string
+  descricao: string
+  statusAnterior: $Enums.StatusInscricao
+  statusAtual: $Enums.StatusInscricao
+  dataModificacao?: Date | string
+  fkAluno: string
+  fkInscricao: string
+}
+
+export type HistoricoUpdateWithoutUsuarioInput = {
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aluno?: Prisma.AlunoUpdateOneRequiredWithoutHistoricoNestedInput
+  inscricao?: Prisma.InscricaoUpdateOneRequiredWithoutHistoricoNestedInput
+}
+
+export type HistoricoUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
+  fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type HistoricoUncheckedUpdateManyWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
+  fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type HistoricoCreateManyAlunoInput = {
+  id?: number
+  alteracao: string
+  descricao: string
+  statusAnterior: $Enums.StatusInscricao
+  statusAtual: $Enums.StatusInscricao
+  dataModificacao?: Date | string
+  fkInscricao: string
+  fkUsuarioResponsavel: string
+}
+
+export type HistoricoUpdateWithoutAlunoInput = {
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inscricao?: Prisma.InscricaoUpdateOneRequiredWithoutHistoricoNestedInput
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutHistoricoNestedInput
+}
+
+export type HistoricoUncheckedUpdateWithoutAlunoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type HistoricoUncheckedUpdateManyWithoutAlunoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fkInscricao?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type HistoricoCreateManyInscricaoInput = {
+  id?: number
+  alteracao: string
+  descricao: string
+  statusAnterior: $Enums.StatusInscricao
+  statusAtual: $Enums.StatusInscricao
+  dataModificacao?: Date | string
+  fkAluno: string
+  fkUsuarioResponsavel: string
 }
 
 export type HistoricoUpdateWithoutInscricaoInput = {
@@ -705,6 +840,17 @@ export type HistoricoUpdateWithoutInscricaoInput = {
 }
 
 export type HistoricoUncheckedUpdateWithoutInscricaoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  alteracao?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  statusAnterior?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  statusAtual?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  dataModificacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuarioResponsavel?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type HistoricoUncheckedUpdateManyWithoutInscricaoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   alteracao?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
