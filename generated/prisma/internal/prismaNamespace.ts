@@ -1799,7 +1799,8 @@ export const TituloEleitorScalarFieldEnum = {
   numero: 'numero',
   zonaEleitoral: 'zonaEleitoral',
   secaoEleitoral: 'secaoEleitoral',
-  UF: 'UF'
+  UF: 'UF',
+  fkUsuario: 'fkUsuario'
 } as const
 
 export type TituloEleitorScalarFieldEnum = (typeof TituloEleitorScalarFieldEnum)[keyof typeof TituloEleitorScalarFieldEnum]
