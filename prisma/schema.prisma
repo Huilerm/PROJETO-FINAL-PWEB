@@ -55,13 +55,17 @@ model Aluno {
 }
 
 model Professor {
-  id String @id @default(uuid())
+  id id String @id @default(uuid())
 
   siape                   String   @unique
   emailSiape              String?  @unique @map("email_siape")
-  telefonesInstiticionais String[]  @default([]) @map("telefones_institicionais")
+  
+  telefonesInstitucionais String[]  @default([]) @map("telefones_institucionais")
   telefonesPessoais       String[]  @default([]) @map("telefones_pessoais")
   emPGD                   Boolean?
+  emailNotificacoes       String?   @map("email_notificacoes") // Campo Novo
+  emailClassroom          String?   @map("email_classroom")    // Campo Novo
+
   titulacao               String?
   escolaridade            String?
   grupoSanguineo          String?  @map("grupo_sanguineo")
@@ -74,19 +78,19 @@ model Professor {
   jornadaTrabalho         String?  @map("jornada_trabalho")
   operadorRaioX           Boolean? @map("operador_raiox")
 
-  inicioServicoPublico     DateTime? @map("inicio_servico_publico") @db.Date
-  dataDePosseInstituicao   DateTime? @map("data_posse_instituicao") @db.Date
+  inicioServicoPublico    DateTime? @map("inicio_servico_publico") @db.Date
+  dataDePosseInstituicao  DateTime? @map("data_posse_instituicao") @db.Date
   inicioServicoInstituicao DateTime? @map("inicio_servico_instituicao") @db.Date
   tempoServicoInstituicaao String?   @map("tempo_servico_instituicao")
-  dataPosseCargo           DateTime? @map("data_posse_cargo") @db.Date
-  inicioExercicioCargo     DateTime? @map("inicio_exercicio_cargo") @db.Date
-  tempoServicoCargo        DateTime? @map("tempo_servico_cargo") @db.Date
-  cargoInstitucional       String?   @map("cargo_institucional")
-  classeCargo              String?   @map("classe_cargo")
-  padrao                   String?
-  grupoCargo               String?   @map("grupo_cargo")
-  codigoVaga               Int?      @map("codigo_vaga")
-  NCE                      String?
+  dataPosseCargo          DateTime? @map("data_posse_cargo") @db.Date
+  inicioExercicioCargo    DateTime? @map("inicio_exercicio_cargo") @db.Date
+  tempoServicoCargo       DateTime? @map("tempo_servico_cargo") @db.Date
+  cargoInstitucional      String?   @map("cargo_institucional")
+  classeCargo             String?   @map("classe_cargo")
+  padrao                  String?
+  grupoCargo              String?   @map("grupo_cargo")
+  codigoVaga              Int?      @map("codigo_vaga")
+  NCE                     String?
 
   qtdDependentes Int?    @map("qtd_dependentes")
   pisPasep       String? @map("pis_pasep")
