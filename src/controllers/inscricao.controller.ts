@@ -3,6 +3,7 @@ import {
   inscricaoIdParamsSchema,
   listarInscricoesQuerySchema,
   motivoSchema,
+  rendaFamiliarSchema,
 } from "../schemas/inscricao.schema";
 import {
   criarInscricao,
@@ -12,11 +13,8 @@ import {
   listarHistorico,
   listarInscricoes,
   rejeitarInscricao,
+  adicionarRendaFamiliar,
 } from "../services/inscricao.service";
-
-// ==========================================
-// FUNÇÕES DO CONTROLLER
-// ==========================================
 
 export async function criar(
   req: Request,
@@ -41,6 +39,53 @@ export async function criar(
     );
 
     res.status(201).json(inscricao);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function adicionarRenda(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const params = inscricaoIdParamsSchema.safeParse(req.params);
+
+    if (!params.success) {
+      res.status(400).json({
+        mensagem: "Dados inválidos",
+        erros: params.error.issues,
+      });
+      return;
+    }
+
+    const body = rendaFamiliarSchema.safeParse(req.body);
+
+    if (!body.success) {
+      res.status(400).json({
+        mensagem: "Dados inválidos",
+        erros: body.error.issues,
+      });
+      return;
+    }
+
+    const usuarioId = req.user?.userId;
+    if (!usuarioId) {
+      res.status(401).json({ mensagem: "Não autorizado" });
+      return;
+    }
+
+    const renda = await adicionarRendaFamiliar(
+      params.data.id,
+      usuarioId,
+      body.data
+    );
+
+    res.status(200).json({
+      mensagem: "Renda familiar registrada com sucesso",
+      renda,
+    });
   } catch (error) {
     next(error);
   }
