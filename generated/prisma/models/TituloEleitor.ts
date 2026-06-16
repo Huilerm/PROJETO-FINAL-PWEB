@@ -20,34 +20,26 @@ export type TituloEleitorModel = runtime.Types.Result.DefaultSelection<Prisma.$T
 
 export type AggregateTituloEleitor = {
   _count: TituloEleitorCountAggregateOutputType | null
-  _avg: TituloEleitorAvgAggregateOutputType | null
-  _sum: TituloEleitorSumAggregateOutputType | null
   _min: TituloEleitorMinAggregateOutputType | null
   _max: TituloEleitorMaxAggregateOutputType | null
 }
 
-export type TituloEleitorAvgAggregateOutputType = {
-  numero: number | null
-}
-
-export type TituloEleitorSumAggregateOutputType = {
-  numero: number | null
-}
-
 export type TituloEleitorMinAggregateOutputType = {
   id: string | null
-  numero: number | null
+  numero: string | null
   zonaEleitoral: string | null
   secaoEleitoral: string | null
   UF: string | null
+  fkUsuario: string | null
 }
 
 export type TituloEleitorMaxAggregateOutputType = {
   id: string | null
-  numero: number | null
+  numero: string | null
   zonaEleitoral: string | null
   secaoEleitoral: string | null
   UF: string | null
+  fkUsuario: string | null
 }
 
 export type TituloEleitorCountAggregateOutputType = {
@@ -56,17 +48,10 @@ export type TituloEleitorCountAggregateOutputType = {
   zonaEleitoral: number
   secaoEleitoral: number
   UF: number
+  fkUsuario: number
   _all: number
 }
 
-
-export type TituloEleitorAvgAggregateInputType = {
-  numero?: true
-}
-
-export type TituloEleitorSumAggregateInputType = {
-  numero?: true
-}
 
 export type TituloEleitorMinAggregateInputType = {
   id?: true
@@ -74,6 +59,7 @@ export type TituloEleitorMinAggregateInputType = {
   zonaEleitoral?: true
   secaoEleitoral?: true
   UF?: true
+  fkUsuario?: true
 }
 
 export type TituloEleitorMaxAggregateInputType = {
@@ -82,6 +68,7 @@ export type TituloEleitorMaxAggregateInputType = {
   zonaEleitoral?: true
   secaoEleitoral?: true
   UF?: true
+  fkUsuario?: true
 }
 
 export type TituloEleitorCountAggregateInputType = {
@@ -90,6 +77,7 @@ export type TituloEleitorCountAggregateInputType = {
   zonaEleitoral?: true
   secaoEleitoral?: true
   UF?: true
+  fkUsuario?: true
   _all?: true
 }
 
@@ -131,18 +119,6 @@ export type TituloEleitorAggregateArgs<ExtArgs extends runtime.Types.Extensions.
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: TituloEleitorAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: TituloEleitorSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: TituloEleitorMinAggregateInputType
@@ -173,21 +149,18 @@ export type TituloEleitorGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   _count?: TituloEleitorCountAggregateInputType | true
-  _avg?: TituloEleitorAvgAggregateInputType
-  _sum?: TituloEleitorSumAggregateInputType
   _min?: TituloEleitorMinAggregateInputType
   _max?: TituloEleitorMaxAggregateInputType
 }
 
 export type TituloEleitorGroupByOutputType = {
   id: string
-  numero: number
+  numero: string
   zonaEleitoral: string
   secaoEleitoral: string
   UF: string
+  fkUsuario: string
   _count: TituloEleitorCountAggregateOutputType | null
-  _avg: TituloEleitorAvgAggregateOutputType | null
-  _sum: TituloEleitorSumAggregateOutputType | null
   _min: TituloEleitorMinAggregateOutputType | null
   _max: TituloEleitorMaxAggregateOutputType | null
 }
@@ -212,10 +185,12 @@ export type TituloEleitorWhereInput = {
   OR?: Prisma.TituloEleitorWhereInput[]
   NOT?: Prisma.TituloEleitorWhereInput | Prisma.TituloEleitorWhereInput[]
   id?: Prisma.StringFilter<"TituloEleitor"> | string
-  numero?: Prisma.IntFilter<"TituloEleitor"> | number
+  numero?: Prisma.StringFilter<"TituloEleitor"> | string
   zonaEleitoral?: Prisma.StringFilter<"TituloEleitor"> | string
   secaoEleitoral?: Prisma.StringFilter<"TituloEleitor"> | string
   UF?: Prisma.StringFilter<"TituloEleitor"> | string
+  fkUsuario?: Prisma.StringFilter<"TituloEleitor"> | string
+  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }
 
 export type TituloEleitorOrderByWithRelationInput = {
@@ -224,18 +199,22 @@ export type TituloEleitorOrderByWithRelationInput = {
   zonaEleitoral?: Prisma.SortOrder
   secaoEleitoral?: Prisma.SortOrder
   UF?: Prisma.SortOrder
+  fkUsuario?: Prisma.SortOrder
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
 }
 
 export type TituloEleitorWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  fkUsuario?: string
   AND?: Prisma.TituloEleitorWhereInput | Prisma.TituloEleitorWhereInput[]
   OR?: Prisma.TituloEleitorWhereInput[]
   NOT?: Prisma.TituloEleitorWhereInput | Prisma.TituloEleitorWhereInput[]
-  numero?: Prisma.IntFilter<"TituloEleitor"> | number
+  numero?: Prisma.StringFilter<"TituloEleitor"> | string
   zonaEleitoral?: Prisma.StringFilter<"TituloEleitor"> | string
   secaoEleitoral?: Prisma.StringFilter<"TituloEleitor"> | string
   UF?: Prisma.StringFilter<"TituloEleitor"> | string
-}, "id">
+  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
+}, "id" | "fkUsuario">
 
 export type TituloEleitorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -243,11 +222,10 @@ export type TituloEleitorOrderByWithAggregationInput = {
   zonaEleitoral?: Prisma.SortOrder
   secaoEleitoral?: Prisma.SortOrder
   UF?: Prisma.SortOrder
+  fkUsuario?: Prisma.SortOrder
   _count?: Prisma.TituloEleitorCountOrderByAggregateInput
-  _avg?: Prisma.TituloEleitorAvgOrderByAggregateInput
   _max?: Prisma.TituloEleitorMaxOrderByAggregateInput
   _min?: Prisma.TituloEleitorMinOrderByAggregateInput
-  _sum?: Prisma.TituloEleitorSumOrderByAggregateInput
 }
 
 export type TituloEleitorScalarWhereWithAggregatesInput = {
@@ -255,55 +233,61 @@ export type TituloEleitorScalarWhereWithAggregatesInput = {
   OR?: Prisma.TituloEleitorScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TituloEleitorScalarWhereWithAggregatesInput | Prisma.TituloEleitorScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"TituloEleitor"> | string
-  numero?: Prisma.IntWithAggregatesFilter<"TituloEleitor"> | number
+  numero?: Prisma.StringWithAggregatesFilter<"TituloEleitor"> | string
   zonaEleitoral?: Prisma.StringWithAggregatesFilter<"TituloEleitor"> | string
   secaoEleitoral?: Prisma.StringWithAggregatesFilter<"TituloEleitor"> | string
   UF?: Prisma.StringWithAggregatesFilter<"TituloEleitor"> | string
+  fkUsuario?: Prisma.StringWithAggregatesFilter<"TituloEleitor"> | string
 }
 
 export type TituloEleitorCreateInput = {
   id?: string
-  numero: number
+  numero: string
   zonaEleitoral: string
   secaoEleitoral: string
   UF: string
+  usuario: Prisma.UsuarioCreateNestedOneWithoutTituloEleitorInput
 }
 
 export type TituloEleitorUncheckedCreateInput = {
   id?: string
-  numero: number
+  numero: string
   zonaEleitoral: string
   secaoEleitoral: string
   UF: string
+  fkUsuario: string
 }
 
 export type TituloEleitorUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
   zonaEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   secaoEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   UF?: Prisma.StringFieldUpdateOperationsInput | string
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutTituloEleitorNestedInput
 }
 
 export type TituloEleitorUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
   zonaEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   secaoEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   UF?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TituloEleitorCreateManyInput = {
   id?: string
-  numero: number
+  numero: string
   zonaEleitoral: string
   secaoEleitoral: string
   UF: string
+  fkUsuario: string
 }
 
 export type TituloEleitorUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
   zonaEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   secaoEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   UF?: Prisma.StringFieldUpdateOperationsInput | string
@@ -311,10 +295,16 @@ export type TituloEleitorUpdateManyMutationInput = {
 
 export type TituloEleitorUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  numero?: Prisma.IntFieldUpdateOperationsInput | number
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
   zonaEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   secaoEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
   UF?: Prisma.StringFieldUpdateOperationsInput | string
+  fkUsuario?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type TituloEleitorNullableScalarRelationFilter = {
+  is?: Prisma.TituloEleitorWhereInput | null
+  isNot?: Prisma.TituloEleitorWhereInput | null
 }
 
 export type TituloEleitorCountOrderByAggregateInput = {
@@ -323,10 +313,7 @@ export type TituloEleitorCountOrderByAggregateInput = {
   zonaEleitoral?: Prisma.SortOrder
   secaoEleitoral?: Prisma.SortOrder
   UF?: Prisma.SortOrder
-}
-
-export type TituloEleitorAvgOrderByAggregateInput = {
-  numero?: Prisma.SortOrder
+  fkUsuario?: Prisma.SortOrder
 }
 
 export type TituloEleitorMaxOrderByAggregateInput = {
@@ -335,6 +322,7 @@ export type TituloEleitorMaxOrderByAggregateInput = {
   zonaEleitoral?: Prisma.SortOrder
   secaoEleitoral?: Prisma.SortOrder
   UF?: Prisma.SortOrder
+  fkUsuario?: Prisma.SortOrder
 }
 
 export type TituloEleitorMinOrderByAggregateInput = {
@@ -343,10 +331,87 @@ export type TituloEleitorMinOrderByAggregateInput = {
   zonaEleitoral?: Prisma.SortOrder
   secaoEleitoral?: Prisma.SortOrder
   UF?: Prisma.SortOrder
+  fkUsuario?: Prisma.SortOrder
 }
 
-export type TituloEleitorSumOrderByAggregateInput = {
-  numero?: Prisma.SortOrder
+export type TituloEleitorCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.TituloEleitorCreateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TituloEleitorCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.TituloEleitorWhereUniqueInput
+}
+
+export type TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.TituloEleitorCreateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TituloEleitorCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.TituloEleitorWhereUniqueInput
+}
+
+export type TituloEleitorUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.TituloEleitorCreateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TituloEleitorCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.TituloEleitorUpsertWithoutUsuarioInput
+  disconnect?: Prisma.TituloEleitorWhereInput | boolean
+  delete?: Prisma.TituloEleitorWhereInput | boolean
+  connect?: Prisma.TituloEleitorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TituloEleitorUpdateToOneWithWhereWithoutUsuarioInput, Prisma.TituloEleitorUpdateWithoutUsuarioInput>, Prisma.TituloEleitorUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.TituloEleitorCreateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TituloEleitorCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.TituloEleitorUpsertWithoutUsuarioInput
+  disconnect?: Prisma.TituloEleitorWhereInput | boolean
+  delete?: Prisma.TituloEleitorWhereInput | boolean
+  connect?: Prisma.TituloEleitorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TituloEleitorUpdateToOneWithWhereWithoutUsuarioInput, Prisma.TituloEleitorUpdateWithoutUsuarioInput>, Prisma.TituloEleitorUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type TituloEleitorCreateWithoutUsuarioInput = {
+  id?: string
+  numero: string
+  zonaEleitoral: string
+  secaoEleitoral: string
+  UF: string
+}
+
+export type TituloEleitorUncheckedCreateWithoutUsuarioInput = {
+  id?: string
+  numero: string
+  zonaEleitoral: string
+  secaoEleitoral: string
+  UF: string
+}
+
+export type TituloEleitorCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.TituloEleitorWhereUniqueInput
+  create: Prisma.XOR<Prisma.TituloEleitorCreateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedCreateWithoutUsuarioInput>
+}
+
+export type TituloEleitorUpsertWithoutUsuarioInput = {
+  update: Prisma.XOR<Prisma.TituloEleitorUpdateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.TituloEleitorCreateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedCreateWithoutUsuarioInput>
+  where?: Prisma.TituloEleitorWhereInput
+}
+
+export type TituloEleitorUpdateToOneWithWhereWithoutUsuarioInput = {
+  where?: Prisma.TituloEleitorWhereInput
+  data: Prisma.XOR<Prisma.TituloEleitorUpdateWithoutUsuarioInput, Prisma.TituloEleitorUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type TituloEleitorUpdateWithoutUsuarioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  zonaEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
+  secaoEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
+  UF?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type TituloEleitorUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numero?: Prisma.StringFieldUpdateOperationsInput | string
+  zonaEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
+  secaoEleitoral?: Prisma.StringFieldUpdateOperationsInput | string
+  UF?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -357,6 +422,8 @@ export type TituloEleitorSelect<ExtArgs extends runtime.Types.Extensions.Interna
   zonaEleitoral?: boolean
   secaoEleitoral?: boolean
   UF?: boolean
+  fkUsuario?: boolean
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tituloEleitor"]>
 
 export type TituloEleitorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -365,6 +432,8 @@ export type TituloEleitorSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   zonaEleitoral?: boolean
   secaoEleitoral?: boolean
   UF?: boolean
+  fkUsuario?: boolean
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tituloEleitor"]>
 
 export type TituloEleitorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -373,6 +442,8 @@ export type TituloEleitorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   zonaEleitoral?: boolean
   secaoEleitoral?: boolean
   UF?: boolean
+  fkUsuario?: boolean
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tituloEleitor"]>
 
 export type TituloEleitorSelectScalar = {
@@ -381,19 +452,32 @@ export type TituloEleitorSelectScalar = {
   zonaEleitoral?: boolean
   secaoEleitoral?: boolean
   UF?: boolean
+  fkUsuario?: boolean
 }
 
-export type TituloEleitorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "zonaEleitoral" | "secaoEleitoral" | "UF", ExtArgs["result"]["tituloEleitor"]>
+export type TituloEleitorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numero" | "zonaEleitoral" | "secaoEleitoral" | "UF" | "fkUsuario", ExtArgs["result"]["tituloEleitor"]>
+export type TituloEleitorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+}
+export type TituloEleitorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+}
+export type TituloEleitorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+}
 
 export type $TituloEleitorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TituloEleitor"
-  objects: {}
+  objects: {
+    usuario: Prisma.$UsuarioPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    numero: number
+    numero: string
     zonaEleitoral: string
     secaoEleitoral: string
     UF: string
+    fkUsuario: string
   }, ExtArgs["result"]["tituloEleitor"]>
   composites: {}
 }
@@ -788,6 +872,7 @@ readonly fields: TituloEleitorFieldRefs;
  */
 export interface Prisma__TituloEleitorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  usuario<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -818,10 +903,11 @@ export interface Prisma__TituloEleitorClient<T, Null = never, ExtArgs extends ru
  */
 export interface TituloEleitorFieldRefs {
   readonly id: Prisma.FieldRef<"TituloEleitor", 'String'>
-  readonly numero: Prisma.FieldRef<"TituloEleitor", 'Int'>
+  readonly numero: Prisma.FieldRef<"TituloEleitor", 'String'>
   readonly zonaEleitoral: Prisma.FieldRef<"TituloEleitor", 'String'>
   readonly secaoEleitoral: Prisma.FieldRef<"TituloEleitor", 'String'>
   readonly UF: Prisma.FieldRef<"TituloEleitor", 'String'>
+  readonly fkUsuario: Prisma.FieldRef<"TituloEleitor", 'String'>
 }
     
 
@@ -838,6 +924,10 @@ export type TituloEleitorFindUniqueArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the TituloEleitor
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
   /**
    * Filter, which TituloEleitor to fetch.
    */
@@ -857,6 +947,10 @@ export type TituloEleitorFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
+  /**
    * Filter, which TituloEleitor to fetch.
    */
   where: Prisma.TituloEleitorWhereUniqueInput
@@ -874,6 +968,10 @@ export type TituloEleitorFindFirstArgs<ExtArgs extends runtime.Types.Extensions.
    * Omit specific fields from the TituloEleitor
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
   /**
    * Filter, which TituloEleitor to fetch.
    */
@@ -923,6 +1021,10 @@ export type TituloEleitorFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
+  /**
    * Filter, which TituloEleitor to fetch.
    */
   where?: Prisma.TituloEleitorWhereInput
@@ -970,6 +1072,10 @@ export type TituloEleitorFindManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the TituloEleitor
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
   /**
    * Filter, which TituloEleitors to fetch.
    */
@@ -1019,6 +1125,10 @@ export type TituloEleitorCreateArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
+  /**
    * The data needed to create a TituloEleitor.
    */
   data: Prisma.XOR<Prisma.TituloEleitorCreateInput, Prisma.TituloEleitorUncheckedCreateInput>
@@ -1052,6 +1162,10 @@ export type TituloEleitorCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    */
   data: Prisma.TituloEleitorCreateManyInput | Prisma.TituloEleitorCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1066,6 +1180,10 @@ export type TituloEleitorUpdateArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the TituloEleitor
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
   /**
    * The data needed to update a TituloEleitor.
    */
@@ -1118,6 +1236,10 @@ export type TituloEleitorUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * Limit how many TituloEleitors to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1132,6 +1254,10 @@ export type TituloEleitorUpsertArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the TituloEleitor
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
   /**
    * The filter to search for the TituloEleitor to update in case it exists.
    */
@@ -1158,6 +1284,10 @@ export type TituloEleitorDeleteArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the TituloEleitor
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
   /**
    * Filter which TituloEleitor to delete.
    */
@@ -1190,4 +1320,8 @@ export type TituloEleitorDefaultArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the TituloEleitor
    */
   omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
 }

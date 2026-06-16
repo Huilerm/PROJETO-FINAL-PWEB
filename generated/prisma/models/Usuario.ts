@@ -307,6 +307,7 @@ export type UsuarioWhereInput = {
   alunos?: Prisma.XOR<Prisma.AlunoNullableScalarRelationFilter, Prisma.AlunoWhereInput> | null
   professor?: Prisma.XOR<Prisma.ProfessorNullableScalarRelationFilter, Prisma.ProfessorWhereInput> | null
   cargos?: Prisma.CargoListRelationFilter
+  tituloEleitor?: Prisma.XOR<Prisma.TituloEleitorNullableScalarRelationFilter, Prisma.TituloEleitorWhereInput> | null
   endereco?: Prisma.XOR<Prisma.EnderecoScalarRelationFilter, Prisma.EnderecoWhereInput>
   identidade?: Prisma.XOR<Prisma.IdentidadeScalarRelationFilter, Prisma.IdentidadeWhereInput>
   historico?: Prisma.HistoricoListRelationFilter
@@ -332,6 +333,7 @@ export type UsuarioOrderByWithRelationInput = {
   alunos?: Prisma.AlunoOrderByWithRelationInput
   professor?: Prisma.ProfessorOrderByWithRelationInput
   cargos?: Prisma.CargoOrderByRelationAggregateInput
+  tituloEleitor?: Prisma.TituloEleitorOrderByWithRelationInput
   endereco?: Prisma.EnderecoOrderByWithRelationInput
   identidade?: Prisma.IdentidadeOrderByWithRelationInput
   historico?: Prisma.HistoricoOrderByRelationAggregateInput
@@ -360,6 +362,7 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
   alunos?: Prisma.XOR<Prisma.AlunoNullableScalarRelationFilter, Prisma.AlunoWhereInput> | null
   professor?: Prisma.XOR<Prisma.ProfessorNullableScalarRelationFilter, Prisma.ProfessorWhereInput> | null
   cargos?: Prisma.CargoListRelationFilter
+  tituloEleitor?: Prisma.XOR<Prisma.TituloEleitorNullableScalarRelationFilter, Prisma.TituloEleitorWhereInput> | null
   endereco?: Prisma.XOR<Prisma.EnderecoScalarRelationFilter, Prisma.EnderecoWhereInput>
   identidade?: Prisma.XOR<Prisma.IdentidadeScalarRelationFilter, Prisma.IdentidadeWhereInput>
   historico?: Prisma.HistoricoListRelationFilter
@@ -429,6 +432,7 @@ export type UsuarioCreateInput = {
   alunos?: Prisma.AlunoCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorCreateNestedOneWithoutUsuarioInput
   endereco: Prisma.EnderecoCreateNestedOneWithoutUsuarioInput
   identidade: Prisma.IdentidadeCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutUsuarioInput
@@ -454,6 +458,7 @@ export type UsuarioUncheckedCreateInput = {
   alunos?: Prisma.AlunoUncheckedCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorUncheckedCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoUncheckedCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
@@ -475,6 +480,7 @@ export type UsuarioUpdateInput = {
   alunos?: Prisma.AlunoUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUpdateOneWithoutUsuarioNestedInput
   endereco?: Prisma.EnderecoUpdateOneRequiredWithoutUsuarioNestedInput
   identidade?: Prisma.IdentidadeUpdateOneRequiredWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutUsuarioNestedInput
@@ -500,6 +506,7 @@ export type UsuarioUncheckedUpdateInput = {
   alunos?: Prisma.AlunoUncheckedUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUncheckedUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
@@ -773,6 +780,20 @@ export type UsuarioUncheckedUpdateOneWithoutIdentidadeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UsuarioUpdateToOneWithWhereWithoutIdentidadeInput, Prisma.UsuarioUpdateWithoutIdentidadeInput>, Prisma.UsuarioUncheckedUpdateWithoutIdentidadeInput>
 }
 
+export type UsuarioCreateNestedOneWithoutTituloEleitorInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutTituloEleitorInput, Prisma.UsuarioUncheckedCreateWithoutTituloEleitorInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutTituloEleitorInput
+  connect?: Prisma.UsuarioWhereUniqueInput
+}
+
+export type UsuarioUpdateOneRequiredWithoutTituloEleitorNestedInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutTituloEleitorInput, Prisma.UsuarioUncheckedCreateWithoutTituloEleitorInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutTituloEleitorInput
+  upsert?: Prisma.UsuarioUpsertWithoutTituloEleitorInput
+  connect?: Prisma.UsuarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UsuarioUpdateToOneWithWhereWithoutTituloEleitorInput, Prisma.UsuarioUpdateWithoutTituloEleitorInput>, Prisma.UsuarioUncheckedUpdateWithoutTituloEleitorInput>
+}
+
 export type UsuarioCreateNestedManyWithoutCargosInput = {
   create?: Prisma.XOR<Prisma.UsuarioCreateWithoutCargosInput, Prisma.UsuarioUncheckedCreateWithoutCargosInput> | Prisma.UsuarioCreateWithoutCargosInput[] | Prisma.UsuarioUncheckedCreateWithoutCargosInput[]
   connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCargosInput | Prisma.UsuarioCreateOrConnectWithoutCargosInput[]
@@ -842,6 +863,7 @@ export type UsuarioCreateWithoutAlunosInput = {
   raca: $Enums.Raca
   professor?: Prisma.ProfessorCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorCreateNestedOneWithoutUsuarioInput
   endereco: Prisma.EnderecoCreateNestedOneWithoutUsuarioInput
   identidade: Prisma.IdentidadeCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutUsuarioInput
@@ -866,6 +888,7 @@ export type UsuarioUncheckedCreateWithoutAlunosInput = {
   fkEndereco: number
   professor?: Prisma.ProfessorUncheckedCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoUncheckedCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
@@ -902,6 +925,7 @@ export type UsuarioUpdateWithoutAlunosInput = {
   raca?: Prisma.EnumRacaFieldUpdateOperationsInput | $Enums.Raca
   professor?: Prisma.ProfessorUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUpdateOneWithoutUsuarioNestedInput
   endereco?: Prisma.EnderecoUpdateOneRequiredWithoutUsuarioNestedInput
   identidade?: Prisma.IdentidadeUpdateOneRequiredWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutUsuarioNestedInput
@@ -926,6 +950,7 @@ export type UsuarioUncheckedUpdateWithoutAlunosInput = {
   fkEndereco?: Prisma.IntFieldUpdateOperationsInput | number
   professor?: Prisma.ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUncheckedUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
@@ -946,6 +971,7 @@ export type UsuarioCreateWithoutProfessorInput = {
   raca: $Enums.Raca
   alunos?: Prisma.AlunoCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorCreateNestedOneWithoutUsuarioInput
   endereco: Prisma.EnderecoCreateNestedOneWithoutUsuarioInput
   identidade: Prisma.IdentidadeCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutUsuarioInput
@@ -970,6 +996,7 @@ export type UsuarioUncheckedCreateWithoutProfessorInput = {
   fkEndereco: number
   alunos?: Prisma.AlunoUncheckedCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoUncheckedCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
@@ -1006,6 +1033,7 @@ export type UsuarioUpdateWithoutProfessorInput = {
   raca?: Prisma.EnumRacaFieldUpdateOperationsInput | $Enums.Raca
   alunos?: Prisma.AlunoUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUpdateOneWithoutUsuarioNestedInput
   endereco?: Prisma.EnderecoUpdateOneRequiredWithoutUsuarioNestedInput
   identidade?: Prisma.IdentidadeUpdateOneRequiredWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutUsuarioNestedInput
@@ -1030,6 +1058,7 @@ export type UsuarioUncheckedUpdateWithoutProfessorInput = {
   fkEndereco?: Prisma.IntFieldUpdateOperationsInput | number
   alunos?: Prisma.AlunoUncheckedUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUncheckedUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
@@ -1051,6 +1080,7 @@ export type UsuarioCreateWithoutEnderecoInput = {
   alunos?: Prisma.AlunoCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorCreateNestedOneWithoutUsuarioInput
   identidade: Prisma.IdentidadeCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutUsuarioInput
 }
@@ -1074,6 +1104,7 @@ export type UsuarioUncheckedCreateWithoutEnderecoInput = {
   alunos?: Prisma.AlunoUncheckedCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorUncheckedCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoUncheckedCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
@@ -1143,6 +1174,7 @@ export type UsuarioCreateWithoutIdentidadeInput = {
   alunos?: Prisma.AlunoCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorCreateNestedOneWithoutUsuarioInput
   endereco: Prisma.EnderecoCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutUsuarioInput
 }
@@ -1166,6 +1198,7 @@ export type UsuarioUncheckedCreateWithoutIdentidadeInput = {
   alunos?: Prisma.AlunoUncheckedCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorUncheckedCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoUncheckedCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
@@ -1203,6 +1236,7 @@ export type UsuarioUpdateWithoutIdentidadeInput = {
   alunos?: Prisma.AlunoUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUpdateOneWithoutUsuarioNestedInput
   endereco?: Prisma.EnderecoUpdateOneRequiredWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutUsuarioNestedInput
 }
@@ -1222,6 +1256,115 @@ export type UsuarioUncheckedUpdateWithoutIdentidadeInput = {
   atualizadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sexo?: Prisma.EnumSexoFieldUpdateOperationsInput | $Enums.Sexo
   raca?: Prisma.EnumRacaFieldUpdateOperationsInput | $Enums.Raca
+  fkEndereco?: Prisma.IntFieldUpdateOperationsInput | number
+  alunos?: Prisma.AlunoUncheckedUpdateOneWithoutUsuarioNestedInput
+  professor?: Prisma.ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput
+  cargos?: Prisma.CargoUncheckedUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput
+  historico?: Prisma.HistoricoUncheckedUpdateManyWithoutUsuarioNestedInput
+}
+
+export type UsuarioCreateWithoutTituloEleitorInput = {
+  id?: string
+  nome: string
+  nomeSocial?: string | null
+  dataNasc: Date | string
+  naturalidade: string
+  emailInstitucional: string
+  emailSecundario: string
+  senha: string
+  nomeMae: string
+  nomePai: string
+  criadoEm?: Date | string
+  atualizadoEm?: Date | string
+  sexo: $Enums.Sexo
+  raca: $Enums.Raca
+  alunos?: Prisma.AlunoCreateNestedOneWithoutUsuarioInput
+  professor?: Prisma.ProfessorCreateNestedOneWithoutUsuarioInput
+  cargos?: Prisma.CargoCreateNestedManyWithoutUsuarioInput
+  endereco: Prisma.EnderecoCreateNestedOneWithoutUsuarioInput
+  identidade: Prisma.IdentidadeCreateNestedOneWithoutUsuarioInput
+  historico?: Prisma.HistoricoCreateNestedManyWithoutUsuarioInput
+}
+
+export type UsuarioUncheckedCreateWithoutTituloEleitorInput = {
+  id?: string
+  nome: string
+  nomeSocial?: string | null
+  dataNasc: Date | string
+  naturalidade: string
+  emailInstitucional: string
+  emailSecundario: string
+  senha: string
+  nomeMae: string
+  nomePai: string
+  criadoEm?: Date | string
+  atualizadoEm?: Date | string
+  sexo: $Enums.Sexo
+  raca: $Enums.Raca
+  fkIdentidade: string
+  fkEndereco: number
+  alunos?: Prisma.AlunoUncheckedCreateNestedOneWithoutUsuarioInput
+  professor?: Prisma.ProfessorUncheckedCreateNestedOneWithoutUsuarioInput
+  cargos?: Prisma.CargoUncheckedCreateNestedManyWithoutUsuarioInput
+  historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutUsuarioInput
+}
+
+export type UsuarioCreateOrConnectWithoutTituloEleitorInput = {
+  where: Prisma.UsuarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutTituloEleitorInput, Prisma.UsuarioUncheckedCreateWithoutTituloEleitorInput>
+}
+
+export type UsuarioUpsertWithoutTituloEleitorInput = {
+  update: Prisma.XOR<Prisma.UsuarioUpdateWithoutTituloEleitorInput, Prisma.UsuarioUncheckedUpdateWithoutTituloEleitorInput>
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutTituloEleitorInput, Prisma.UsuarioUncheckedCreateWithoutTituloEleitorInput>
+  where?: Prisma.UsuarioWhereInput
+}
+
+export type UsuarioUpdateToOneWithWhereWithoutTituloEleitorInput = {
+  where?: Prisma.UsuarioWhereInput
+  data: Prisma.XOR<Prisma.UsuarioUpdateWithoutTituloEleitorInput, Prisma.UsuarioUncheckedUpdateWithoutTituloEleitorInput>
+}
+
+export type UsuarioUpdateWithoutTituloEleitorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataNasc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
+  emailInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSecundario?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeMae?: Prisma.StringFieldUpdateOperationsInput | string
+  nomePai?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  atualizadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sexo?: Prisma.EnumSexoFieldUpdateOperationsInput | $Enums.Sexo
+  raca?: Prisma.EnumRacaFieldUpdateOperationsInput | $Enums.Raca
+  alunos?: Prisma.AlunoUpdateOneWithoutUsuarioNestedInput
+  professor?: Prisma.ProfessorUpdateOneWithoutUsuarioNestedInput
+  cargos?: Prisma.CargoUpdateManyWithoutUsuarioNestedInput
+  endereco?: Prisma.EnderecoUpdateOneRequiredWithoutUsuarioNestedInput
+  identidade?: Prisma.IdentidadeUpdateOneRequiredWithoutUsuarioNestedInput
+  historico?: Prisma.HistoricoUpdateManyWithoutUsuarioNestedInput
+}
+
+export type UsuarioUncheckedUpdateWithoutTituloEleitorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataNasc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
+  emailInstitucional?: Prisma.StringFieldUpdateOperationsInput | string
+  emailSecundario?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
+  nomeMae?: Prisma.StringFieldUpdateOperationsInput | string
+  nomePai?: Prisma.StringFieldUpdateOperationsInput | string
+  criadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  atualizadoEm?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sexo?: Prisma.EnumSexoFieldUpdateOperationsInput | $Enums.Sexo
+  raca?: Prisma.EnumRacaFieldUpdateOperationsInput | $Enums.Raca
+  fkIdentidade?: Prisma.StringFieldUpdateOperationsInput | string
   fkEndereco?: Prisma.IntFieldUpdateOperationsInput | number
   alunos?: Prisma.AlunoUncheckedUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput
@@ -1246,6 +1389,7 @@ export type UsuarioCreateWithoutCargosInput = {
   raca: $Enums.Raca
   alunos?: Prisma.AlunoCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorCreateNestedOneWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorCreateNestedOneWithoutUsuarioInput
   endereco: Prisma.EnderecoCreateNestedOneWithoutUsuarioInput
   identidade: Prisma.IdentidadeCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutUsuarioInput
@@ -1270,6 +1414,7 @@ export type UsuarioUncheckedCreateWithoutCargosInput = {
   fkEndereco: number
   alunos?: Prisma.AlunoUncheckedCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorUncheckedCreateNestedOneWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
@@ -1312,6 +1457,7 @@ export type UsuarioCreateWithoutHistoricoInput = {
   alunos?: Prisma.AlunoCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorCreateNestedOneWithoutUsuarioInput
   endereco: Prisma.EnderecoCreateNestedOneWithoutUsuarioInput
   identidade: Prisma.IdentidadeCreateNestedOneWithoutUsuarioInput
 }
@@ -1336,6 +1482,7 @@ export type UsuarioUncheckedCreateWithoutHistoricoInput = {
   alunos?: Prisma.AlunoUncheckedCreateNestedOneWithoutUsuarioInput
   professor?: Prisma.ProfessorUncheckedCreateNestedOneWithoutUsuarioInput
   cargos?: Prisma.CargoUncheckedCreateNestedManyWithoutUsuarioInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedCreateNestedOneWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutHistoricoInput = {
@@ -1372,6 +1519,7 @@ export type UsuarioUpdateWithoutHistoricoInput = {
   alunos?: Prisma.AlunoUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUpdateOneWithoutUsuarioNestedInput
   endereco?: Prisma.EnderecoUpdateOneRequiredWithoutUsuarioNestedInput
   identidade?: Prisma.IdentidadeUpdateOneRequiredWithoutUsuarioNestedInput
 }
@@ -1396,6 +1544,7 @@ export type UsuarioUncheckedUpdateWithoutHistoricoInput = {
   alunos?: Prisma.AlunoUncheckedUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUncheckedUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput
 }
 
 export type UsuarioCreateManyEnderecoInput = {
@@ -1434,6 +1583,7 @@ export type UsuarioUpdateWithoutEnderecoInput = {
   alunos?: Prisma.AlunoUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUpdateOneWithoutUsuarioNestedInput
   identidade?: Prisma.IdentidadeUpdateOneRequiredWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutUsuarioNestedInput
 }
@@ -1457,6 +1607,7 @@ export type UsuarioUncheckedUpdateWithoutEnderecoInput = {
   alunos?: Prisma.AlunoUncheckedUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput
   cargos?: Prisma.CargoUncheckedUpdateManyWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
@@ -1495,6 +1646,7 @@ export type UsuarioUpdateWithoutCargosInput = {
   raca?: Prisma.EnumRacaFieldUpdateOperationsInput | $Enums.Raca
   alunos?: Prisma.AlunoUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUpdateOneWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUpdateOneWithoutUsuarioNestedInput
   endereco?: Prisma.EnderecoUpdateOneRequiredWithoutUsuarioNestedInput
   identidade?: Prisma.IdentidadeUpdateOneRequiredWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutUsuarioNestedInput
@@ -1519,6 +1671,7 @@ export type UsuarioUncheckedUpdateWithoutCargosInput = {
   fkEndereco?: Prisma.IntFieldUpdateOperationsInput | number
   alunos?: Prisma.AlunoUncheckedUpdateOneWithoutUsuarioNestedInput
   professor?: Prisma.ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput
+  tituloEleitor?: Prisma.TituloEleitorUncheckedUpdateOneWithoutUsuarioNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
@@ -1601,6 +1754,7 @@ export type UsuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   alunos?: boolean | Prisma.Usuario$alunosArgs<ExtArgs>
   professor?: boolean | Prisma.Usuario$professorArgs<ExtArgs>
   cargos?: boolean | Prisma.Usuario$cargosArgs<ExtArgs>
+  tituloEleitor?: boolean | Prisma.Usuario$tituloEleitorArgs<ExtArgs>
   endereco?: boolean | Prisma.EnderecoDefaultArgs<ExtArgs>
   identidade?: boolean | Prisma.IdentidadeDefaultArgs<ExtArgs>
   historico?: boolean | Prisma.Usuario$historicoArgs<ExtArgs>
@@ -1673,6 +1827,7 @@ export type UsuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   alunos?: boolean | Prisma.Usuario$alunosArgs<ExtArgs>
   professor?: boolean | Prisma.Usuario$professorArgs<ExtArgs>
   cargos?: boolean | Prisma.Usuario$cargosArgs<ExtArgs>
+  tituloEleitor?: boolean | Prisma.Usuario$tituloEleitorArgs<ExtArgs>
   endereco?: boolean | Prisma.EnderecoDefaultArgs<ExtArgs>
   identidade?: boolean | Prisma.IdentidadeDefaultArgs<ExtArgs>
   historico?: boolean | Prisma.Usuario$historicoArgs<ExtArgs>
@@ -1693,6 +1848,7 @@ export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     alunos: Prisma.$AlunoPayload<ExtArgs> | null
     professor: Prisma.$ProfessorPayload<ExtArgs> | null
     cargos: Prisma.$CargoPayload<ExtArgs>[]
+    tituloEleitor: Prisma.$TituloEleitorPayload<ExtArgs> | null
     endereco: Prisma.$EnderecoPayload<ExtArgs>
     identidade: Prisma.$IdentidadePayload<ExtArgs>
     historico: Prisma.$HistoricoPayload<ExtArgs>[]
@@ -2111,6 +2267,7 @@ export interface Prisma__UsuarioClient<T, Null = never, ExtArgs extends runtime.
   alunos<T extends Prisma.Usuario$alunosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$alunosArgs<ExtArgs>>): Prisma.Prisma__AlunoClient<runtime.Types.Result.GetResult<Prisma.$AlunoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   professor<T extends Prisma.Usuario$professorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$professorArgs<ExtArgs>>): Prisma.Prisma__ProfessorClient<runtime.Types.Result.GetResult<Prisma.$ProfessorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cargos<T extends Prisma.Usuario$cargosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$cargosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CargoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tituloEleitor<T extends Prisma.Usuario$tituloEleitorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$tituloEleitorArgs<ExtArgs>>): Prisma.Prisma__TituloEleitorClient<runtime.Types.Result.GetResult<Prisma.$TituloEleitorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   endereco<T extends Prisma.EnderecoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EnderecoDefaultArgs<ExtArgs>>): Prisma.Prisma__EnderecoClient<runtime.Types.Result.GetResult<Prisma.$EnderecoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   identidade<T extends Prisma.IdentidadeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.IdentidadeDefaultArgs<ExtArgs>>): Prisma.Prisma__IdentidadeClient<runtime.Types.Result.GetResult<Prisma.$IdentidadePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   historico<T extends Prisma.Usuario$historicoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$historicoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HistoricoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2619,6 +2776,25 @@ export type Usuario$cargosArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.CargoScalarFieldEnum | Prisma.CargoScalarFieldEnum[]
+}
+
+/**
+ * Usuario.tituloEleitor
+ */
+export type Usuario$tituloEleitorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TituloEleitor
+   */
+  select?: Prisma.TituloEleitorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TituloEleitor
+   */
+  omit?: Prisma.TituloEleitorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TituloEleitorInclude<ExtArgs> | null
+  where?: Prisma.TituloEleitorWhereInput
 }
 
 /**
