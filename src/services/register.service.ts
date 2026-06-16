@@ -64,7 +64,7 @@ export async function createUser(data: CadastroInput) {
 
   // Busca os dados dos usuários de acordo com a entrada
   const email = await prisma.usuario.findUnique({
-    where: { email: data.email },
+    where: { emailInstitucional: data.email },
   });
   const cpf = await prisma.identidade.findUnique({
     where: { cpf: cpfNormalizado },
@@ -111,7 +111,7 @@ export async function createUser(data: CadastroInput) {
         nomeSocial: data.nomeSocial ?? null,
         dataNasc: new Date(data.dataNasc),
         naturalidade: data.naturalidade,
-        email: data.email,
+        emailInstitucional: data.email,
         senha: hashPassword,
         sexo: data.sexo,
         raca: data.raca,
