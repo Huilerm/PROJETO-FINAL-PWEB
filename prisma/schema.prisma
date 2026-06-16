@@ -30,6 +30,8 @@ model Usuario {
   professor Professor?
   cargos    Cargo[]
 
+  tituloEleitor TituloEleitor?
+
   fkIdentidade String @unique @map("fk_identidade")
   fkEndereco   Int    @map("fk_endereco")
 
@@ -208,10 +210,13 @@ model Identidade {
 model TituloEleitor {
   id String @id @default(uuid())
 
-  numero         Int
+  numero         String
   zonaEleitoral  String @map("zona_eleitoral")
   secaoEleitoral String @map("secao_eleitoral")
   UF             String
+
+  fkUsuario String @unique @map("fk_usuario")
+  usuario   Usuario @relation(fields: [fkUsuario], references: [id])
 
   @@map("titulo_eleitor")
 }

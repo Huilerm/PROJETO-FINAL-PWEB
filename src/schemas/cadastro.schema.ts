@@ -33,6 +33,12 @@ export const cadastroSchema = z.object({
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Data deve estar no formato YYYY-MM-DD"),
 
+  // Título de eleitor
+  tituloNumero: z.string().min(1, "Número do título é obrigatório"),
+  zonaEleitoral: z.string().min(1, "Zona eleitoral é obrigatória"),
+  secaoEleitoral: z.string().min(1, "Seção eleitoral é obrigatória"),
+  ufTitulo: z.string().length(2, "UF deve ter 2 letras"),
+
   // Código de Usuário (opcional — se omitida, é gerada automaticamente)
   matricula: z.string().optional(),
   siape: z.string().optional(),

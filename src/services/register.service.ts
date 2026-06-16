@@ -130,6 +130,17 @@ export async function createUser(data: CadastroInput) {
       },
     });
 
+  // Título de eleitor
+  const tituloEleitor = await tx.tituloEleitor.create({
+    data: {
+      numero: data.tituloNumero,
+      zonaEleitoral: data.zonaEleitoral,
+      secaoEleitoral: data.secaoEleitoral,
+      UF: data.ufTitulo.toUpperCase(),
+      fkUsuario: usuario.id,
+    },
+});
+
     // Verificação se o usuário é Aluno ou Professor
     if (data.cargo === "ALUNO") {
       const matricula = data.matricula ?? (await verifySCode(data, "ALUNO"));
@@ -140,7 +151,7 @@ export async function createUser(data: CadastroInput) {
         },
       });
 
-      return { usuario, aluno, identidade };
+      return { usuario, aluno, identidade, tituloEleitor };
     } else if (data.cargo === "PROFESSOR") {
       const siape = data.siape ?? (await verifySCode(data, "PROFESSOR"));
       const professor = await tx.professor.create({
@@ -150,7 +161,7 @@ export async function createUser(data: CadastroInput) {
         },
       });
 
-      return { usuario, professor, identidade };
+      return { usuario, professor, identidade, tituloEleitor };
     }
   });
 }
