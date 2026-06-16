@@ -15,7 +15,7 @@ export async function cadastrarAluno(data: CadastroInput) {
     usuario: {
       id: aluno!.usuario.id,
       nome: aluno!.usuario.nome,
-      email: aluno!.usuario.email,
+      email: aluno!.usuario.emailInstitucional,
       matricula: aluno?.aluno!.matricula,
     },
   };
@@ -32,15 +32,15 @@ export async function cadastrarProfessor(data: CadastroInput) {
     usuario: {
       id: professor?.usuario.id,
       nome: professor?.usuario.nome,
-      email: professor?.usuario.email,
-      matricula: professor?.professor!.siap,
+      email: professor?.usuario.emailInstitucional,
+      matricula: professor?.professor!.siape,
     },
   };
 }
 
 export async function login(data: LoginInput) {
   const usuario = await prisma.usuario.findUnique({
-    where: { email: data.email },
+    where: { emailInstitucional: data.email },
     include: {
       alunos: true,
       professor: true,
@@ -72,7 +72,7 @@ export async function login(data: LoginInput) {
     usuario: {
       id: usuario.id,
       nome: usuario.nome,
-      email: usuario.email,
+      email: usuario.emailInstitucional,
       cargos: permissoes,
       alunoId: usuario.alunos?.id,
       professorId: usuario.professor?.id,

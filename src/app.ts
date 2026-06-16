@@ -5,6 +5,7 @@ import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
 import adminRouter from "./routes/admin.routes.js";
 import { AppError } from "./errors/AppError.js";
+import inscricaoRouter from "./routes/inscricao.routes.js";
 
 const PORT = process.env.PORT ?? 3000;
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/admin", adminRouter);
+app.use("/inscricoes", inscricaoRouter);
 // ── Rotas ────────────────────────────────────────────────────────
 
 // ── Verificar servidor ──────────────────────────────────

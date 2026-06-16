@@ -35,7 +35,7 @@ model Usuario {
 
   endereco   Endereco   @relation(fields: [fkEndereco], references: [id])
   identidade Identidade @relation(fields: [fkIdentidade], references: [id])
-  historico  Historico?
+  historico  Historico[]
 
   @@map("usuario")
 }
@@ -46,7 +46,7 @@ model Aluno {
   matricula String @unique
 
   inscricaos Inscricao[]
-  historico  Historico?
+  historico  Historico[]
 
   fkUsuario String  @unique @map("fk_usuario")
   usuario   Usuario @relation(fields: [fkUsuario], references: [id])
@@ -58,39 +58,38 @@ model Professor {
   id String @id @default(uuid())
 
   siape                   String   @unique
-  emailSiape              String   @unique @map("email_siape")
-  telefonesInstiticionais String[] @map("telefones_institicionais")
-  telefonesPessoais       String[] @map("telefones_pessoais")
-  emPGD                   Boolean
-  titulacao               String
-  escolaridade            String
-  grupoSanguineo          String   @map("grupo_sanguineo")
+  emailSiape              String?  @unique @map("email_siape")
+  telefonesInstiticionais String[]  @default([]) @map("telefones_institicionais")
+  telefonesPessoais       String[]  @default([]) @map("telefones_pessoais")
+  emPGD                   Boolean?
+  titulacao               String?
+  escolaridade            String?
+  grupoSanguineo          String?  @map("grupo_sanguineo")
 
-  setorSuap       String  @map("setor_suap")
-  lotacaoSiape    String  @map("lotacao_siape")
-  exercicioSiape  String  @map("execicio_siape")
-  situacao        String
-  regimeTrabalho  String  @map("regime_trabalho")
-  jornadaTrabalho String  @map("jornada_trabalho")
-  operadorRaioX   Boolean @map("operador_raiox")
+  setorSuap               String?  @map("setor_suap")
+  lotacaoSiape            String?  @map("lotacao_siape")
+  exercicioSiape          String?  @map("execicio_siape")
+  situacao                String?
+  regimeTrabalho          String?  @map("regime_trabalho")
+  jornadaTrabalho         String?  @map("jornada_trabalho")
+  operadorRaioX           Boolean? @map("operador_raiox")
 
-  inicioServicoPublico     DateTime @map("inicio_servico_publico") @db.Date
-  dataDePosseInstituicao   DateTime @map("data_posse_instituicao") @db.Date
-  inicioServicoInstituicao DateTime @map("inicio_servico_instituicao") @db.Date
-  tempoServicoInstituicaao String   @map("tempo_servico_instituicao")
-  dataPosseCargo           DateTime @map("data_posse_cargo") @db.Date
-  inicioExercicioCargo     DateTime @map("inicio_exercicio_cargo") @db.Date
-  tempoServicoCargo        DateTime @map("tempo_servico_cargo") @db.Date
-  cargoInstitucional       String   @map("cargo_institucional")
-  classeCargo              String   @map("classe_cargo")
-  padrao                   String   @map("padrao")
-  grupoCargo               String   @map("grupo_cargo")
-  codigoVaga               Int      @map("codigo_vaga")
+  inicioServicoPublico     DateTime? @map("inicio_servico_publico") @db.Date
+  dataDePosseInstituicao   DateTime? @map("data_posse_instituicao") @db.Date
+  inicioServicoInstituicao DateTime? @map("inicio_servico_instituicao") @db.Date
+  tempoServicoInstituicaao String?   @map("tempo_servico_instituicao")
+  dataPosseCargo           DateTime? @map("data_posse_cargo") @db.Date
+  inicioExercicioCargo     DateTime? @map("inicio_exercicio_cargo") @db.Date
+  tempoServicoCargo        DateTime? @map("tempo_servico_cargo") @db.Date
+  cargoInstitucional       String?   @map("cargo_institucional")
+  classeCargo              String?   @map("classe_cargo")
+  padrao                   String?
+  grupoCargo               String?   @map("grupo_cargo")
+  codigoVaga               Int?      @map("codigo_vaga")
   NCE                      String?
 
-  qtdDependentes Int @map("qtd_dependentes")
-
-  pisPasep String @map("pis_pasep")
+  qtdDependentes Int?    @map("qtd_dependentes")
+  pisPasep       String? @map("pis_pasep")
 
   alocacoes AlocacaoProfessor[]
 
@@ -181,7 +180,7 @@ model Inscricao {
 
   status        StatusInscricao @default(PENDENTE) @map("curso_status")
   rendaFamiliar RendaFamiliar?
-  historico     Historico?
+  historico     Historico[]
 
   fkAluno String @map("fk_aluno")
   aluno   Aluno  @relation(fields: [fkAluno], references: [id])
@@ -277,9 +276,9 @@ model Historico {
   statusAtual     StatusInscricao @map("status_atual")
   dataModificacao DateTime        @default(now()) @map("data_modificacao")
 
-  fkAluno              String @unique @map("fk_aluno")
-  fkInscricao          String @unique @map("fk_inscricao")
-  fkUsuarioResponsavel String @unique @map("fk_usuario_responsavel")
+  fkAluno              String @map("fk_aluno")
+  fkInscricao          String @map("fk_inscricao")
+  fkUsuarioResponsavel String @map("fk_usuario_responsavel")
 
   aluno     Aluno     @relation(fields: [fkAluno], references: [id])
   inscricao Inscricao @relation(fields: [fkInscricao], references: [id])
@@ -299,6 +298,7 @@ enum StatusInscricao {
   PENDENTE
   DEFERIDO
   INDEFERIDO
+  CANCELADO
 }
 
 enum DiasSemana {
