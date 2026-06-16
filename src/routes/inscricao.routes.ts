@@ -23,12 +23,11 @@ inscricaoRouter.post(
 inscricaoRouter.post(
   "/:id/renda",
   authMiddleware,
-  adicionarRenda  // novo controller
+  adicionarRenda  
 );
 
 inscricaoRouter.use(authMiddleware, verificarPermissao("GERENCIAR_INSCRICAO"));
 
-// 3. Rotas administrativas
 inscricaoRouter.get("/", listar);
 inscricaoRouter.get("/:id", detalhar);
 inscricaoRouter.get("/:id/historico", historico);
