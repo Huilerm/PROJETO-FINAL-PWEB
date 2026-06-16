@@ -42,7 +42,6 @@ export const cadastroSchema = z.object({
   // Código de Usuário (opcional — se omitida, é gerada automaticamente)
   matricula: z.string().optional(),
   siape: z.string().optional(),
-  id: z.string().optional(), // Para cadastro de admin/deppi
 });
 
 export const promoverSchema = z.object({
