@@ -118,14 +118,14 @@ export async function createUser(data: CadastroInput) {
         dataNasc: new Date(data.dataNasc),
         naturalidade: data.naturalidade,
         emailInstitucional: data.email,
-        emailSecundario: inputData.emailSecundario ?? null, // Preservado da versão do colega
+        emailSecundario: inputData.emailSecundario ?? "",  // campo obrigatório no schema
         senha: hashPassword,
-        nomeMae: data.nomeMae, // Preservado da versão do colega
-        nomePai: data.nomePai ?? null, // Preservado da versão do colega
+        nomeMae: data.nomeMae,
+        nomePai: data.nomePai ?? "",  // campo obrigatório no schema
         sexo: data.sexo,
         raca: data.raca,
-        fkIdentidade: identidade.id,
-        fkEndereco: data.fkEndereco, // Preservado da versão do colega
+        identidade: { connect: { id: identidade.id } },   // relação, não FK direta
+        endereco: { connect: { id: Number(data.fkEndereco) } }, // relação, não FK direta
         cargos: { connect: { id: cargo.id } },
       },
     });
