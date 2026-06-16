@@ -4,15 +4,10 @@ import type { StatusInscricao } from "../../generated/prisma/client";
 
 type AcaoInscricao = "APROVAR" | "REJEITAR" | "CANCELAR";
 
-// ==========================================
-// OPERAÇÕES DE ALUNOS (Sua Lógica)
-// ==========================================
-
 export async function criarInscricao(
   usuarioId: string,
   cursoId: string
 ) {
-  // localizar aluno pelo usuário logado
   const aluno = await prisma.aluno.findFirst({
     where: {
       fkUsuario: usuarioId
@@ -23,7 +18,6 @@ export async function criarInscricao(
     throw new AppError("Aluno não encontrado", 404);
   }
 
-  // verificar curso
   const curso = await prisma.curso.findUnique({
     where: {
       id: cursoId
@@ -34,7 +28,6 @@ export async function criarInscricao(
     throw new AppError("Curso não encontrado", 404);
   }
 
-  // verificar inscrição duplicada (Ignorando canceladas/rejeitadas se o aluno quiser tentar de novo)
   const inscricaoExistente = await prisma.inscricao.findFirst({
     where: {
       fkAluno: aluno.id,
@@ -52,7 +45,6 @@ export async function criarInscricao(
     );
   }
 
-  // verificar se ainda há vagas disponíveis no curso
   if (curso.vagas <= 0) {
     throw new AppError(
       "Não há vagas disponíveis para este curso",
@@ -60,7 +52,6 @@ export async function criarInscricao(
     );
   }
 
-  // criar inscrição inicial como PENDENTE para análise da gestão
   return prisma.inscricao.create({
     data: {
       fkAluno: aluno.id,
@@ -70,9 +61,30 @@ export async function criarInscricao(
   });
 }
 
-// ==========================================
-// OPERAÇÕES GESTOR/ADMINISTRADOR (Lógica do Colega)
-// ==========================================
+export async function adicionarRendaFamiliar(
+  inscricaoId: string,
+  usuarioId: string,
+  data: { rendaFamiliar: number; numeroPessoas: number }
+) {
+  const aluno = await prisma.aluno.findFirst({
+    where: { fkUsuario: usuarioId },
+  });
+
+  if (!aluno) throw new AppError("Aluno não encontrado", 404);
+
+  const inscricao = await prisma.inscricao.findUnique({
+    where: { id: inscricaoId },
+  });
+
+  if (!inscricao) throw new AppError("Inscrição não encontrada", 404);
+  if (inscricao.fkAluno !== aluno.id) throw new AppError("Sem permissão", 403);
+
+  return prisma.rendaFamiliar.upsert({
+    where: { fkInscricao: inscricaoId },
+    update: { rendaFamiliar: data.rendaFamiliar, numeroPessoas: data.numeroPessoas },
+    create: { rendaFamiliar: data.rendaFamiliar, numeroPessoas: data.numeroPessoas, fkInscricao: inscricaoId },
+  });
+}
 
 function descricaoPadrao(acao: AcaoInscricao, motivo?: string) {
   if (motivo?.trim()) return motivo.trim();

@@ -10,20 +10,24 @@ import {
 } from "../controllers/inscricao.controller";
 import { authMiddleware } from "../middleware/auth.middleware";
 import { verificarPermissao } from "../middleware/rbac.middleware";
+import { adicionarRenda } from "../controllers/inscricao.controller";
 
 const inscricaoRouter = Router();
 
-// 1. Rota de criação (Lógica sua: aberta para qualquer usuário autenticado)
 inscricaoRouter.post(
   "/",
   authMiddleware,
   criar
 );
 
-// 2. Trava de segurança para as rotas abaixo (Lógica do seu colega: exige permissão de gestão)
+inscricaoRouter.post(
+  "/:id/renda",
+  authMiddleware,
+  adicionarRenda  
+);
+
 inscricaoRouter.use(authMiddleware, verificarPermissao("GERENCIAR_INSCRICAO"));
 
-// 3. Rotas administrativas
 inscricaoRouter.get("/", listar);
 inscricaoRouter.get("/:id", detalhar);
 inscricaoRouter.get("/:id/historico", historico);

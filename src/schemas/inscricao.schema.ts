@@ -22,3 +22,10 @@ export type ListarInscricoesQueryInput = z.infer<
   typeof listarInscricoesQuerySchema
 >;
 export type MotivoInput = z.infer<typeof motivoSchema>;
+
+export const rendaFamiliarSchema = z.object({
+  rendaFamiliar: z.number().positive("Renda deve ser positiva"),
+  numeroPessoas: z.number().int().positive("Número de pessoas deve ser positivo"),
+});
+
+export type RendaFamiliarInput = z.infer<typeof rendaFamiliarSchema>;

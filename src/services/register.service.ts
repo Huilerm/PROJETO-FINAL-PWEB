@@ -3,15 +3,12 @@ import { prisma } from "../lib/prisma";
 import { AppError } from "../errors/AppError";
 import { CadastroInput } from "../schemas/cadastro.schema";
 
-// Tipos de usuários que podem ser registrados
 type UserType = "ALUNO" | "PROFESSOR";
 
-// Normaliza o CPF removendo pontos e traço
 function normalizeCPF(cpf: string): string {
   return cpf.replace(/[.\-]/g, "");
 }
 
-// Caso o aluno não possua matrícula, a função vai gerar uma
 function createSCode(): string {
   const year = new Date().getFullYear();
   const random = Math.floor(Math.random() * 100000)
@@ -20,7 +17,6 @@ function createSCode(): string {
   return `${year}${random}`;
 }
 
-// Verifica os códigos gerados para Matrícula e SIAPE
 async function verifySCode(
   data: CadastroInput,
   userType: UserType,
@@ -54,12 +50,9 @@ async function verifySCode(
   throw new Error(`Tipo de usuário inválido: ${userType}`);
 }
 
-// Cria Usuário
 export async function createUser(data: CadastroInput) {
-  // Normaliza o CPF fornecido pelo usuário removendo os pontos e traço
   const cpfNormalizado = normalizeCPF(data.cpf);
 
-  // Busca os dados dos usuários de acordo com a entrada
   const email = await prisma.usuario.findUnique({
     where: { emailInstitucional: data.email },
   });
@@ -70,7 +63,6 @@ export async function createUser(data: CadastroInput) {
     where: { rg: data.rg },
   });
 
-  // Verifica se os dados buscados no banco de dados existem
   if (email) throw new AppError("Email já cadastrado", 409);
   if (cpf) throw new AppError("CPF já cadastrado", 409);
   if (rg) throw new AppError("RG já cadastrado", 409);
@@ -78,9 +70,7 @@ export async function createUser(data: CadastroInput) {
   // Criptografa a senha do usuário
   const hashPassword = await bcrypt.hash(data.senha, 10);
 
-  // Inicia uma transação para criação de Aluno e Professor
   return await prisma.$transaction(async (tx) => {
-    // Insere os dados na tabela identidade
     const identidade = await tx.identidade.create({
       data: {
         rg: data.rg,
@@ -91,7 +81,6 @@ export async function createUser(data: CadastroInput) {
       },
     });
 
-    // Procura e valida o cargo inserido no registro
     const cargo = await tx.cargo.findFirst({
       where: { cargo: data.cargo },
     });
@@ -99,7 +88,6 @@ export async function createUser(data: CadastroInput) {
       throw new AppError(`Cargo ${data.cargo} não encontrado no sistema`, 500);
     }
 
-    // Valida se o endereço fornecido existe antes de associá-lo
     const endereco = await tx.endereco.findUnique({
       where: { id: data.fkEndereco },
     });
@@ -110,7 +98,6 @@ export async function createUser(data: CadastroInput) {
 
     const inputData = data as any;
 
-    // Insere novo usuário ao sistema (Bloco unificado com todos os campos)
     const usuario = await tx.usuario.create({
       data: {
         nome: data.nome,
@@ -118,14 +105,14 @@ export async function createUser(data: CadastroInput) {
         dataNasc: new Date(data.dataNasc),
         naturalidade: data.naturalidade,
         emailInstitucional: data.email,
-        emailSecundario: inputData.emailSecundario ?? "",  // campo obrigatório no schema
+        emailSecundario: inputData.emailSecundario ?? "",  
         senha: hashPassword,
         nomeMae: data.nomeMae,
-        nomePai: data.nomePai ?? "",  // campo obrigatório no schema
+        nomePai: data.nomePai ?? "",  
         sexo: data.sexo,
         raca: data.raca,
-        identidade: { connect: { id: identidade.id } },   // relação, não FK direta
-        endereco: { connect: { id: Number(data.fkEndereco) } }, // relação, não FK direta
+        identidade: { connect: { id: identidade.id } },  
+        endereco: { connect: { id: Number(data.fkEndereco) } }, 
         cargos: { connect: { id: cargo.id } },
       },
     });
