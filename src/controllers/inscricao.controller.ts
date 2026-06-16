@@ -5,6 +5,7 @@ import {
   motivoSchema,
 } from "../schemas/inscricao.schema";
 import {
+  criarInscricao,
   aprovarInscricao,
   buscarInscricao,
   cancelarInscricao,
@@ -12,6 +13,38 @@ import {
   listarInscricoes,
   rejeitarInscricao,
 } from "../services/inscricao.service";
+
+// ==========================================
+// FUNÇÕES DO CONTROLLER
+// ==========================================
+
+export async function criar(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const usuarioId = req.user?.userId;
+
+    if (!usuarioId) {
+      res.status(401).json({
+        mensagem: "Não autorizado"
+      });
+      return;
+    }
+
+    const { cursoId } = req.body;
+
+    const inscricao = await criarInscricao(
+      usuarioId,
+      cursoId
+    );
+
+    res.status(201).json(inscricao);
+  } catch (error) {
+    next(error);
+  }
+}
 
 export async function listar(req: Request, res: Response, next: NextFunction) {
   try {
@@ -140,7 +173,7 @@ export async function rejeitar(
     );
 
     res.status(200).json({
-      mensagem: "Inscrição rejeitada com sucesso",
+      mensagem: "Inscriçãoae rejeitada com sucesso",
       inscricao,
     });
   } catch (error) {
