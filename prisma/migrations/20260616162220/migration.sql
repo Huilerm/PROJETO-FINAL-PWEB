@@ -2,7 +2,7 @@
 CREATE TYPE "StatusCurso" AS ENUM ('ANDAMENTO', 'ANALISE', 'CONCLUIDO', 'FECHADO');
 
 -- CreateEnum
-CREATE TYPE "StatusInscricao" AS ENUM ('PENDENTE', 'DEFERIDO', 'INDEFERIDO');
+CREATE TYPE "StatusInscricao" AS ENUM ('PENDENTE', 'DEFERIDO', 'INDEFERIDO', 'CANCELADO');
 
 -- CreateEnum
 CREATE TYPE "DiasSemana" AS ENUM ('SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO');
@@ -26,13 +26,17 @@ CREATE TABLE "usuario" (
     "nome_social" TEXT,
     "data_nasc" TIMESTAMP(3) NOT NULL,
     "naturalidade" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
+    "email_institucional" TEXT NOT NULL,
+    "email_secundario" TEXT NOT NULL,
     "senha" TEXT NOT NULL,
+    "nome_mae" TEXT NOT NULL,
+    "nome_pai" TEXT NOT NULL,
     "criado_em" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "atualizado_em" TIMESTAMP(3) NOT NULL,
     "sexo" "Sexo" NOT NULL,
     "raca" "Raca" NOT NULL,
     "fk_identidade" TEXT NOT NULL,
+    "fk_endereco" INTEGER NOT NULL,
 
     CONSTRAINT "usuario_pkey" PRIMARY KEY ("id")
 );
@@ -49,10 +53,60 @@ CREATE TABLE "aluno" (
 -- CreateTable
 CREATE TABLE "professor" (
     "id" TEXT NOT NULL,
-    "siap" TEXT NOT NULL,
+    "siape" TEXT NOT NULL,
+    "email_siape" TEXT,
+    "telefones_institicionais" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "telefones_pessoais" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "emPGD" BOOLEAN,
+    "titulacao" TEXT,
+    "escolaridade" TEXT,
+    "grupo_sanguineo" TEXT,
+    "setor_suap" TEXT,
+    "lotacao_siape" TEXT,
+    "execicio_siape" TEXT,
+    "situacao" TEXT,
+    "regime_trabalho" TEXT,
+    "jornada_trabalho" TEXT,
+    "operador_raiox" BOOLEAN,
+    "inicio_servico_publico" DATE,
+    "data_posse_instituicao" DATE,
+    "inicio_servico_instituicao" DATE,
+    "tempo_servico_instituicao" TEXT,
+    "data_posse_cargo" DATE,
+    "inicio_exercicio_cargo" DATE,
+    "tempo_servico_cargo" DATE,
+    "cargo_institucional" TEXT,
+    "classe_cargo" TEXT,
+    "padrao" TEXT,
+    "grupo_cargo" TEXT,
+    "codigo_vaga" INTEGER,
+    "NCE" TEXT,
+    "qtd_dependentes" INTEGER,
+    "pis_pasep" TEXT,
     "fk_usuario" TEXT NOT NULL,
 
     CONSTRAINT "professor_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "endereco" (
+    "id" SERIAL NOT NULL,
+    "rua" TEXT NOT NULL,
+    "bairro" TEXT NOT NULL,
+    "numero" INTEGER NOT NULL,
+    "cep" INTEGER NOT NULL,
+
+    CONSTRAINT "endereco_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "dados_bancarios" (
+    "id" TEXT NOT NULL,
+    "banco" TEXT NOT NULL,
+    "agencia" INTEGER NOT NULL,
+    "cc" INTEGER NOT NULL,
+
+    CONSTRAINT "dados_bancarios_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -73,14 +127,14 @@ CREATE TABLE "curso" (
 );
 
 -- CreateTable
-CREATE TABLE "alocacoes_professores" (
+CREATE TABLE "alocacao_professor " (
     "id" TEXT NOT NULL,
     "fk_professor" TEXT NOT NULL,
     "fk_curso" TEXT NOT NULL,
     "carga_horaria" INTEGER NOT NULL,
     "data_alocacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "alocacoes_professores_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "alocacao_professor _pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -95,40 +149,51 @@ CREATE TABLE "instituicao" (
 );
 
 -- CreateTable
-CREATE TABLE "inscricoes" (
+CREATE TABLE "inscricao" (
     "id" TEXT NOT NULL,
     "data" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "curso_status" "StatusInscricao" NOT NULL DEFAULT 'PENDENTE',
     "fk_aluno" TEXT NOT NULL,
     "fk_curso" TEXT NOT NULL,
 
-    CONSTRAINT "inscricoes_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "inscricao_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "identidades" (
+CREATE TABLE "identidade" (
     "id" TEXT NOT NULL,
     "rg" TEXT NOT NULL,
     "cpf" TEXT NOT NULL,
     "orgao_emissor" TEXT NOT NULL,
     "estado" TEXT NOT NULL,
-    "data_emissao" DATE NOT NULL,
+    "data_expedicao" DATE NOT NULL,
 
-    CONSTRAINT "identidades_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "identidade_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "rendas_familiares" (
+CREATE TABLE "titulo_eleitor" (
+    "id" TEXT NOT NULL,
+    "numero" INTEGER NOT NULL,
+    "zona_eleitoral" TEXT NOT NULL,
+    "secao_eleitoral" TEXT NOT NULL,
+    "UF" TEXT NOT NULL,
+
+    CONSTRAINT "titulo_eleitor_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "renda_familiar" (
     "id" TEXT NOT NULL,
     "renda_familiar" DOUBLE PRECISION NOT NULL,
     "numero_pessoas" INTEGER NOT NULL,
     "fk_inscricao" TEXT NOT NULL,
 
-    CONSTRAINT "rendas_familiares_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "renda_familiar_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "auditorias" (
+CREATE TABLE "auditoria" (
     "id" TEXT NOT NULL,
     "tabela_modificada" TEXT NOT NULL,
     "acao_realizada" "Acao" NOT NULL,
@@ -138,7 +203,7 @@ CREATE TABLE "auditorias" (
     "fk_usuario" TEXT,
     "data_modificacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "auditorias_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "auditoria_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -160,6 +225,21 @@ CREATE TABLE "permissoes" (
 );
 
 -- CreateTable
+CREATE TABLE "historico" (
+    "id" SERIAL NOT NULL,
+    "alteracao" TEXT NOT NULL,
+    "descricao" TEXT NOT NULL,
+    "status_anterior" "StatusInscricao" NOT NULL,
+    "status_atual" "StatusInscricao" NOT NULL,
+    "data_modificacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "fk_aluno" TEXT NOT NULL,
+    "fk_inscricao" TEXT NOT NULL,
+    "fk_usuario_responsavel" TEXT NOT NULL,
+
+    CONSTRAINT "historico_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_CargoToUsuario" (
     "A" INTEGER NOT NULL,
     "B" TEXT NOT NULL,
@@ -176,7 +256,7 @@ CREATE TABLE "_CargoToPermissoes" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "usuario_email_key" ON "usuario"("email");
+CREATE UNIQUE INDEX "usuario_email_institucional_key" ON "usuario"("email_institucional");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "usuario_fk_identidade_key" ON "usuario"("fk_identidade");
@@ -188,28 +268,31 @@ CREATE UNIQUE INDEX "aluno_matricula_key" ON "aluno"("matricula");
 CREATE UNIQUE INDEX "aluno_fk_usuario_key" ON "aluno"("fk_usuario");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "professor_siap_key" ON "professor"("siap");
+CREATE UNIQUE INDEX "professor_siape_key" ON "professor"("siape");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "professor_email_siape_key" ON "professor"("email_siape");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "professor_fk_usuario_key" ON "professor"("fk_usuario");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "alocacoes_professores_fk_professor_fk_curso_key" ON "alocacoes_professores"("fk_professor", "fk_curso");
+CREATE UNIQUE INDEX "alocacao_professor _fk_professor_fk_curso_key" ON "alocacao_professor "("fk_professor", "fk_curso");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "instituicao_cnpj_key" ON "instituicao"("cnpj");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "identidades_rg_key" ON "identidades"("rg");
+CREATE UNIQUE INDEX "identidade_rg_key" ON "identidade"("rg");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "identidades_cpf_key" ON "identidades"("cpf");
+CREATE UNIQUE INDEX "identidade_cpf_key" ON "identidade"("cpf");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "rendas_familiares_fk_inscricao_key" ON "rendas_familiares"("fk_inscricao");
+CREATE UNIQUE INDEX "renda_familiar_fk_inscricao_key" ON "renda_familiar"("fk_inscricao");
 
 -- CreateIndex
-CREATE INDEX "auditorias_tabela_modificada_id_modificado_idx" ON "auditorias"("tabela_modificada", "id_modificado");
+CREATE INDEX "auditoria_tabela_modificada_id_modificado_idx" ON "auditoria"("tabela_modificada", "id_modificado");
 
 -- CreateIndex
 CREATE INDEX "_CargoToUsuario_B_index" ON "_CargoToUsuario"("B");
@@ -218,7 +301,10 @@ CREATE INDEX "_CargoToUsuario_B_index" ON "_CargoToUsuario"("B");
 CREATE INDEX "_CargoToPermissoes_B_index" ON "_CargoToPermissoes"("B");
 
 -- AddForeignKey
-ALTER TABLE "usuario" ADD CONSTRAINT "usuario_fk_identidade_fkey" FOREIGN KEY ("fk_identidade") REFERENCES "identidades"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "usuario" ADD CONSTRAINT "usuario_fk_endereco_fkey" FOREIGN KEY ("fk_endereco") REFERENCES "endereco"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "usuario" ADD CONSTRAINT "usuario_fk_identidade_fkey" FOREIGN KEY ("fk_identidade") REFERENCES "identidade"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "aluno" ADD CONSTRAINT "aluno_fk_usuario_fkey" FOREIGN KEY ("fk_usuario") REFERENCES "usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -230,19 +316,28 @@ ALTER TABLE "professor" ADD CONSTRAINT "professor_fk_usuario_fkey" FOREIGN KEY (
 ALTER TABLE "curso" ADD CONSTRAINT "curso_fk_instituicao_fkey" FOREIGN KEY ("fk_instituicao") REFERENCES "instituicao"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "alocacoes_professores" ADD CONSTRAINT "alocacoes_professores_fk_professor_fkey" FOREIGN KEY ("fk_professor") REFERENCES "professor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "alocacao_professor " ADD CONSTRAINT "alocacao_professor _fk_professor_fkey" FOREIGN KEY ("fk_professor") REFERENCES "professor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "alocacoes_professores" ADD CONSTRAINT "alocacoes_professores_fk_curso_fkey" FOREIGN KEY ("fk_curso") REFERENCES "curso"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "alocacao_professor " ADD CONSTRAINT "alocacao_professor _fk_curso_fkey" FOREIGN KEY ("fk_curso") REFERENCES "curso"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "inscricoes" ADD CONSTRAINT "inscricoes_fk_aluno_fkey" FOREIGN KEY ("fk_aluno") REFERENCES "aluno"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "inscricao" ADD CONSTRAINT "inscricao_fk_aluno_fkey" FOREIGN KEY ("fk_aluno") REFERENCES "aluno"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "inscricoes" ADD CONSTRAINT "inscricoes_fk_curso_fkey" FOREIGN KEY ("fk_curso") REFERENCES "curso"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "inscricao" ADD CONSTRAINT "inscricao_fk_curso_fkey" FOREIGN KEY ("fk_curso") REFERENCES "curso"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "rendas_familiares" ADD CONSTRAINT "rendas_familiares_fk_inscricao_fkey" FOREIGN KEY ("fk_inscricao") REFERENCES "inscricoes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "renda_familiar" ADD CONSTRAINT "renda_familiar_fk_inscricao_fkey" FOREIGN KEY ("fk_inscricao") REFERENCES "inscricao"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "historico" ADD CONSTRAINT "historico_fk_aluno_fkey" FOREIGN KEY ("fk_aluno") REFERENCES "aluno"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "historico" ADD CONSTRAINT "historico_fk_inscricao_fkey" FOREIGN KEY ("fk_inscricao") REFERENCES "inscricao"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "historico" ADD CONSTRAINT "historico_fk_usuario_responsavel_fkey" FOREIGN KEY ("fk_usuario_responsavel") REFERENCES "usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CargoToUsuario" ADD CONSTRAINT "_CargoToUsuario_A_fkey" FOREIGN KEY ("A") REFERENCES "cargo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
