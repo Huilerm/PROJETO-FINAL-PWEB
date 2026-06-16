@@ -22,7 +22,8 @@ export type StatusCurso = (typeof StatusCurso)[keyof typeof StatusCurso]
 export const StatusInscricao = {
   PENDENTE: 'PENDENTE',
   DEFERIDO: 'DEFERIDO',
-  INDEFERIDO: 'INDEFERIDO'
+  INDEFERIDO: 'INDEFERIDO',
+  CANCELADO: 'CANCELADO'
 } as const
 
 export type StatusInscricao = (typeof StatusInscricao)[keyof typeof StatusInscricao]

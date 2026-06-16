@@ -11,8 +11,7 @@ function normalizeCPF(cpf: string): string {
   return cpf.replace(/[.\-]/g, "");
 }
 
-// Caso o aluno não possua matrícula
-// A função vai gerar uma
+// Caso o aluno não possua matrícula, a função vai gerar uma
 function createSCode(): string {
   const year = new Date().getFullYear();
   const random = Math.floor(Math.random() * 100000)
@@ -21,8 +20,7 @@ function createSCode(): string {
   return `${year}${random}`;
 }
 
-// Verifica os códigos gerados para
-// Matrícula e SIAP
+// Verifica os códigos gerados para Matrícula e SIAPE
 async function verifySCode(
   data: CadastroInput,
   userType: UserType,
@@ -40,17 +38,17 @@ async function verifySCode(
     }
     return matricula;
   } else if (userType === "PROFESSOR") {
-    let siap = data.siap ?? createSCode();
+    let siape = data.siape ?? createSCode();
     let verifySiap = await prisma.professor.findUnique({
-      where: { siap },
+      where: { siape },
     });
     while (verifySiap) {
-      siap = createSCode();
+      siape = createSCode();
       verifySiap = await prisma.professor.findUnique({
-        where: { siap },
+        where: { siape },
       });
     }
-    return siap;
+    return siape;
   }
 
   throw new Error(`Tipo de usuário inválido: ${userType}`);
@@ -58,8 +56,7 @@ async function verifySCode(
 
 // Cria Usuário
 export async function createUser(data: CadastroInput) {
-  // Normaliza o CPF fornecido pelo usuário
-  // removendo os pontos e traço
+  // Normaliza o CPF fornecido pelo usuário removendo os pontos e traço
   const cpfNormalizado = normalizeCPF(data.cpf);
 
   // Busca os dados dos usuários de acordo com a entrada
@@ -74,7 +71,6 @@ export async function createUser(data: CadastroInput) {
   });
 
   // Verifica se os dados buscados no banco de dados existem
-  // Se existem, retorna um AppError
   if (email) throw new AppError("Email já cadastrado", 409);
   if (cpf) throw new AppError("CPF já cadastrado", 409);
   if (rg) throw new AppError("RG já cadastrado", 409);
@@ -82,8 +78,7 @@ export async function createUser(data: CadastroInput) {
   // Criptografa a senha do usuário
   const hashPassword = await bcrypt.hash(data.senha, 10);
 
-  // Inicia uma transação para criação de
-  // Aluno e Professor
+  // Inicia uma transação para criação de Aluno e Professor
   return await prisma.$transaction(async (tx) => {
     // Insere os dados na tabela identidade
     const identidade = await tx.identidade.create({
@@ -92,7 +87,7 @@ export async function createUser(data: CadastroInput) {
         cpf: cpfNormalizado,
         orgaoEmissor: data.orgaoEmissor,
         estado: data.estado.toUpperCase(),
-        dataEmissao: new Date(data.dataEmissao),
+        dataExpedicao: new Date(data.dataEmissao),
       },
     });
 
@@ -104,7 +99,18 @@ export async function createUser(data: CadastroInput) {
       throw new AppError(`Cargo ${data.cargo} não encontrado no sistema`, 500);
     }
 
-    // Insere novo usuário ao sistema
+    // Valida se o endereço fornecido existe antes de associá-lo
+    const endereco = await tx.endereco.findUnique({
+      where: { id: data.fkEndereco },
+    });
+
+    if (!endereco) {
+      throw new AppError(`Endereço ${data.fkEndereco} não encontrado`, 400);
+    }
+
+    const inputData = data as any;
+
+    // Insere novo usuário ao sistema (Bloco unificado com todos os campos)
     const usuario = await tx.usuario.create({
       data: {
         nome: data.nome,
@@ -112,10 +118,14 @@ export async function createUser(data: CadastroInput) {
         dataNasc: new Date(data.dataNasc),
         naturalidade: data.naturalidade,
         emailInstitucional: data.email,
+        emailSecundario: inputData.emailSecundario ?? null, // Preservado da versão do colega
         senha: hashPassword,
+        nomeMae: data.nomeMae, // Preservado da versão do colega
+        nomePai: data.nomePai ?? null, // Preservado da versão do colega
         sexo: data.sexo,
         raca: data.raca,
         fkIdentidade: identidade.id,
+        fkEndereco: data.fkEndereco, // Preservado da versão do colega
         cargos: { connect: { id: cargo.id } },
       },
     });
@@ -132,10 +142,10 @@ export async function createUser(data: CadastroInput) {
 
       return { usuario, aluno, identidade };
     } else if (data.cargo === "PROFESSOR") {
-      const siap = data.siap ?? (await verifySCode(data, "ALUNO"));
+      const siape = data.siape ?? (await verifySCode(data, "PROFESSOR"));
       const professor = await tx.professor.create({
         data: {
-          siap,
+          siape,
           fkUsuario: usuario.id,
         },
       });
