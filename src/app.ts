@@ -19,7 +19,7 @@ app.use("/users", userRouter);
 app.use("/admin", adminRouter);
 app.use("/inscricoes", inscricaoRouter);
 app.use("/cursos", courseRoutes);
-app.use("instituicao", instituicaoRoutes);
+app.use("/instituicao", instituicaoRoutes);
 // ── Rotas ────────────────────────────────────────────────────────
 
 // ── Verificar servidor ──────────────────────────────────
