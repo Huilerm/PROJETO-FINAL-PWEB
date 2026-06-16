@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { cadastroSchema } from "../schemas/cadastro.schema";
+import { promoverSchema } from "../schemas/cadastro.schema";
 import { createAdminDeppi } from "../services/admin.service";
 
 export async function createAdmin(
@@ -8,7 +8,7 @@ export async function createAdmin(
   next: NextFunction,
 ) {
   try {
-    const parsed = cadastroSchema.safeParse(req.body);
+    const parsed = promoverSchema.safeParse(req.body);
     if (!parsed.success) {
       res
         .status(400)
@@ -26,7 +26,7 @@ export async function createAdmin(
       usuario: {
         id: user?.id,
         nome: user?.nome,
-        email: user?.email,
+        email: user?.emailInstitucional,
       },
     });
   } catch (error) {

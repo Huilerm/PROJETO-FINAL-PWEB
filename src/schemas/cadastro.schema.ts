@@ -39,4 +39,10 @@ export const cadastroSchema = z.object({
   id: z.string().optional(), // Para cadastro de admin/deppi
 });
 
+export const promoverSchema = z.object({
+  id: z.string().uuid("ID inválido"),
+  cargo: z.enum(["ADMIN", "DEPPI"])
+});
+
 export type CadastroInput = z.infer<typeof cadastroSchema>;
+export type PromoverInput = z.infer<typeof promoverSchema>;

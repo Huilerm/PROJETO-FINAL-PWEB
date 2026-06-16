@@ -1,12 +1,12 @@
 import { prisma } from "../lib/prisma";
-import { CadastroInput } from "../schemas/cadastro.schema";
+import { CadastroInput, PromoverInput } from "../schemas/cadastro.schema";
 
 type UserType = "ADMIN" | "DEPPI";
 
 // Admin/Deppi nãoé um usuário novo, mas sim um cargo
 // Então essa função adiciona esse cargo
 export async function createAdminDeppi(
-  data: CadastroInput,
+  data: PromoverInput,
   userType: UserType,
 ) {
   const userId = data.id!;
