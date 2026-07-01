@@ -399,7 +399,8 @@ export const ModelName = {
   Auditoria: 'Auditoria',
   Cargo: 'Cargo',
   Permissoes: 'Permissoes',
-  Historico: 'Historico'
+  Historico: 'Historico',
+  Documento: 'Documento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "aluno" | "professor" | "endereco" | "dadosBancarios" | "curso" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "tituloEleitor" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes" | "historico"
+    modelProps: "usuario" | "aluno" | "professor" | "endereco" | "dadosBancarios" | "curso" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "tituloEleitor" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes" | "historico" | "documento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1603,6 +1604,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Documento: {
+      payload: Prisma.$DocumentoPayload<ExtArgs>
+      fields: Prisma.DocumentoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DocumentoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DocumentoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>
+        }
+        findFirst: {
+          args: Prisma.DocumentoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DocumentoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>
+        }
+        findMany: {
+          args: Prisma.DocumentoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>[]
+        }
+        create: {
+          args: Prisma.DocumentoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>
+        }
+        createMany: {
+          args: Prisma.DocumentoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DocumentoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>[]
+        }
+        delete: {
+          args: Prisma.DocumentoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>
+        }
+        update: {
+          args: Prisma.DocumentoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>
+        }
+        deleteMany: {
+          args: Prisma.DocumentoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DocumentoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DocumentoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>[]
+        }
+        upsert: {
+          args: Prisma.DocumentoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentoPayload>
+        }
+        aggregate: {
+          args: Prisma.DocumentoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDocumento>
+        }
+        groupBy: {
+          args: Prisma.DocumentoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DocumentoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DocumentoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DocumentoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1677,9 +1752,11 @@ export const ProfessorScalarFieldEnum = {
   id: 'id',
   siape: 'siape',
   emailSiape: 'emailSiape',
-  telefonesInstiticionais: 'telefonesInstiticionais',
+  telefonesInstitucionais: 'telefonesInstitucionais',
   telefonesPessoais: 'telefonesPessoais',
   emPGD: 'emPGD',
+  emailNotificacoes: 'emailNotificacoes',
+  emailClassroom: 'emailClassroom',
   titulacao: 'titulacao',
   escolaridade: 'escolaridade',
   grupoSanguineo: 'grupoSanguineo',
@@ -1861,6 +1938,21 @@ export const HistoricoScalarFieldEnum = {
 } as const
 
 export type HistoricoScalarFieldEnum = (typeof HistoricoScalarFieldEnum)[keyof typeof HistoricoScalarFieldEnum]
+
+
+export const DocumentoScalarFieldEnum = {
+  id: 'id',
+  nomeOriginal: 'nomeOriginal',
+  nomeArquivo: 'nomeArquivo',
+  caminho: 'caminho',
+  tipoMime: 'tipoMime',
+  tamanho: 'tamanho',
+  categoria: 'categoria',
+  criadoEm: 'criadoEm',
+  fkInscricao: 'fkInscricao'
+} as const
+
+export type DocumentoScalarFieldEnum = (typeof DocumentoScalarFieldEnum)[keyof typeof DocumentoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2084,6 +2176,20 @@ export type EnumCargosFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 export type ListEnumCargosFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Cargos[]'>
     
 
+
+/**
+ * Reference to a field of type 'CategoriaDocumento'
+ */
+export type EnumCategoriaDocumentoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriaDocumento'>
+    
+
+
+/**
+ * Reference to a field of type 'CategoriaDocumento[]'
+ */
+export type ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriaDocumento[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -2210,6 +2316,7 @@ export type GlobalOmitConfig = {
   cargo?: Prisma.CargoOmit
   permissoes?: Prisma.PermissoesOmit
   historico?: Prisma.HistoricoOmit
+  documento?: Prisma.DocumentoOmit
 }
 
 /* Types for Logging */
