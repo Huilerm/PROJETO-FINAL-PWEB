@@ -2,9 +2,12 @@ import { Router } from 'express';
 import { CourseController } from '../controllers/course.controller';
 import { authMiddleware } from '../middleware/auth.middleware'; 
 import { verificarPermissao } from '../middleware/rbac.middleware';
+import { upload } from '../middleware/upload.middleware';
+import { CourseCoverController } from '../controllers/cover.controller';
 
 const router = Router();
 const courseController = new CourseController();
+const courseCoverController = new CourseCoverController();
 
 router.get('/', authMiddleware, courseController.findAll.bind(courseController));
 
@@ -30,5 +33,14 @@ router.delete(
   verificarPermissao(['GERENCIAR_CURSO']), 
   courseController.remove.bind(courseController)
 );
+
+router.post(
+  '/:id/capa',
+  authMiddleware, 
+  upload.single("cover"),
+  courseCoverController.upload
+);
+
+router.get('/:id/capa', authMiddleware, courseCoverController.show);
 
 export { router as courseRoutes };

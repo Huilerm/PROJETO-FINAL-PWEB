@@ -47,6 +47,7 @@ export type CursoMinAggregateOutputType = {
   horarioInicio: Date | null
   horarioFim: Date | null
   fkInstituicao: string | null
+  capaID: string | null
 }
 
 export type CursoMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type CursoMaxAggregateOutputType = {
   horarioInicio: Date | null
   horarioFim: Date | null
   fkInstituicao: string | null
+  capaID: string | null
 }
 
 export type CursoCountAggregateOutputType = {
@@ -74,6 +76,7 @@ export type CursoCountAggregateOutputType = {
   horarioFim: number
   diasSemana: number
   fkInstituicao: number
+  capaID: number
   _all: number
 }
 
@@ -99,6 +102,7 @@ export type CursoMinAggregateInputType = {
   horarioInicio?: true
   horarioFim?: true
   fkInstituicao?: true
+  capaID?: true
 }
 
 export type CursoMaxAggregateInputType = {
@@ -112,6 +116,7 @@ export type CursoMaxAggregateInputType = {
   horarioInicio?: true
   horarioFim?: true
   fkInstituicao?: true
+  capaID?: true
 }
 
 export type CursoCountAggregateInputType = {
@@ -126,6 +131,7 @@ export type CursoCountAggregateInputType = {
   horarioFim?: true
   diasSemana?: true
   fkInstituicao?: true
+  capaID?: true
   _all?: true
 }
 
@@ -227,6 +233,7 @@ export type CursoGroupByOutputType = {
   horarioFim: Date
   diasSemana: $Enums.DiasSemana[]
   fkInstituicao: string
+  capaID: string | null
   _count: CursoCountAggregateOutputType | null
   _avg: CursoAvgAggregateOutputType | null
   _sum: CursoSumAggregateOutputType | null
@@ -264,9 +271,11 @@ export type CursoWhereInput = {
   horarioFim?: Prisma.DateTimeFilter<"Curso"> | Date | string
   diasSemana?: Prisma.EnumDiasSemanaNullableListFilter<"Curso">
   fkInstituicao?: Prisma.StringFilter<"Curso"> | string
+  capaID?: Prisma.StringNullableFilter<"Curso"> | string | null
   professores?: Prisma.AlocacaoProfessorListRelationFilter
   inscricao?: Prisma.InscricaoListRelationFilter
   Instituicao?: Prisma.XOR<Prisma.InstituicaoScalarRelationFilter, Prisma.InstituicaoWhereInput>
+  Capa?: Prisma.XOR<Prisma.CapaNullableScalarRelationFilter, Prisma.CapaWhereInput> | null
 }
 
 export type CursoOrderByWithRelationInput = {
@@ -281,13 +290,16 @@ export type CursoOrderByWithRelationInput = {
   horarioFim?: Prisma.SortOrder
   diasSemana?: Prisma.SortOrder
   fkInstituicao?: Prisma.SortOrder
+  capaID?: Prisma.SortOrderInput | Prisma.SortOrder
   professores?: Prisma.AlocacaoProfessorOrderByRelationAggregateInput
   inscricao?: Prisma.InscricaoOrderByRelationAggregateInput
   Instituicao?: Prisma.InstituicaoOrderByWithRelationInput
+  Capa?: Prisma.CapaOrderByWithRelationInput
 }
 
 export type CursoWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  capaID?: string
   AND?: Prisma.CursoWhereInput | Prisma.CursoWhereInput[]
   OR?: Prisma.CursoWhereInput[]
   NOT?: Prisma.CursoWhereInput | Prisma.CursoWhereInput[]
@@ -304,7 +316,8 @@ export type CursoWhereUniqueInput = Prisma.AtLeast<{
   professores?: Prisma.AlocacaoProfessorListRelationFilter
   inscricao?: Prisma.InscricaoListRelationFilter
   Instituicao?: Prisma.XOR<Prisma.InstituicaoScalarRelationFilter, Prisma.InstituicaoWhereInput>
-}, "id">
+  Capa?: Prisma.XOR<Prisma.CapaNullableScalarRelationFilter, Prisma.CapaWhereInput> | null
+}, "id" | "capaID">
 
 export type CursoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -318,6 +331,7 @@ export type CursoOrderByWithAggregationInput = {
   horarioFim?: Prisma.SortOrder
   diasSemana?: Prisma.SortOrder
   fkInstituicao?: Prisma.SortOrder
+  capaID?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CursoCountOrderByAggregateInput
   _avg?: Prisma.CursoAvgOrderByAggregateInput
   _max?: Prisma.CursoMaxOrderByAggregateInput
@@ -340,6 +354,7 @@ export type CursoScalarWhereWithAggregatesInput = {
   horarioFim?: Prisma.DateTimeWithAggregatesFilter<"Curso"> | Date | string
   diasSemana?: Prisma.EnumDiasSemanaNullableListFilter<"Curso">
   fkInstituicao?: Prisma.StringWithAggregatesFilter<"Curso"> | string
+  capaID?: Prisma.StringNullableWithAggregatesFilter<"Curso"> | string | null
 }
 
 export type CursoCreateInput = {
@@ -356,6 +371,7 @@ export type CursoCreateInput = {
   professores?: Prisma.AlocacaoProfessorCreateNestedManyWithoutCursoInput
   inscricao?: Prisma.InscricaoCreateNestedManyWithoutCursoInput
   Instituicao: Prisma.InstituicaoCreateNestedOneWithoutCursosInput
+  Capa?: Prisma.CapaCreateNestedOneWithoutCursosInput
 }
 
 export type CursoUncheckedCreateInput = {
@@ -370,6 +386,7 @@ export type CursoUncheckedCreateInput = {
   horarioFim: Date | string
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao: string
+  capaID?: string | null
   professores?: Prisma.AlocacaoProfessorUncheckedCreateNestedManyWithoutCursoInput
   inscricao?: Prisma.InscricaoUncheckedCreateNestedManyWithoutCursoInput
 }
@@ -388,6 +405,7 @@ export type CursoUpdateInput = {
   professores?: Prisma.AlocacaoProfessorUpdateManyWithoutCursoNestedInput
   inscricao?: Prisma.InscricaoUpdateManyWithoutCursoNestedInput
   Instituicao?: Prisma.InstituicaoUpdateOneRequiredWithoutCursosNestedInput
+  Capa?: Prisma.CapaUpdateOneWithoutCursosNestedInput
 }
 
 export type CursoUncheckedUpdateInput = {
@@ -402,6 +420,7 @@ export type CursoUncheckedUpdateInput = {
   horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao?: Prisma.StringFieldUpdateOperationsInput | string
+  capaID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   professores?: Prisma.AlocacaoProfessorUncheckedUpdateManyWithoutCursoNestedInput
   inscricao?: Prisma.InscricaoUncheckedUpdateManyWithoutCursoNestedInput
 }
@@ -418,6 +437,7 @@ export type CursoCreateManyInput = {
   horarioFim: Date | string
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao: string
+  capaID?: string | null
 }
 
 export type CursoUpdateManyMutationInput = {
@@ -445,6 +465,7 @@ export type CursoUncheckedUpdateManyInput = {
   horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao?: Prisma.StringFieldUpdateOperationsInput | string
+  capaID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EnumDiasSemanaNullableListFilter<$PrismaModel = never> = {
@@ -467,6 +488,7 @@ export type CursoCountOrderByAggregateInput = {
   horarioFim?: Prisma.SortOrder
   diasSemana?: Prisma.SortOrder
   fkInstituicao?: Prisma.SortOrder
+  capaID?: Prisma.SortOrder
 }
 
 export type CursoAvgOrderByAggregateInput = {
@@ -485,6 +507,7 @@ export type CursoMaxOrderByAggregateInput = {
   horarioInicio?: Prisma.SortOrder
   horarioFim?: Prisma.SortOrder
   fkInstituicao?: Prisma.SortOrder
+  capaID?: Prisma.SortOrder
 }
 
 export type CursoMinOrderByAggregateInput = {
@@ -498,11 +521,17 @@ export type CursoMinOrderByAggregateInput = {
   horarioInicio?: Prisma.SortOrder
   horarioFim?: Prisma.SortOrder
   fkInstituicao?: Prisma.SortOrder
+  capaID?: Prisma.SortOrder
 }
 
 export type CursoSumOrderByAggregateInput = {
   carga_horaria?: Prisma.SortOrder
   vagas?: Prisma.SortOrder
+}
+
+export type CursoNullableScalarRelationFilter = {
+  is?: Prisma.CursoWhereInput | null
+  isNot?: Prisma.CursoWhereInput | null
 }
 
 export type CursoScalarRelationFilter = {
@@ -531,6 +560,38 @@ export type EnumStatusCursoFieldUpdateOperationsInput = {
 export type CursoUpdatediasSemanaInput = {
   set?: $Enums.DiasSemana[]
   push?: $Enums.DiasSemana | $Enums.DiasSemana[]
+}
+
+export type CursoCreateNestedOneWithoutCapaInput = {
+  create?: Prisma.XOR<Prisma.CursoCreateWithoutCapaInput, Prisma.CursoUncheckedCreateWithoutCapaInput>
+  connectOrCreate?: Prisma.CursoCreateOrConnectWithoutCapaInput
+  connect?: Prisma.CursoWhereUniqueInput
+}
+
+export type CursoUncheckedCreateNestedOneWithoutCapaInput = {
+  create?: Prisma.XOR<Prisma.CursoCreateWithoutCapaInput, Prisma.CursoUncheckedCreateWithoutCapaInput>
+  connectOrCreate?: Prisma.CursoCreateOrConnectWithoutCapaInput
+  connect?: Prisma.CursoWhereUniqueInput
+}
+
+export type CursoUpdateOneWithoutCapaNestedInput = {
+  create?: Prisma.XOR<Prisma.CursoCreateWithoutCapaInput, Prisma.CursoUncheckedCreateWithoutCapaInput>
+  connectOrCreate?: Prisma.CursoCreateOrConnectWithoutCapaInput
+  upsert?: Prisma.CursoUpsertWithoutCapaInput
+  disconnect?: Prisma.CursoWhereInput | boolean
+  delete?: Prisma.CursoWhereInput | boolean
+  connect?: Prisma.CursoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CursoUpdateToOneWithWhereWithoutCapaInput, Prisma.CursoUpdateWithoutCapaInput>, Prisma.CursoUncheckedUpdateWithoutCapaInput>
+}
+
+export type CursoUncheckedUpdateOneWithoutCapaNestedInput = {
+  create?: Prisma.XOR<Prisma.CursoCreateWithoutCapaInput, Prisma.CursoUncheckedCreateWithoutCapaInput>
+  connectOrCreate?: Prisma.CursoCreateOrConnectWithoutCapaInput
+  upsert?: Prisma.CursoUpsertWithoutCapaInput
+  disconnect?: Prisma.CursoWhereInput | boolean
+  delete?: Prisma.CursoWhereInput | boolean
+  connect?: Prisma.CursoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CursoUpdateToOneWithWhereWithoutCapaInput, Prisma.CursoUpdateWithoutCapaInput>, Prisma.CursoUncheckedUpdateWithoutCapaInput>
 }
 
 export type CursoCreateNestedOneWithoutProfessoresInput = {
@@ -603,6 +664,86 @@ export type CursoUpdateOneRequiredWithoutInscricaoNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CursoUpdateToOneWithWhereWithoutInscricaoInput, Prisma.CursoUpdateWithoutInscricaoInput>, Prisma.CursoUncheckedUpdateWithoutInscricaoInput>
 }
 
+export type CursoCreateWithoutCapaInput = {
+  id?: string
+  nome: string
+  carga_horaria: number
+  vagas: number
+  status?: $Enums.StatusCurso
+  dataInicio: Date | string
+  dataFim: Date | string
+  horarioInicio: Date | string
+  horarioFim: Date | string
+  diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
+  professores?: Prisma.AlocacaoProfessorCreateNestedManyWithoutCursoInput
+  inscricao?: Prisma.InscricaoCreateNestedManyWithoutCursoInput
+  Instituicao: Prisma.InstituicaoCreateNestedOneWithoutCursosInput
+}
+
+export type CursoUncheckedCreateWithoutCapaInput = {
+  id?: string
+  nome: string
+  carga_horaria: number
+  vagas: number
+  status?: $Enums.StatusCurso
+  dataInicio: Date | string
+  dataFim: Date | string
+  horarioInicio: Date | string
+  horarioFim: Date | string
+  diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
+  fkInstituicao: string
+  professores?: Prisma.AlocacaoProfessorUncheckedCreateNestedManyWithoutCursoInput
+  inscricao?: Prisma.InscricaoUncheckedCreateNestedManyWithoutCursoInput
+}
+
+export type CursoCreateOrConnectWithoutCapaInput = {
+  where: Prisma.CursoWhereUniqueInput
+  create: Prisma.XOR<Prisma.CursoCreateWithoutCapaInput, Prisma.CursoUncheckedCreateWithoutCapaInput>
+}
+
+export type CursoUpsertWithoutCapaInput = {
+  update: Prisma.XOR<Prisma.CursoUpdateWithoutCapaInput, Prisma.CursoUncheckedUpdateWithoutCapaInput>
+  create: Prisma.XOR<Prisma.CursoCreateWithoutCapaInput, Prisma.CursoUncheckedCreateWithoutCapaInput>
+  where?: Prisma.CursoWhereInput
+}
+
+export type CursoUpdateToOneWithWhereWithoutCapaInput = {
+  where?: Prisma.CursoWhereInput
+  data: Prisma.XOR<Prisma.CursoUpdateWithoutCapaInput, Prisma.CursoUncheckedUpdateWithoutCapaInput>
+}
+
+export type CursoUpdateWithoutCapaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  carga_horaria?: Prisma.IntFieldUpdateOperationsInput | number
+  vagas?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumStatusCursoFieldUpdateOperationsInput | $Enums.StatusCurso
+  dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horarioInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
+  professores?: Prisma.AlocacaoProfessorUpdateManyWithoutCursoNestedInput
+  inscricao?: Prisma.InscricaoUpdateManyWithoutCursoNestedInput
+  Instituicao?: Prisma.InstituicaoUpdateOneRequiredWithoutCursosNestedInput
+}
+
+export type CursoUncheckedUpdateWithoutCapaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  carga_horaria?: Prisma.IntFieldUpdateOperationsInput | number
+  vagas?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumStatusCursoFieldUpdateOperationsInput | $Enums.StatusCurso
+  dataInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horarioInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
+  fkInstituicao?: Prisma.StringFieldUpdateOperationsInput | string
+  professores?: Prisma.AlocacaoProfessorUncheckedUpdateManyWithoutCursoNestedInput
+  inscricao?: Prisma.InscricaoUncheckedUpdateManyWithoutCursoNestedInput
+}
+
 export type CursoCreateWithoutProfessoresInput = {
   id?: string
   nome: string
@@ -616,6 +757,7 @@ export type CursoCreateWithoutProfessoresInput = {
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
   inscricao?: Prisma.InscricaoCreateNestedManyWithoutCursoInput
   Instituicao: Prisma.InstituicaoCreateNestedOneWithoutCursosInput
+  Capa?: Prisma.CapaCreateNestedOneWithoutCursosInput
 }
 
 export type CursoUncheckedCreateWithoutProfessoresInput = {
@@ -630,6 +772,7 @@ export type CursoUncheckedCreateWithoutProfessoresInput = {
   horarioFim: Date | string
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao: string
+  capaID?: string | null
   inscricao?: Prisma.InscricaoUncheckedCreateNestedManyWithoutCursoInput
 }
 
@@ -662,6 +805,7 @@ export type CursoUpdateWithoutProfessoresInput = {
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
   inscricao?: Prisma.InscricaoUpdateManyWithoutCursoNestedInput
   Instituicao?: Prisma.InstituicaoUpdateOneRequiredWithoutCursosNestedInput
+  Capa?: Prisma.CapaUpdateOneWithoutCursosNestedInput
 }
 
 export type CursoUncheckedUpdateWithoutProfessoresInput = {
@@ -676,6 +820,7 @@ export type CursoUncheckedUpdateWithoutProfessoresInput = {
   horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao?: Prisma.StringFieldUpdateOperationsInput | string
+  capaID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inscricao?: Prisma.InscricaoUncheckedUpdateManyWithoutCursoNestedInput
 }
 
@@ -692,6 +837,7 @@ export type CursoCreateWithoutInstituicaoInput = {
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
   professores?: Prisma.AlocacaoProfessorCreateNestedManyWithoutCursoInput
   inscricao?: Prisma.InscricaoCreateNestedManyWithoutCursoInput
+  Capa?: Prisma.CapaCreateNestedOneWithoutCursosInput
 }
 
 export type CursoUncheckedCreateWithoutInstituicaoInput = {
@@ -705,6 +851,7 @@ export type CursoUncheckedCreateWithoutInstituicaoInput = {
   horarioInicio: Date | string
   horarioFim: Date | string
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
+  capaID?: string | null
   professores?: Prisma.AlocacaoProfessorUncheckedCreateNestedManyWithoutCursoInput
   inscricao?: Prisma.InscricaoUncheckedCreateNestedManyWithoutCursoInput
 }
@@ -750,6 +897,7 @@ export type CursoScalarWhereInput = {
   horarioFim?: Prisma.DateTimeFilter<"Curso"> | Date | string
   diasSemana?: Prisma.EnumDiasSemanaNullableListFilter<"Curso">
   fkInstituicao?: Prisma.StringFilter<"Curso"> | string
+  capaID?: Prisma.StringNullableFilter<"Curso"> | string | null
 }
 
 export type CursoCreateWithoutInscricaoInput = {
@@ -765,6 +913,7 @@ export type CursoCreateWithoutInscricaoInput = {
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
   professores?: Prisma.AlocacaoProfessorCreateNestedManyWithoutCursoInput
   Instituicao: Prisma.InstituicaoCreateNestedOneWithoutCursosInput
+  Capa?: Prisma.CapaCreateNestedOneWithoutCursosInput
 }
 
 export type CursoUncheckedCreateWithoutInscricaoInput = {
@@ -779,6 +928,7 @@ export type CursoUncheckedCreateWithoutInscricaoInput = {
   horarioFim: Date | string
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao: string
+  capaID?: string | null
   professores?: Prisma.AlocacaoProfessorUncheckedCreateNestedManyWithoutCursoInput
 }
 
@@ -811,6 +961,7 @@ export type CursoUpdateWithoutInscricaoInput = {
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
   professores?: Prisma.AlocacaoProfessorUpdateManyWithoutCursoNestedInput
   Instituicao?: Prisma.InstituicaoUpdateOneRequiredWithoutCursosNestedInput
+  Capa?: Prisma.CapaUpdateOneWithoutCursosNestedInput
 }
 
 export type CursoUncheckedUpdateWithoutInscricaoInput = {
@@ -825,6 +976,7 @@ export type CursoUncheckedUpdateWithoutInscricaoInput = {
   horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
   fkInstituicao?: Prisma.StringFieldUpdateOperationsInput | string
+  capaID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   professores?: Prisma.AlocacaoProfessorUncheckedUpdateManyWithoutCursoNestedInput
 }
 
@@ -839,6 +991,7 @@ export type CursoCreateManyInstituicaoInput = {
   horarioInicio: Date | string
   horarioFim: Date | string
   diasSemana?: Prisma.CursoCreatediasSemanaInput | $Enums.DiasSemana[]
+  capaID?: string | null
 }
 
 export type CursoUpdateWithoutInstituicaoInput = {
@@ -854,6 +1007,7 @@ export type CursoUpdateWithoutInstituicaoInput = {
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
   professores?: Prisma.AlocacaoProfessorUpdateManyWithoutCursoNestedInput
   inscricao?: Prisma.InscricaoUpdateManyWithoutCursoNestedInput
+  Capa?: Prisma.CapaUpdateOneWithoutCursosNestedInput
 }
 
 export type CursoUncheckedUpdateWithoutInstituicaoInput = {
@@ -867,6 +1021,7 @@ export type CursoUncheckedUpdateWithoutInstituicaoInput = {
   horarioInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
+  capaID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   professores?: Prisma.AlocacaoProfessorUncheckedUpdateManyWithoutCursoNestedInput
   inscricao?: Prisma.InscricaoUncheckedUpdateManyWithoutCursoNestedInput
 }
@@ -882,6 +1037,7 @@ export type CursoUncheckedUpdateManyWithoutInstituicaoInput = {
   horarioInicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   horarioFim?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diasSemana?: Prisma.CursoUpdatediasSemanaInput | $Enums.DiasSemana[]
+  capaID?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -936,9 +1092,11 @@ export type CursoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   horarioFim?: boolean
   diasSemana?: boolean
   fkInstituicao?: boolean
+  capaID?: boolean
   professores?: boolean | Prisma.Curso$professoresArgs<ExtArgs>
   inscricao?: boolean | Prisma.Curso$inscricaoArgs<ExtArgs>
   Instituicao?: boolean | Prisma.InstituicaoDefaultArgs<ExtArgs>
+  Capa?: boolean | Prisma.Curso$CapaArgs<ExtArgs>
   _count?: boolean | Prisma.CursoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["curso"]>
 
@@ -954,7 +1112,9 @@ export type CursoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   horarioFim?: boolean
   diasSemana?: boolean
   fkInstituicao?: boolean
+  capaID?: boolean
   Instituicao?: boolean | Prisma.InstituicaoDefaultArgs<ExtArgs>
+  Capa?: boolean | Prisma.Curso$CapaArgs<ExtArgs>
 }, ExtArgs["result"]["curso"]>
 
 export type CursoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -969,7 +1129,9 @@ export type CursoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   horarioFim?: boolean
   diasSemana?: boolean
   fkInstituicao?: boolean
+  capaID?: boolean
   Instituicao?: boolean | Prisma.InstituicaoDefaultArgs<ExtArgs>
+  Capa?: boolean | Prisma.Curso$CapaArgs<ExtArgs>
 }, ExtArgs["result"]["curso"]>
 
 export type CursoSelectScalar = {
@@ -984,20 +1146,24 @@ export type CursoSelectScalar = {
   horarioFim?: boolean
   diasSemana?: boolean
   fkInstituicao?: boolean
+  capaID?: boolean
 }
 
-export type CursoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "carga_horaria" | "vagas" | "status" | "dataInicio" | "dataFim" | "horarioInicio" | "horarioFim" | "diasSemana" | "fkInstituicao", ExtArgs["result"]["curso"]>
+export type CursoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "carga_horaria" | "vagas" | "status" | "dataInicio" | "dataFim" | "horarioInicio" | "horarioFim" | "diasSemana" | "fkInstituicao" | "capaID", ExtArgs["result"]["curso"]>
 export type CursoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   professores?: boolean | Prisma.Curso$professoresArgs<ExtArgs>
   inscricao?: boolean | Prisma.Curso$inscricaoArgs<ExtArgs>
   Instituicao?: boolean | Prisma.InstituicaoDefaultArgs<ExtArgs>
+  Capa?: boolean | Prisma.Curso$CapaArgs<ExtArgs>
   _count?: boolean | Prisma.CursoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CursoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Instituicao?: boolean | Prisma.InstituicaoDefaultArgs<ExtArgs>
+  Capa?: boolean | Prisma.Curso$CapaArgs<ExtArgs>
 }
 export type CursoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Instituicao?: boolean | Prisma.InstituicaoDefaultArgs<ExtArgs>
+  Capa?: boolean | Prisma.Curso$CapaArgs<ExtArgs>
 }
 
 export type $CursoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1006,6 +1172,7 @@ export type $CursoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     professores: Prisma.$AlocacaoProfessorPayload<ExtArgs>[]
     inscricao: Prisma.$InscricaoPayload<ExtArgs>[]
     Instituicao: Prisma.$InstituicaoPayload<ExtArgs>
+    Capa: Prisma.$CapaPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1019,6 +1186,7 @@ export type $CursoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     horarioFim: Date
     diasSemana: $Enums.DiasSemana[]
     fkInstituicao: string
+    capaID: string | null
   }, ExtArgs["result"]["curso"]>
   composites: {}
 }
@@ -1416,6 +1584,7 @@ export interface Prisma__CursoClient<T, Null = never, ExtArgs extends runtime.Ty
   professores<T extends Prisma.Curso$professoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Curso$professoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlocacaoProfessorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inscricao<T extends Prisma.Curso$inscricaoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Curso$inscricaoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InscricaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Instituicao<T extends Prisma.InstituicaoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstituicaoDefaultArgs<ExtArgs>>): Prisma.Prisma__InstituicaoClient<runtime.Types.Result.GetResult<Prisma.$InstituicaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Capa<T extends Prisma.Curso$CapaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Curso$CapaArgs<ExtArgs>>): Prisma.Prisma__CapaClient<runtime.Types.Result.GetResult<Prisma.$CapaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1456,6 +1625,7 @@ export interface CursoFieldRefs {
   readonly horarioFim: Prisma.FieldRef<"Curso", 'DateTime'>
   readonly diasSemana: Prisma.FieldRef<"Curso", 'DiasSemana[]'>
   readonly fkInstituicao: Prisma.FieldRef<"Curso", 'String'>
+  readonly capaID: Prisma.FieldRef<"Curso", 'String'>
 }
     
 
@@ -1902,6 +2072,25 @@ export type Curso$inscricaoArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.InscricaoScalarFieldEnum | Prisma.InscricaoScalarFieldEnum[]
+}
+
+/**
+ * Curso.Capa
+ */
+export type Curso$CapaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Capa
+   */
+  select?: Prisma.CapaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Capa
+   */
+  omit?: Prisma.CapaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CapaInclude<ExtArgs> | null
+  where?: Prisma.CapaWhereInput
 }
 
 /**

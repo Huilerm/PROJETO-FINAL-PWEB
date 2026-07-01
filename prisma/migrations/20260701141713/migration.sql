@@ -19,6 +19,9 @@ CREATE TYPE "Acao" AS ENUM ('CREATE', 'UPDATE', 'DELETE');
 -- CreateEnum
 CREATE TYPE "Cargos" AS ENUM ('ALUNO', 'PROFESSOR', 'ADMIN', 'DEPPI');
 
+-- CreateEnum
+CREATE TYPE "CategoriaDocumento" AS ENUM ('RG', 'CPF', 'COMPROVANTE_RESIDENCIA', 'COMPROVANTE_RENDA', 'HISTORICO_ESCOLAR', 'OUTRO');
+
 -- CreateTable
 CREATE TABLE "usuario" (
     "id" TEXT NOT NULL,
@@ -124,19 +127,33 @@ CREATE TABLE "curso" (
     "horario_fim" TIME NOT NULL,
     "dias_semana" "DiasSemana"[],
     "fk_instituicao" TEXT NOT NULL,
+    "capaID" TEXT,
 
     CONSTRAINT "curso_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "alocacao_professor " (
+CREATE TABLE "Capa" (
+    "id" TEXT NOT NULL,
+    "nome_arquivo" TEXT NOT NULL,
+    "nome_original" TEXT NOT NULL,
+    "mime_type" TEXT NOT NULL,
+    "size" INTEGER NOT NULL,
+    "path" TEXT NOT NULL,
+    "dataCriacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Capa_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "alocacao_professor" (
     "id" TEXT NOT NULL,
     "fk_professor" TEXT NOT NULL,
     "fk_curso" TEXT NOT NULL,
     "carga_horaria" INTEGER NOT NULL,
     "data_alocacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "alocacao_professor _pkey" PRIMARY KEY ("id")
+    CONSTRAINT "alocacao_professor_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -243,6 +260,21 @@ CREATE TABLE "historico" (
 );
 
 -- CreateTable
+CREATE TABLE "documento" (
+    "id" TEXT NOT NULL,
+    "nome_original" TEXT NOT NULL,
+    "nome_arquivo" TEXT NOT NULL,
+    "caminho" TEXT NOT NULL,
+    "tipo_mime" TEXT NOT NULL,
+    "tamanho" INTEGER NOT NULL,
+    "categoria" "CategoriaDocumento" DEFAULT 'OUTRO',
+    "criado_em" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "fk_inscricao" TEXT NOT NULL,
+
+    CONSTRAINT "documento_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_CargoToUsuario" (
     "A" INTEGER NOT NULL,
     "B" TEXT NOT NULL,
@@ -280,7 +312,10 @@ CREATE UNIQUE INDEX "professor_email_siape_key" ON "professor"("email_siape");
 CREATE UNIQUE INDEX "professor_fk_usuario_key" ON "professor"("fk_usuario");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "alocacao_professor _fk_professor_fk_curso_key" ON "alocacao_professor "("fk_professor", "fk_curso");
+CREATE UNIQUE INDEX "curso_capaID_key" ON "curso"("capaID");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "alocacao_professor_fk_professor_fk_curso_key" ON "alocacao_professor"("fk_professor", "fk_curso");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "instituicao_cnpj_key" ON "instituicao"("cnpj");
@@ -322,10 +357,13 @@ ALTER TABLE "professor" ADD CONSTRAINT "professor_fk_usuario_fkey" FOREIGN KEY (
 ALTER TABLE "curso" ADD CONSTRAINT "curso_fk_instituicao_fkey" FOREIGN KEY ("fk_instituicao") REFERENCES "instituicao"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "alocacao_professor " ADD CONSTRAINT "alocacao_professor _fk_professor_fkey" FOREIGN KEY ("fk_professor") REFERENCES "professor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "curso" ADD CONSTRAINT "curso_capaID_fkey" FOREIGN KEY ("capaID") REFERENCES "Capa"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "alocacao_professor " ADD CONSTRAINT "alocacao_professor _fk_curso_fkey" FOREIGN KEY ("fk_curso") REFERENCES "curso"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "alocacao_professor" ADD CONSTRAINT "alocacao_professor_fk_professor_fkey" FOREIGN KEY ("fk_professor") REFERENCES "professor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "alocacao_professor" ADD CONSTRAINT "alocacao_professor_fk_curso_fkey" FOREIGN KEY ("fk_curso") REFERENCES "curso"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "inscricao" ADD CONSTRAINT "inscricao_fk_aluno_fkey" FOREIGN KEY ("fk_aluno") REFERENCES "aluno"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -347,6 +385,9 @@ ALTER TABLE "historico" ADD CONSTRAINT "historico_fk_inscricao_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "historico" ADD CONSTRAINT "historico_fk_usuario_responsavel_fkey" FOREIGN KEY ("fk_usuario_responsavel") REFERENCES "usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "documento" ADD CONSTRAINT "documento_fk_inscricao_fkey" FOREIGN KEY ("fk_inscricao") REFERENCES "inscricao"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CargoToUsuario" ADD CONSTRAINT "_CargoToUsuario_A_fkey" FOREIGN KEY ("A") REFERENCES "cargo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
