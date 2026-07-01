@@ -18,7 +18,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
   const token = authHeader.split(" ")[1];
   const secret = process.env.JWT_SECRET;
 
-  if(!token) {
+  if (!token) {
     res.status(401).json({ menasgem: "Token não fornecido" });
     return;
   }
@@ -33,6 +33,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
     req.user = {
       userId: decoded.userId,
       roleId: decoded.roleId,
+      permissions: decoded.permissions,
     };
     next();
   } catch {
