@@ -3,14 +3,15 @@ import { z } from "zod";
 // Schema para CRIAR um professor
 export const criarProfessorSchema = z.object({
   siape: z.string().min(1, "SIAPE é obrigatório"),
-  fkUsuario: z.string().uuid("ID de usuário inválido"), // Obrigatório para ligar ao Usuário
-  emailSiape: z.string().email("E-mail SIAPE inválido").optional(),
+  fkUsuario: z.string().uuid("ID de usuário inválido"),
+  
+  // O .transform converte undefined para null, agradando o Prisma e o TypeScript
+  emailSiape: z.string().email("E-mail SIAPE inválido").nullish().transform(v => v ?? null),
   telefonesInstitucionais: z.array(z.string()).default([]),
   telefonesPessoais: z.array(z.string()).default([]),
-  emPGD: z.boolean().optional(),
-  titulacao: z.string().optional(),
-  escolaridade: z.string().optional(),
-  // ... você pode adicionar os outros campos do model aqui se quiser receber na criação
+  emPGD: z.boolean().nullish().transform(v => v ?? null),
+  titulacao: z.string().nullish().transform(v => v ?? null),
+  escolaridade: z.string().nullish().transform(v => v ?? null),
 });
 
 // Schema para ATUALIZAR um professor (tudo opcional, menos a fkUsuario que não muda)
@@ -29,7 +30,7 @@ export const professorDadosContaSchema = z.object({
   emailClassroom: z.string().email("E-mail do Google Sala de Aula inválido").optional().or(z.literal("")),
   telefonesInstitucionais: z.array(z.string()).default([]),
   telefonesPessoais: z.array(z.string()).default([]),
-  emPGD: z.boolean({ required_error: "Obrigatório informar se está em PGD" }),
+  emPGD: z.boolean({ message: "Obrigatório informar se está em PGD" }),
 });
 
 // Exportando as tipagens para o TypeScript usar nos Controllers
