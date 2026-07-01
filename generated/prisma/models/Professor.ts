@@ -41,6 +41,8 @@ export type ProfessorMinAggregateOutputType = {
   siape: string | null
   emailSiape: string | null
   emPGD: boolean | null
+  emailNotificacoes: string | null
+  emailClassroom: string | null
   titulacao: string | null
   escolaridade: string | null
   grupoSanguineo: string | null
@@ -74,6 +76,8 @@ export type ProfessorMaxAggregateOutputType = {
   siape: string | null
   emailSiape: string | null
   emPGD: boolean | null
+  emailNotificacoes: string | null
+  emailClassroom: string | null
   titulacao: string | null
   escolaridade: string | null
   grupoSanguineo: string | null
@@ -106,9 +110,11 @@ export type ProfessorCountAggregateOutputType = {
   id: number
   siape: number
   emailSiape: number
-  telefonesInstiticionais: number
+  telefonesInstitucionais: number
   telefonesPessoais: number
   emPGD: number
+  emailNotificacoes: number
+  emailClassroom: number
   titulacao: number
   escolaridade: number
   grupoSanguineo: number
@@ -154,6 +160,8 @@ export type ProfessorMinAggregateInputType = {
   siape?: true
   emailSiape?: true
   emPGD?: true
+  emailNotificacoes?: true
+  emailClassroom?: true
   titulacao?: true
   escolaridade?: true
   grupoSanguineo?: true
@@ -187,6 +195,8 @@ export type ProfessorMaxAggregateInputType = {
   siape?: true
   emailSiape?: true
   emPGD?: true
+  emailNotificacoes?: true
+  emailClassroom?: true
   titulacao?: true
   escolaridade?: true
   grupoSanguineo?: true
@@ -219,9 +229,11 @@ export type ProfessorCountAggregateInputType = {
   id?: true
   siape?: true
   emailSiape?: true
-  telefonesInstiticionais?: true
+  telefonesInstitucionais?: true
   telefonesPessoais?: true
   emPGD?: true
+  emailNotificacoes?: true
+  emailClassroom?: true
   titulacao?: true
   escolaridade?: true
   grupoSanguineo?: true
@@ -341,9 +353,11 @@ export type ProfessorGroupByOutputType = {
   id: string
   siape: string
   emailSiape: string | null
-  telefonesInstiticionais: string[]
+  telefonesInstitucionais: string[]
   telefonesPessoais: string[]
   emPGD: boolean | null
+  emailNotificacoes: string | null
+  emailClassroom: string | null
   titulacao: string | null
   escolaridade: string | null
   grupoSanguineo: string | null
@@ -399,9 +413,11 @@ export type ProfessorWhereInput = {
   id?: Prisma.StringFilter<"Professor"> | string
   siape?: Prisma.StringFilter<"Professor"> | string
   emailSiape?: Prisma.StringNullableFilter<"Professor"> | string | null
-  telefonesInstiticionais?: Prisma.StringNullableListFilter<"Professor">
+  telefonesInstitucionais?: Prisma.StringNullableListFilter<"Professor">
   telefonesPessoais?: Prisma.StringNullableListFilter<"Professor">
   emPGD?: Prisma.BoolNullableFilter<"Professor"> | boolean | null
+  emailNotificacoes?: Prisma.StringNullableFilter<"Professor"> | string | null
+  emailClassroom?: Prisma.StringNullableFilter<"Professor"> | string | null
   titulacao?: Prisma.StringNullableFilter<"Professor"> | string | null
   escolaridade?: Prisma.StringNullableFilter<"Professor"> | string | null
   grupoSanguineo?: Prisma.StringNullableFilter<"Professor"> | string | null
@@ -436,9 +452,11 @@ export type ProfessorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   siape?: Prisma.SortOrder
   emailSiape?: Prisma.SortOrderInput | Prisma.SortOrder
-  telefonesInstiticionais?: Prisma.SortOrder
+  telefonesInstitucionais?: Prisma.SortOrder
   telefonesPessoais?: Prisma.SortOrder
   emPGD?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailNotificacoes?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailClassroom?: Prisma.SortOrderInput | Prisma.SortOrder
   titulacao?: Prisma.SortOrderInput | Prisma.SortOrder
   escolaridade?: Prisma.SortOrderInput | Prisma.SortOrder
   grupoSanguineo?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -477,9 +495,11 @@ export type ProfessorWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProfessorWhereInput | Prisma.ProfessorWhereInput[]
   OR?: Prisma.ProfessorWhereInput[]
   NOT?: Prisma.ProfessorWhereInput | Prisma.ProfessorWhereInput[]
-  telefonesInstiticionais?: Prisma.StringNullableListFilter<"Professor">
+  telefonesInstitucionais?: Prisma.StringNullableListFilter<"Professor">
   telefonesPessoais?: Prisma.StringNullableListFilter<"Professor">
   emPGD?: Prisma.BoolNullableFilter<"Professor"> | boolean | null
+  emailNotificacoes?: Prisma.StringNullableFilter<"Professor"> | string | null
+  emailClassroom?: Prisma.StringNullableFilter<"Professor"> | string | null
   titulacao?: Prisma.StringNullableFilter<"Professor"> | string | null
   escolaridade?: Prisma.StringNullableFilter<"Professor"> | string | null
   grupoSanguineo?: Prisma.StringNullableFilter<"Professor"> | string | null
@@ -513,9 +533,11 @@ export type ProfessorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   siape?: Prisma.SortOrder
   emailSiape?: Prisma.SortOrderInput | Prisma.SortOrder
-  telefonesInstiticionais?: Prisma.SortOrder
+  telefonesInstitucionais?: Prisma.SortOrder
   telefonesPessoais?: Prisma.SortOrder
   emPGD?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailNotificacoes?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailClassroom?: Prisma.SortOrderInput | Prisma.SortOrder
   titulacao?: Prisma.SortOrderInput | Prisma.SortOrder
   escolaridade?: Prisma.SortOrderInput | Prisma.SortOrder
   grupoSanguineo?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -556,9 +578,11 @@ export type ProfessorScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Professor"> | string
   siape?: Prisma.StringWithAggregatesFilter<"Professor"> | string
   emailSiape?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
-  telefonesInstiticionais?: Prisma.StringNullableListFilter<"Professor">
+  telefonesInstitucionais?: Prisma.StringNullableListFilter<"Professor">
   telefonesPessoais?: Prisma.StringNullableListFilter<"Professor">
   emPGD?: Prisma.BoolNullableWithAggregatesFilter<"Professor"> | boolean | null
+  emailNotificacoes?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
+  emailClassroom?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
   titulacao?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
   escolaridade?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
   grupoSanguineo?: Prisma.StringNullableWithAggregatesFilter<"Professor"> | string | null
@@ -591,9 +615,11 @@ export type ProfessorCreateInput = {
   id?: string
   siape: string
   emailSiape?: string | null
-  telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorCreatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
   emPGD?: boolean | null
+  emailNotificacoes?: string | null
+  emailClassroom?: string | null
   titulacao?: string | null
   escolaridade?: string | null
   grupoSanguineo?: string | null
@@ -627,9 +653,11 @@ export type ProfessorUncheckedCreateInput = {
   id?: string
   siape: string
   emailSiape?: string | null
-  telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorCreatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
   emPGD?: boolean | null
+  emailNotificacoes?: string | null
+  emailClassroom?: string | null
   titulacao?: string | null
   escolaridade?: string | null
   grupoSanguineo?: string | null
@@ -663,9 +691,11 @@ export type ProfessorUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -699,9 +729,11 @@ export type ProfessorUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -735,9 +767,11 @@ export type ProfessorCreateManyInput = {
   id?: string
   siape: string
   emailSiape?: string | null
-  telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorCreatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
   emPGD?: boolean | null
+  emailNotificacoes?: string | null
+  emailClassroom?: string | null
   titulacao?: string | null
   escolaridade?: string | null
   grupoSanguineo?: string | null
@@ -770,9 +804,11 @@ export type ProfessorUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -804,9 +840,11 @@ export type ProfessorUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -852,9 +890,11 @@ export type ProfessorCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   siape?: Prisma.SortOrder
   emailSiape?: Prisma.SortOrder
-  telefonesInstiticionais?: Prisma.SortOrder
+  telefonesInstitucionais?: Prisma.SortOrder
   telefonesPessoais?: Prisma.SortOrder
   emPGD?: Prisma.SortOrder
+  emailNotificacoes?: Prisma.SortOrder
+  emailClassroom?: Prisma.SortOrder
   titulacao?: Prisma.SortOrder
   escolaridade?: Prisma.SortOrder
   grupoSanguineo?: Prisma.SortOrder
@@ -893,6 +933,8 @@ export type ProfessorMaxOrderByAggregateInput = {
   siape?: Prisma.SortOrder
   emailSiape?: Prisma.SortOrder
   emPGD?: Prisma.SortOrder
+  emailNotificacoes?: Prisma.SortOrder
+  emailClassroom?: Prisma.SortOrder
   titulacao?: Prisma.SortOrder
   escolaridade?: Prisma.SortOrder
   grupoSanguineo?: Prisma.SortOrder
@@ -926,6 +968,8 @@ export type ProfessorMinOrderByAggregateInput = {
   siape?: Prisma.SortOrder
   emailSiape?: Prisma.SortOrder
   emPGD?: Prisma.SortOrder
+  emailNotificacoes?: Prisma.SortOrder
+  emailClassroom?: Prisma.SortOrder
   titulacao?: Prisma.SortOrder
   escolaridade?: Prisma.SortOrder
   grupoSanguineo?: Prisma.SortOrder
@@ -996,7 +1040,7 @@ export type ProfessorUncheckedUpdateOneWithoutUsuarioNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfessorUpdateToOneWithWhereWithoutUsuarioInput, Prisma.ProfessorUpdateWithoutUsuarioInput>, Prisma.ProfessorUncheckedUpdateWithoutUsuarioInput>
 }
 
-export type ProfessorCreatetelefonesInstiticionaisInput = {
+export type ProfessorCreatetelefonesInstitucionaisInput = {
   set: string[]
 }
 
@@ -1004,7 +1048,7 @@ export type ProfessorCreatetelefonesPessoaisInput = {
   set: string[]
 }
 
-export type ProfessorUpdatetelefonesInstiticionaisInput = {
+export type ProfessorUpdatetelefonesInstitucionaisInput = {
   set?: string[]
   push?: string | string[]
 }
@@ -1048,9 +1092,11 @@ export type ProfessorCreateWithoutUsuarioInput = {
   id?: string
   siape: string
   emailSiape?: string | null
-  telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorCreatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
   emPGD?: boolean | null
+  emailNotificacoes?: string | null
+  emailClassroom?: string | null
   titulacao?: string | null
   escolaridade?: string | null
   grupoSanguineo?: string | null
@@ -1083,9 +1129,11 @@ export type ProfessorUncheckedCreateWithoutUsuarioInput = {
   id?: string
   siape: string
   emailSiape?: string | null
-  telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorCreatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
   emPGD?: boolean | null
+  emailNotificacoes?: string | null
+  emailClassroom?: string | null
   titulacao?: string | null
   escolaridade?: string | null
   grupoSanguineo?: string | null
@@ -1134,9 +1182,11 @@ export type ProfessorUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1169,9 +1219,11 @@ export type ProfessorUncheckedUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1204,9 +1256,11 @@ export type ProfessorCreateWithoutAlocacoesInput = {
   id?: string
   siape: string
   emailSiape?: string | null
-  telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorCreatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
   emPGD?: boolean | null
+  emailNotificacoes?: string | null
+  emailClassroom?: string | null
   titulacao?: string | null
   escolaridade?: string | null
   grupoSanguineo?: string | null
@@ -1239,9 +1293,11 @@ export type ProfessorUncheckedCreateWithoutAlocacoesInput = {
   id?: string
   siape: string
   emailSiape?: string | null
-  telefonesInstiticionais?: Prisma.ProfessorCreatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorCreatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorCreatetelefonesPessoaisInput | string[]
   emPGD?: boolean | null
+  emailNotificacoes?: string | null
+  emailClassroom?: string | null
   titulacao?: string | null
   escolaridade?: string | null
   grupoSanguineo?: string | null
@@ -1290,9 +1346,11 @@ export type ProfessorUpdateWithoutAlocacoesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1325,9 +1383,11 @@ export type ProfessorUncheckedUpdateWithoutAlocacoesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   siape?: Prisma.StringFieldUpdateOperationsInput | string
   emailSiape?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  telefonesInstiticionais?: Prisma.ProfessorUpdatetelefonesInstiticionaisInput | string[]
+  telefonesInstitucionais?: Prisma.ProfessorUpdatetelefonesInstitucionaisInput | string[]
   telefonesPessoais?: Prisma.ProfessorUpdatetelefonesPessoaisInput | string[]
   emPGD?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  emailNotificacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailClassroom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titulacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   escolaridade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grupoSanguineo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1391,9 +1451,11 @@ export type ProfessorSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   siape?: boolean
   emailSiape?: boolean
-  telefonesInstiticionais?: boolean
+  telefonesInstitucionais?: boolean
   telefonesPessoais?: boolean
   emPGD?: boolean
+  emailNotificacoes?: boolean
+  emailClassroom?: boolean
   titulacao?: boolean
   escolaridade?: boolean
   grupoSanguineo?: boolean
@@ -1429,9 +1491,11 @@ export type ProfessorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   siape?: boolean
   emailSiape?: boolean
-  telefonesInstiticionais?: boolean
+  telefonesInstitucionais?: boolean
   telefonesPessoais?: boolean
   emPGD?: boolean
+  emailNotificacoes?: boolean
+  emailClassroom?: boolean
   titulacao?: boolean
   escolaridade?: boolean
   grupoSanguineo?: boolean
@@ -1465,9 +1529,11 @@ export type ProfessorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   siape?: boolean
   emailSiape?: boolean
-  telefonesInstiticionais?: boolean
+  telefonesInstitucionais?: boolean
   telefonesPessoais?: boolean
   emPGD?: boolean
+  emailNotificacoes?: boolean
+  emailClassroom?: boolean
   titulacao?: boolean
   escolaridade?: boolean
   grupoSanguineo?: boolean
@@ -1501,9 +1567,11 @@ export type ProfessorSelectScalar = {
   id?: boolean
   siape?: boolean
   emailSiape?: boolean
-  telefonesInstiticionais?: boolean
+  telefonesInstitucionais?: boolean
   telefonesPessoais?: boolean
   emPGD?: boolean
+  emailNotificacoes?: boolean
+  emailClassroom?: boolean
   titulacao?: boolean
   escolaridade?: boolean
   grupoSanguineo?: boolean
@@ -1532,7 +1600,7 @@ export type ProfessorSelectScalar = {
   fkUsuario?: boolean
 }
 
-export type ProfessorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siape" | "emailSiape" | "telefonesInstiticionais" | "telefonesPessoais" | "emPGD" | "titulacao" | "escolaridade" | "grupoSanguineo" | "setorSuap" | "lotacaoSiape" | "exercicioSiape" | "situacao" | "regimeTrabalho" | "jornadaTrabalho" | "operadorRaioX" | "inicioServicoPublico" | "dataDePosseInstituicao" | "inicioServicoInstituicao" | "tempoServicoInstituicaao" | "dataPosseCargo" | "inicioExercicioCargo" | "tempoServicoCargo" | "cargoInstitucional" | "classeCargo" | "padrao" | "grupoCargo" | "codigoVaga" | "NCE" | "qtdDependentes" | "pisPasep" | "fkUsuario", ExtArgs["result"]["professor"]>
+export type ProfessorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siape" | "emailSiape" | "telefonesInstitucionais" | "telefonesPessoais" | "emPGD" | "emailNotificacoes" | "emailClassroom" | "titulacao" | "escolaridade" | "grupoSanguineo" | "setorSuap" | "lotacaoSiape" | "exercicioSiape" | "situacao" | "regimeTrabalho" | "jornadaTrabalho" | "operadorRaioX" | "inicioServicoPublico" | "dataDePosseInstituicao" | "inicioServicoInstituicao" | "tempoServicoInstituicaao" | "dataPosseCargo" | "inicioExercicioCargo" | "tempoServicoCargo" | "cargoInstitucional" | "classeCargo" | "padrao" | "grupoCargo" | "codigoVaga" | "NCE" | "qtdDependentes" | "pisPasep" | "fkUsuario", ExtArgs["result"]["professor"]>
 export type ProfessorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   alocacoes?: boolean | Prisma.Professor$alocacoesArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
@@ -1555,9 +1623,11 @@ export type $ProfessorPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     id: string
     siape: string
     emailSiape: string | null
-    telefonesInstiticionais: string[]
+    telefonesInstitucionais: string[]
     telefonesPessoais: string[]
     emPGD: boolean | null
+    emailNotificacoes: string | null
+    emailClassroom: string | null
     titulacao: string | null
     escolaridade: string | null
     grupoSanguineo: string | null
@@ -2012,9 +2082,11 @@ export interface ProfessorFieldRefs {
   readonly id: Prisma.FieldRef<"Professor", 'String'>
   readonly siape: Prisma.FieldRef<"Professor", 'String'>
   readonly emailSiape: Prisma.FieldRef<"Professor", 'String'>
-  readonly telefonesInstiticionais: Prisma.FieldRef<"Professor", 'String[]'>
+  readonly telefonesInstitucionais: Prisma.FieldRef<"Professor", 'String[]'>
   readonly telefonesPessoais: Prisma.FieldRef<"Professor", 'String[]'>
   readonly emPGD: Prisma.FieldRef<"Professor", 'Boolean'>
+  readonly emailNotificacoes: Prisma.FieldRef<"Professor", 'String'>
+  readonly emailClassroom: Prisma.FieldRef<"Professor", 'String'>
   readonly titulacao: Prisma.FieldRef<"Professor", 'String'>
   readonly escolaridade: Prisma.FieldRef<"Professor", 'String'>
   readonly grupoSanguineo: Prisma.FieldRef<"Professor", 'String'>

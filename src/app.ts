@@ -8,6 +8,7 @@ import { AppError } from "./errors/AppError.js";
 import inscricaoRouter from "./routes/inscricao.routes.js";
 import { courseRoutes } from "./routes/course.routes.js";
 import instituicaoRoutes from "./routes/instituicao.routes.js";
+import { professorRoutes } from "./routes/professor.routes.js";
 
 const PORT = process.env.PORT ?? 3000;
 const app = express();
@@ -20,6 +21,7 @@ app.use("/admin", adminRouter);
 app.use("/inscricoes", inscricaoRouter);
 app.use("/cursos", courseRoutes);
 app.use("/instituicao", instituicaoRoutes);
+app.use(professorRoutes);
 // ── Rotas ────────────────────────────────────────────────────────
 
 // ── Verificar servidor ──────────────────────────────────
