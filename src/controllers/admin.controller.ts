@@ -22,7 +22,7 @@ export async function createAdmin(
       user = await createAdminDeppi(parsed.data, parsed.data.cargo);
     }
     res.status(201).json({
-      msg: "ADMIN criado",
+      msg: `${parsed.data.cargo} criado`,
       usuario: {
         id: user?.id,
         nome: user?.nome,

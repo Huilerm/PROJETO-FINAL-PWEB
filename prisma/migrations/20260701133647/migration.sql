@@ -55,9 +55,11 @@ CREATE TABLE "professor" (
     "id" TEXT NOT NULL,
     "siape" TEXT NOT NULL,
     "email_siape" TEXT,
-    "telefones_institicionais" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "telefones_institucionais" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "telefones_pessoais" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "emPGD" BOOLEAN,
+    "email_notificacoes" TEXT,
+    "email_classroom" TEXT,
     "titulacao" TEXT,
     "escolaridade" TEXT,
     "grupo_sanguineo" TEXT,
@@ -174,10 +176,11 @@ CREATE TABLE "identidade" (
 -- CreateTable
 CREATE TABLE "titulo_eleitor" (
     "id" TEXT NOT NULL,
-    "numero" INTEGER NOT NULL,
+    "numero" TEXT NOT NULL,
     "zona_eleitoral" TEXT NOT NULL,
     "secao_eleitoral" TEXT NOT NULL,
     "UF" TEXT NOT NULL,
+    "fk_usuario" TEXT NOT NULL,
 
     CONSTRAINT "titulo_eleitor_pkey" PRIMARY KEY ("id")
 );
@@ -289,6 +292,9 @@ CREATE UNIQUE INDEX "identidade_rg_key" ON "identidade"("rg");
 CREATE UNIQUE INDEX "identidade_cpf_key" ON "identidade"("cpf");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "titulo_eleitor_fk_usuario_key" ON "titulo_eleitor"("fk_usuario");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "renda_familiar_fk_inscricao_key" ON "renda_familiar"("fk_inscricao");
 
 -- CreateIndex
@@ -326,6 +332,9 @@ ALTER TABLE "inscricao" ADD CONSTRAINT "inscricao_fk_aluno_fkey" FOREIGN KEY ("f
 
 -- AddForeignKey
 ALTER TABLE "inscricao" ADD CONSTRAINT "inscricao_fk_curso_fkey" FOREIGN KEY ("fk_curso") REFERENCES "curso"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "titulo_eleitor" ADD CONSTRAINT "titulo_eleitor_fk_usuario_fkey" FOREIGN KEY ("fk_usuario") REFERENCES "usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "renda_familiar" ADD CONSTRAINT "renda_familiar_fk_inscricao_fkey" FOREIGN KEY ("fk_inscricao") REFERENCES "inscricao"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

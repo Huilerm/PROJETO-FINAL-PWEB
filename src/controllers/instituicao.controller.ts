@@ -29,12 +29,6 @@ export async function instituicao(req: Request, res: Response, next: NextFunctio
 
 export async function cadastrar(req: Request, res: Response, next: NextFunction) {
     try {
-        const verificaUsuario = req.user;
-
-        if(verificaUsuario.roleId !== "ADMIN" && verificaUsuario.roleId !== "DEPPI") {
-            return res.status(403).json({ msg: "Acesso negado" });
-        }
-
         const dados = cadastrarInstituicao.parse(req.body);
         const cadastro = await instituicaoService.criarInstituicao(dados);
 
@@ -61,7 +55,7 @@ export async function excluir(req: Request, res: Response, next: NextFunction) {
         const id = req.body.id;
         const deletarInstituicao = instituicaoService.excluir(id);
 
-        res.status(200).json({ msg: "Instituição excluída", instituicao: deletarInstituicao });
+        res.status(200).json({ msg: "Instituição excluída" });
     } catch (error) {
         next(error);
     }
