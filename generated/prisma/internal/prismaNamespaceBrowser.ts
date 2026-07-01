@@ -66,7 +66,8 @@ export const ModelName = {
   Auditoria: 'Auditoria',
   Cargo: 'Cargo',
   Permissoes: 'Permissoes',
-  Historico: 'Historico'
+  Historico: 'Historico',
+  Documento: 'Documento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -120,9 +121,11 @@ export const ProfessorScalarFieldEnum = {
   id: 'id',
   siape: 'siape',
   emailSiape: 'emailSiape',
-  telefonesInstiticionais: 'telefonesInstiticionais',
+  telefonesInstitucionais: 'telefonesInstitucionais',
   telefonesPessoais: 'telefonesPessoais',
   emPGD: 'emPGD',
+  emailNotificacoes: 'emailNotificacoes',
+  emailClassroom: 'emailClassroom',
   titulacao: 'titulacao',
   escolaridade: 'escolaridade',
   grupoSanguineo: 'grupoSanguineo',
@@ -304,6 +307,21 @@ export const HistoricoScalarFieldEnum = {
 } as const
 
 export type HistoricoScalarFieldEnum = (typeof HistoricoScalarFieldEnum)[keyof typeof HistoricoScalarFieldEnum]
+
+
+export const DocumentoScalarFieldEnum = {
+  id: 'id',
+  nomeOriginal: 'nomeOriginal',
+  nomeArquivo: 'nomeArquivo',
+  caminho: 'caminho',
+  tipoMime: 'tipoMime',
+  tamanho: 'tamanho',
+  categoria: 'categoria',
+  criadoEm: 'criadoEm',
+  fkInscricao: 'fkInscricao'
+} as const
+
+export type DocumentoScalarFieldEnum = (typeof DocumentoScalarFieldEnum)[keyof typeof DocumentoScalarFieldEnum]
 
 
 export const SortOrder = {

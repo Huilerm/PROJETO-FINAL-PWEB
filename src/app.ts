@@ -9,9 +9,12 @@ import inscricaoRouter from "./routes/inscricao.routes.js";
 import { courseRoutes } from "./routes/course.routes.js";
 import instituicaoRoutes from "./routes/instituicao.routes.js";
 
+import documentoRouter from "./routes/documento.routes.js";
+
 const PORT = process.env.PORT ?? 3000;
 const app = express();
 app.use(express.json());
+app.use("/documentos", documentoRouter);
 
 // ── Rotas ────────────────────────────────────────────────────────
 app.use("/auth", authRouter);

@@ -57,7 +57,7 @@ model Aluno {
 }
 
 model Professor {
-  id id String @id @default(uuid())
+ id String @id @default(uuid())
 
   siape                   String   @unique
   emailSiape              String?  @unique @map("email_siape")
@@ -187,6 +187,7 @@ model Inscricao {
   status        StatusInscricao @default(PENDENTE) @map("curso_status")
   rendaFamiliar RendaFamiliar?
   historico     Historico[]
+  documentos    Documento[]
 
   fkAluno String @map("fk_aluno")
   aluno   Aluno  @relation(fields: [fkAluno], references: [id])
@@ -345,4 +346,31 @@ enum Cargos {
   PROFESSOR
   ADMIN
   DEPPI
+}
+
+model Documento {
+  id String @id @default(uuid())
+
+  nomeOriginal String  @map("nome_original")
+  nomeArquivo  String  @map("nome_arquivo") // nome único salvo em disco
+  caminho      String  // caminho relativo de armazenamento
+  tipoMime     String  @map("tipo_mime")
+  tamanho      Int     // bytes
+  categoria    CategoriaDocumento? @default(OUTRO)
+
+  criadoEm DateTime @default(now()) @map("criado_em")
+
+  fkInscricao String    @map("fk_inscricao")
+  inscricao   Inscricao @relation(fields: [fkInscricao], references: [id])
+
+  @@map("documento")
+}
+
+enum CategoriaDocumento {
+  RG
+  CPF
+  COMPROVANTE_RESIDENCIA
+  COMPROVANTE_RENDA
+  HISTORICO_ESCOLAR
+  OUTRO
 }

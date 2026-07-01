@@ -121,3 +121,8 @@ export type Permissoes = Prisma.PermissoesModel
  * 
  */
 export type Historico = Prisma.HistoricoModel
+/**
+ * Model Documento
+ * 
+ */
+export type Documento = Prisma.DocumentoModel

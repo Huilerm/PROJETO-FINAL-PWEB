@@ -382,6 +382,23 @@ export type EnumCargosWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumCargosFilter<$PrismaModel>
 }
 
+export type EnumCategoriaDocumentoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaDocumento | Prisma.EnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaDocumentoNullableFilter<$PrismaModel> | $Enums.CategoriaDocumento | null
+}
+
+export type EnumCategoriaDocumentoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaDocumento | Prisma.EnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaDocumentoNullableWithAggregatesFilter<$PrismaModel> | $Enums.CategoriaDocumento | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCategoriaDocumentoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCategoriaDocumentoNullableFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -723,6 +740,23 @@ export type NestedEnumCargosWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumCargosFilter<$PrismaModel>
   _max?: Prisma.NestedEnumCargosFilter<$PrismaModel>
+}
+
+export type NestedEnumCategoriaDocumentoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaDocumento | Prisma.EnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaDocumentoNullableFilter<$PrismaModel> | $Enums.CategoriaDocumento | null
+}
+
+export type NestedEnumCategoriaDocumentoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CategoriaDocumento | Prisma.EnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CategoriaDocumento[] | Prisma.ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCategoriaDocumentoNullableWithAggregatesFilter<$PrismaModel> | $Enums.CategoriaDocumento | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCategoriaDocumentoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCategoriaDocumentoNullableFilter<$PrismaModel>
 }
 
 

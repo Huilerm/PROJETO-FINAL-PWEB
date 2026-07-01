@@ -11,6 +11,12 @@ import {
 import { authMiddleware } from "../middleware/auth.middleware";
 import { verificarPermissao } from "../middleware/rbac.middleware";
 import { adicionarRenda } from "../controllers/inscricao.controller";
+import { upload } from "../middleware/upload.middleware";
+import {
+  enviar,
+  listarDaInscricao,
+} from "../controllers/documento.controller";
+
 
 const inscricaoRouter = Router();
 
@@ -24,6 +30,19 @@ inscricaoRouter.post(
   "/:id/renda",
   authMiddleware,
   adicionarRenda  
+);
+
+inscricaoRouter.post(
+  "/:id/documentos",
+  authMiddleware,
+  upload.single("arquivo"),
+  enviar
+);
+
+inscricaoRouter.get(
+  "/:id/documentos",
+  authMiddleware,
+  listarDaInscricao
 );
 
 inscricaoRouter.use(authMiddleware, verificarPermissao("GERENCIAR_INSCRICAO"));
