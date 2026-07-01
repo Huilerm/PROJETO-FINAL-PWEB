@@ -14,7 +14,6 @@ import documentoRouter from "./routes/documento.routes.js";
 const PORT = process.env.PORT ?? 3000;
 const app = express();
 app.use(express.json());
-app.use("/documentos", documentoRouter);
 
 // ── Rotas ────────────────────────────────────────────────────────
 app.use("/auth", authRouter);
@@ -23,6 +22,7 @@ app.use("/admin", adminRouter);
 app.use("/inscricoes", inscricaoRouter);
 app.use("/cursos", courseRoutes);
 app.use("/instituicao", instituicaoRoutes);
+app.use("/documentos", documentoRouter);
 // ── Rotas ────────────────────────────────────────────────────────
 
 // ── Verificar servidor ──────────────────────────────────
