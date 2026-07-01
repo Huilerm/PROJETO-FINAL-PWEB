@@ -10,6 +10,9 @@ import { courseRoutes } from "./routes/course.routes.js";
 import instituicaoRoutes from "./routes/instituicao.routes.js";
 import { professorRoutes } from "./routes/professor.routes.js";
 import relatorioRouter from "./routes/relatorio.routes.js";
+import { courseRoutes } from "./routes/course.routes.js";
+import instituicaoRoutes from "./routes/instituicao.routes.js";
+import documentoRouter from "./routes/documento.routes.js";
 
 const PORT = process.env.PORT ?? 3000;
 const app = express();
