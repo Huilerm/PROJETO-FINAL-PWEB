@@ -57,6 +57,7 @@ export const ModelName = {
   Endereco: 'Endereco',
   DadosBancarios: 'DadosBancarios',
   Curso: 'Curso',
+  Capa: 'Capa',
   AlocacaoProfessor: 'AlocacaoProfessor',
   Instituicao: 'Instituicao',
   Inscricao: 'Inscricao',
@@ -66,7 +67,8 @@ export const ModelName = {
   Auditoria: 'Auditoria',
   Cargo: 'Cargo',
   Permissoes: 'Permissoes',
-  Historico: 'Historico'
+  Historico: 'Historico',
+  Documento: 'Documento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -188,10 +190,24 @@ export const CursoScalarFieldEnum = {
   horarioInicio: 'horarioInicio',
   horarioFim: 'horarioFim',
   diasSemana: 'diasSemana',
-  fkInstituicao: 'fkInstituicao'
+  fkInstituicao: 'fkInstituicao',
+  capaID: 'capaID'
 } as const
 
 export type CursoScalarFieldEnum = (typeof CursoScalarFieldEnum)[keyof typeof CursoScalarFieldEnum]
+
+
+export const CapaScalarFieldEnum = {
+  id: 'id',
+  nomeArquivo: 'nomeArquivo',
+  nomeOriginal: 'nomeOriginal',
+  mimeType: 'mimeType',
+  size: 'size',
+  path: 'path',
+  dataCriacao: 'dataCriacao'
+} as const
+
+export type CapaScalarFieldEnum = (typeof CapaScalarFieldEnum)[keyof typeof CapaScalarFieldEnum]
 
 
 export const AlocacaoProfessorScalarFieldEnum = {
@@ -306,6 +322,21 @@ export const HistoricoScalarFieldEnum = {
 } as const
 
 export type HistoricoScalarFieldEnum = (typeof HistoricoScalarFieldEnum)[keyof typeof HistoricoScalarFieldEnum]
+
+
+export const DocumentoScalarFieldEnum = {
+  id: 'id',
+  nomeOriginal: 'nomeOriginal',
+  nomeArquivo: 'nomeArquivo',
+  caminho: 'caminho',
+  tipoMime: 'tipoMime',
+  tamanho: 'tamanho',
+  categoria: 'categoria',
+  criadoEm: 'criadoEm',
+  fkInscricao: 'fkInscricao'
+} as const
+
+export type DocumentoScalarFieldEnum = (typeof DocumentoScalarFieldEnum)[keyof typeof DocumentoScalarFieldEnum]
 
 
 export const SortOrder = {

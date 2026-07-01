@@ -9,6 +9,7 @@ import inscricaoRouter from "./routes/inscricao.routes.js";
 import { courseRoutes } from "./routes/course.routes.js";
 import instituicaoRoutes from "./routes/instituicao.routes.js";
 import { professorRoutes } from "./routes/professor.routes.js";
+import relatorioRouter from "./routes/relatorio.routes.js";
 
 const PORT = process.env.PORT ?? 3000;
 const app = express();
@@ -22,6 +23,8 @@ app.use("/inscricoes", inscricaoRouter);
 app.use("/cursos", courseRoutes);
 app.use("/instituicao", instituicaoRoutes);
 app.use(professorRoutes);
+app.use("/documentos", documentoRouter);
+app.use("/admin/relatorios", relatorioRouter);
 // ── Rotas ────────────────────────────────────────────────────────
 
 // ── Verificar servidor ──────────────────────────────────
@@ -33,12 +36,24 @@ app.get("/", (_req, res) => {
 // ── Verifica se houve erro ─────────────────────────────────────────────────
 app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof AppError) {
-    res.status(err.statusCode).json({ mensagem: err.message });
-    return;
+    return res.status(err.statusCode).json({
+      mensagem: err.message
+    });
   }
 
   console.error("Erro inesperado:", err);
-  res.status(500).json({ mensagem: "Erro interno no servidor." });
+
+  if (err instanceof Error) {
+    return res.status(500).json({
+      mensagem: err.message,
+      stack: err.stack
+    });
+  }
+
+  return res.status(500).json({
+    mensagem: "Erro desconhecido",
+    erro: err
+  });
 });
 // ── Verifica se houve erro ─────────────────────────────────────────────────
 

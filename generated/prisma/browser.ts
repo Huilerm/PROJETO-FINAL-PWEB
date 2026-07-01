@@ -48,6 +48,11 @@ export type DadosBancarios = Prisma.DadosBancariosModel
  */
 export type Curso = Prisma.CursoModel
 /**
+ * Model Capa
+ * 
+ */
+export type Capa = Prisma.CapaModel
+/**
  * Model AlocacaoProfessor
  * 
  */
@@ -97,3 +102,8 @@ export type Permissoes = Prisma.PermissoesModel
  * 
  */
 export type Historico = Prisma.HistoricoModel
+/**
+ * Model Documento
+ * 
+ */
+export type Documento = Prisma.DocumentoModel

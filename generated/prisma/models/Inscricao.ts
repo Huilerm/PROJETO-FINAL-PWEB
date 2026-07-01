@@ -184,6 +184,7 @@ export type InscricaoWhereInput = {
   fkCurso?: Prisma.StringFilter<"Inscricao"> | string
   rendaFamiliar?: Prisma.XOR<Prisma.RendaFamiliarNullableScalarRelationFilter, Prisma.RendaFamiliarWhereInput> | null
   historico?: Prisma.HistoricoListRelationFilter
+  documentos?: Prisma.DocumentoListRelationFilter
   aluno?: Prisma.XOR<Prisma.AlunoScalarRelationFilter, Prisma.AlunoWhereInput>
   curso?: Prisma.XOR<Prisma.CursoScalarRelationFilter, Prisma.CursoWhereInput>
 }
@@ -196,6 +197,7 @@ export type InscricaoOrderByWithRelationInput = {
   fkCurso?: Prisma.SortOrder
   rendaFamiliar?: Prisma.RendaFamiliarOrderByWithRelationInput
   historico?: Prisma.HistoricoOrderByRelationAggregateInput
+  documentos?: Prisma.DocumentoOrderByRelationAggregateInput
   aluno?: Prisma.AlunoOrderByWithRelationInput
   curso?: Prisma.CursoOrderByWithRelationInput
 }
@@ -211,6 +213,7 @@ export type InscricaoWhereUniqueInput = Prisma.AtLeast<{
   fkCurso?: Prisma.StringFilter<"Inscricao"> | string
   rendaFamiliar?: Prisma.XOR<Prisma.RendaFamiliarNullableScalarRelationFilter, Prisma.RendaFamiliarWhereInput> | null
   historico?: Prisma.HistoricoListRelationFilter
+  documentos?: Prisma.DocumentoListRelationFilter
   aluno?: Prisma.XOR<Prisma.AlunoScalarRelationFilter, Prisma.AlunoWhereInput>
   curso?: Prisma.XOR<Prisma.CursoScalarRelationFilter, Prisma.CursoWhereInput>
 }, "id">
@@ -243,6 +246,7 @@ export type InscricaoCreateInput = {
   status?: $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarCreateNestedOneWithoutInscricaoInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoCreateNestedManyWithoutInscricaoInput
   aluno: Prisma.AlunoCreateNestedOneWithoutInscricaosInput
   curso: Prisma.CursoCreateNestedOneWithoutInscricaoInput
 }
@@ -255,6 +259,7 @@ export type InscricaoUncheckedCreateInput = {
   fkCurso: string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedCreateNestedOneWithoutInscricaoInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutInscricaoInput
 }
 
 export type InscricaoUpdateInput = {
@@ -263,6 +268,7 @@ export type InscricaoUpdateInput = {
   status?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarUpdateOneWithoutInscricaoNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUpdateManyWithoutInscricaoNestedInput
   aluno?: Prisma.AlunoUpdateOneRequiredWithoutInscricaosNestedInput
   curso?: Prisma.CursoUpdateOneRequiredWithoutInscricaoNestedInput
 }
@@ -275,6 +281,7 @@ export type InscricaoUncheckedUpdateInput = {
   fkCurso?: Prisma.StringFieldUpdateOperationsInput | string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedUpdateOneWithoutInscricaoNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutInscricaoNestedInput
 }
 
 export type InscricaoCreateManyInput = {
@@ -454,12 +461,27 @@ export type InscricaoUpdateOneRequiredWithoutHistoricoNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InscricaoUpdateToOneWithWhereWithoutHistoricoInput, Prisma.InscricaoUpdateWithoutHistoricoInput>, Prisma.InscricaoUncheckedUpdateWithoutHistoricoInput>
 }
 
+export type InscricaoCreateNestedOneWithoutDocumentosInput = {
+  create?: Prisma.XOR<Prisma.InscricaoCreateWithoutDocumentosInput, Prisma.InscricaoUncheckedCreateWithoutDocumentosInput>
+  connectOrCreate?: Prisma.InscricaoCreateOrConnectWithoutDocumentosInput
+  connect?: Prisma.InscricaoWhereUniqueInput
+}
+
+export type InscricaoUpdateOneRequiredWithoutDocumentosNestedInput = {
+  create?: Prisma.XOR<Prisma.InscricaoCreateWithoutDocumentosInput, Prisma.InscricaoUncheckedCreateWithoutDocumentosInput>
+  connectOrCreate?: Prisma.InscricaoCreateOrConnectWithoutDocumentosInput
+  upsert?: Prisma.InscricaoUpsertWithoutDocumentosInput
+  connect?: Prisma.InscricaoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InscricaoUpdateToOneWithWhereWithoutDocumentosInput, Prisma.InscricaoUpdateWithoutDocumentosInput>, Prisma.InscricaoUncheckedUpdateWithoutDocumentosInput>
+}
+
 export type InscricaoCreateWithoutAlunoInput = {
   id?: string
   data?: Date | string
   status?: $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarCreateNestedOneWithoutInscricaoInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoCreateNestedManyWithoutInscricaoInput
   curso: Prisma.CursoCreateNestedOneWithoutInscricaoInput
 }
 
@@ -470,6 +492,7 @@ export type InscricaoUncheckedCreateWithoutAlunoInput = {
   fkCurso: string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedCreateNestedOneWithoutInscricaoInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutInscricaoInput
 }
 
 export type InscricaoCreateOrConnectWithoutAlunoInput = {
@@ -515,6 +538,7 @@ export type InscricaoCreateWithoutCursoInput = {
   status?: $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarCreateNestedOneWithoutInscricaoInput
   historico?: Prisma.HistoricoCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoCreateNestedManyWithoutInscricaoInput
   aluno: Prisma.AlunoCreateNestedOneWithoutInscricaosInput
 }
 
@@ -525,6 +549,7 @@ export type InscricaoUncheckedCreateWithoutCursoInput = {
   fkAluno: string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedCreateNestedOneWithoutInscricaoInput
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutInscricaoInput
 }
 
 export type InscricaoCreateOrConnectWithoutCursoInput = {
@@ -558,6 +583,7 @@ export type InscricaoCreateWithoutRendaFamiliarInput = {
   data?: Date | string
   status?: $Enums.StatusInscricao
   historico?: Prisma.HistoricoCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoCreateNestedManyWithoutInscricaoInput
   aluno: Prisma.AlunoCreateNestedOneWithoutInscricaosInput
   curso: Prisma.CursoCreateNestedOneWithoutInscricaoInput
 }
@@ -569,6 +595,7 @@ export type InscricaoUncheckedCreateWithoutRendaFamiliarInput = {
   fkAluno: string
   fkCurso: string
   historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutInscricaoInput
+  documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutInscricaoInput
 }
 
 export type InscricaoCreateOrConnectWithoutRendaFamiliarInput = {
@@ -592,6 +619,7 @@ export type InscricaoUpdateWithoutRendaFamiliarInput = {
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   historico?: Prisma.HistoricoUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUpdateManyWithoutInscricaoNestedInput
   aluno?: Prisma.AlunoUpdateOneRequiredWithoutInscricaosNestedInput
   curso?: Prisma.CursoUpdateOneRequiredWithoutInscricaoNestedInput
 }
@@ -603,6 +631,7 @@ export type InscricaoUncheckedUpdateWithoutRendaFamiliarInput = {
   fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
   fkCurso?: Prisma.StringFieldUpdateOperationsInput | string
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutInscricaoNestedInput
 }
 
 export type InscricaoCreateWithoutHistoricoInput = {
@@ -610,6 +639,7 @@ export type InscricaoCreateWithoutHistoricoInput = {
   data?: Date | string
   status?: $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarCreateNestedOneWithoutInscricaoInput
+  documentos?: Prisma.DocumentoCreateNestedManyWithoutInscricaoInput
   aluno: Prisma.AlunoCreateNestedOneWithoutInscricaosInput
   curso: Prisma.CursoCreateNestedOneWithoutInscricaoInput
 }
@@ -621,6 +651,7 @@ export type InscricaoUncheckedCreateWithoutHistoricoInput = {
   fkAluno: string
   fkCurso: string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedCreateNestedOneWithoutInscricaoInput
+  documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutInscricaoInput
 }
 
 export type InscricaoCreateOrConnectWithoutHistoricoInput = {
@@ -644,6 +675,7 @@ export type InscricaoUpdateWithoutHistoricoInput = {
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarUpdateOneWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUpdateManyWithoutInscricaoNestedInput
   aluno?: Prisma.AlunoUpdateOneRequiredWithoutInscricaosNestedInput
   curso?: Prisma.CursoUpdateOneRequiredWithoutInscricaoNestedInput
 }
@@ -655,6 +687,63 @@ export type InscricaoUncheckedUpdateWithoutHistoricoInput = {
   fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
   fkCurso?: Prisma.StringFieldUpdateOperationsInput | string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedUpdateOneWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutInscricaoNestedInput
+}
+
+export type InscricaoCreateWithoutDocumentosInput = {
+  id?: string
+  data?: Date | string
+  status?: $Enums.StatusInscricao
+  rendaFamiliar?: Prisma.RendaFamiliarCreateNestedOneWithoutInscricaoInput
+  historico?: Prisma.HistoricoCreateNestedManyWithoutInscricaoInput
+  aluno: Prisma.AlunoCreateNestedOneWithoutInscricaosInput
+  curso: Prisma.CursoCreateNestedOneWithoutInscricaoInput
+}
+
+export type InscricaoUncheckedCreateWithoutDocumentosInput = {
+  id?: string
+  data?: Date | string
+  status?: $Enums.StatusInscricao
+  fkAluno: string
+  fkCurso: string
+  rendaFamiliar?: Prisma.RendaFamiliarUncheckedCreateNestedOneWithoutInscricaoInput
+  historico?: Prisma.HistoricoUncheckedCreateNestedManyWithoutInscricaoInput
+}
+
+export type InscricaoCreateOrConnectWithoutDocumentosInput = {
+  where: Prisma.InscricaoWhereUniqueInput
+  create: Prisma.XOR<Prisma.InscricaoCreateWithoutDocumentosInput, Prisma.InscricaoUncheckedCreateWithoutDocumentosInput>
+}
+
+export type InscricaoUpsertWithoutDocumentosInput = {
+  update: Prisma.XOR<Prisma.InscricaoUpdateWithoutDocumentosInput, Prisma.InscricaoUncheckedUpdateWithoutDocumentosInput>
+  create: Prisma.XOR<Prisma.InscricaoCreateWithoutDocumentosInput, Prisma.InscricaoUncheckedCreateWithoutDocumentosInput>
+  where?: Prisma.InscricaoWhereInput
+}
+
+export type InscricaoUpdateToOneWithWhereWithoutDocumentosInput = {
+  where?: Prisma.InscricaoWhereInput
+  data: Prisma.XOR<Prisma.InscricaoUpdateWithoutDocumentosInput, Prisma.InscricaoUncheckedUpdateWithoutDocumentosInput>
+}
+
+export type InscricaoUpdateWithoutDocumentosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  rendaFamiliar?: Prisma.RendaFamiliarUpdateOneWithoutInscricaoNestedInput
+  historico?: Prisma.HistoricoUpdateManyWithoutInscricaoNestedInput
+  aluno?: Prisma.AlunoUpdateOneRequiredWithoutInscricaosNestedInput
+  curso?: Prisma.CursoUpdateOneRequiredWithoutInscricaoNestedInput
+}
+
+export type InscricaoUncheckedUpdateWithoutDocumentosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
+  fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
+  fkCurso?: Prisma.StringFieldUpdateOperationsInput | string
+  rendaFamiliar?: Prisma.RendaFamiliarUncheckedUpdateOneWithoutInscricaoNestedInput
+  historico?: Prisma.HistoricoUncheckedUpdateManyWithoutInscricaoNestedInput
 }
 
 export type InscricaoCreateManyAlunoInput = {
@@ -670,6 +759,7 @@ export type InscricaoUpdateWithoutAlunoInput = {
   status?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarUpdateOneWithoutInscricaoNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUpdateManyWithoutInscricaoNestedInput
   curso?: Prisma.CursoUpdateOneRequiredWithoutInscricaoNestedInput
 }
 
@@ -680,6 +770,7 @@ export type InscricaoUncheckedUpdateWithoutAlunoInput = {
   fkCurso?: Prisma.StringFieldUpdateOperationsInput | string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedUpdateOneWithoutInscricaoNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutInscricaoNestedInput
 }
 
 export type InscricaoUncheckedUpdateManyWithoutAlunoInput = {
@@ -702,6 +793,7 @@ export type InscricaoUpdateWithoutCursoInput = {
   status?: Prisma.EnumStatusInscricaoFieldUpdateOperationsInput | $Enums.StatusInscricao
   rendaFamiliar?: Prisma.RendaFamiliarUpdateOneWithoutInscricaoNestedInput
   historico?: Prisma.HistoricoUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUpdateManyWithoutInscricaoNestedInput
   aluno?: Prisma.AlunoUpdateOneRequiredWithoutInscricaosNestedInput
 }
 
@@ -712,6 +804,7 @@ export type InscricaoUncheckedUpdateWithoutCursoInput = {
   fkAluno?: Prisma.StringFieldUpdateOperationsInput | string
   rendaFamiliar?: Prisma.RendaFamiliarUncheckedUpdateOneWithoutInscricaoNestedInput
   historico?: Prisma.HistoricoUncheckedUpdateManyWithoutInscricaoNestedInput
+  documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutInscricaoNestedInput
 }
 
 export type InscricaoUncheckedUpdateManyWithoutCursoInput = {
@@ -728,10 +821,12 @@ export type InscricaoUncheckedUpdateManyWithoutCursoInput = {
 
 export type InscricaoCountOutputType = {
   historico: number
+  documentos: number
 }
 
 export type InscricaoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   historico?: boolean | InscricaoCountOutputTypeCountHistoricoArgs
+  documentos?: boolean | InscricaoCountOutputTypeCountDocumentosArgs
 }
 
 /**
@@ -751,6 +846,13 @@ export type InscricaoCountOutputTypeCountHistoricoArgs<ExtArgs extends runtime.T
   where?: Prisma.HistoricoWhereInput
 }
 
+/**
+ * InscricaoCountOutputType without action
+ */
+export type InscricaoCountOutputTypeCountDocumentosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentoWhereInput
+}
+
 
 export type InscricaoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -760,6 +862,7 @@ export type InscricaoSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   fkCurso?: boolean
   rendaFamiliar?: boolean | Prisma.Inscricao$rendaFamiliarArgs<ExtArgs>
   historico?: boolean | Prisma.Inscricao$historicoArgs<ExtArgs>
+  documentos?: boolean | Prisma.Inscricao$documentosArgs<ExtArgs>
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   curso?: boolean | Prisma.CursoDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.InscricaoCountOutputTypeDefaultArgs<ExtArgs>
@@ -797,6 +900,7 @@ export type InscricaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type InscricaoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rendaFamiliar?: boolean | Prisma.Inscricao$rendaFamiliarArgs<ExtArgs>
   historico?: boolean | Prisma.Inscricao$historicoArgs<ExtArgs>
+  documentos?: boolean | Prisma.Inscricao$documentosArgs<ExtArgs>
   aluno?: boolean | Prisma.AlunoDefaultArgs<ExtArgs>
   curso?: boolean | Prisma.CursoDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.InscricaoCountOutputTypeDefaultArgs<ExtArgs>
@@ -815,6 +919,7 @@ export type $InscricaoPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     rendaFamiliar: Prisma.$RendaFamiliarPayload<ExtArgs> | null
     historico: Prisma.$HistoricoPayload<ExtArgs>[]
+    documentos: Prisma.$DocumentoPayload<ExtArgs>[]
     aluno: Prisma.$AlunoPayload<ExtArgs>
     curso: Prisma.$CursoPayload<ExtArgs>
   }
@@ -1220,6 +1325,7 @@ export interface Prisma__InscricaoClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   rendaFamiliar<T extends Prisma.Inscricao$rendaFamiliarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inscricao$rendaFamiliarArgs<ExtArgs>>): Prisma.Prisma__RendaFamiliarClient<runtime.Types.Result.GetResult<Prisma.$RendaFamiliarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   historico<T extends Prisma.Inscricao$historicoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inscricao$historicoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HistoricoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentos<T extends Prisma.Inscricao$documentosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inscricao$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   aluno<T extends Prisma.AlunoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AlunoDefaultArgs<ExtArgs>>): Prisma.Prisma__AlunoClient<runtime.Types.Result.GetResult<Prisma.$AlunoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   curso<T extends Prisma.CursoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CursoDefaultArgs<ExtArgs>>): Prisma.Prisma__CursoClient<runtime.Types.Result.GetResult<Prisma.$CursoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1697,6 +1803,30 @@ export type Inscricao$historicoArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.HistoricoScalarFieldEnum | Prisma.HistoricoScalarFieldEnum[]
+}
+
+/**
+ * Inscricao.documentos
+ */
+export type Inscricao$documentosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Documento
+   */
+  select?: Prisma.DocumentoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Documento
+   */
+  omit?: Prisma.DocumentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentoInclude<ExtArgs> | null
+  where?: Prisma.DocumentoWhereInput
+  orderBy?: Prisma.DocumentoOrderByWithRelationInput | Prisma.DocumentoOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentoScalarFieldEnum | Prisma.DocumentoScalarFieldEnum[]
 }
 
 /**

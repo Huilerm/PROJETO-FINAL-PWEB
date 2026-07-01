@@ -79,3 +79,15 @@ export const Cargos = {
 } as const
 
 export type Cargos = (typeof Cargos)[keyof typeof Cargos]
+
+
+export const CategoriaDocumento = {
+  RG: 'RG',
+  CPF: 'CPF',
+  COMPROVANTE_RESIDENCIA: 'COMPROVANTE_RESIDENCIA',
+  COMPROVANTE_RENDA: 'COMPROVANTE_RENDA',
+  HISTORICO_ESCOLAR: 'HISTORICO_ESCOLAR',
+  OUTRO: 'OUTRO'
+} as const
+
+export type CategoriaDocumento = (typeof CategoriaDocumento)[keyof typeof CategoriaDocumento]
