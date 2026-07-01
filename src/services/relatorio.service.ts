@@ -85,3 +85,27 @@ export async function resumoGeralSistema() {
     cursosPorSituacao: normalizarContagem(cursosAgrupados, ORDEM_STATUS_CURSO),
   };
 }
+
+export async function getRelatorio() {
+  const cursos = await prisma.curso.findMany({
+    select: {
+      id: true,
+      nome: true,
+      status: true,
+      _count: {
+        select: { inscricao: true },
+      },
+    },
+  });
+  return cursos;
+}
+
+export async function gerarCsv() {
+  const cursos = await getRelatorio();
+
+  let csvString = "ID;Nome do Curso;Status;Quantidade de Inscritos\n";
+  cursos.forEach((curso) => {
+    csvString += `${curso.id};${curso.nome};${curso.status};${curso._count.inscricao}\n`;
+  });
+  return csvString;
+}
