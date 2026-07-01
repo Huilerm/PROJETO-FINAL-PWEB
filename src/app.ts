@@ -17,6 +17,9 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/admin", adminRouter);
 app.use("/inscricoes", inscricaoRouter);
+app.use("/cursos", courseRoutes);
+app.use("/instituicao", instituicaoRoutes);
+app.use("/documentos", documentoRouter);
 app.use("/admin/relatorios", relatorioRouter);
 // ── Rotas ────────────────────────────────────────────────────────
 
