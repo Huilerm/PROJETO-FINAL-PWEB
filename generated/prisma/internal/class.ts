@@ -347,6 +347,16 @@ export interface PrismaClient<
     * ```
     */
   get historico(): Prisma.HistoricoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.documento`: Exposes CRUD operations for the **Documento** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Documentos
+    * const documentos = await prisma.documento.findMany()
+    * ```
+    */
+  get documento(): Prisma.DocumentoDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
