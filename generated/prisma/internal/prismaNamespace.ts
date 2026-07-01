@@ -390,6 +390,7 @@ export const ModelName = {
   Endereco: 'Endereco',
   DadosBancarios: 'DadosBancarios',
   Curso: 'Curso',
+  Capa: 'Capa',
   AlocacaoProfessor: 'AlocacaoProfessor',
   Instituicao: 'Instituicao',
   Inscricao: 'Inscricao',
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "aluno" | "professor" | "endereco" | "dadosBancarios" | "curso" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "tituloEleitor" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes" | "historico" | "documento"
+    modelProps: "usuario" | "aluno" | "professor" | "endereco" | "dadosBancarios" | "curso" | "capa" | "alocacaoProfessor" | "instituicao" | "inscricao" | "identidade" | "tituloEleitor" | "rendaFamiliar" | "auditoria" | "cargo" | "permissoes" | "historico" | "documento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -861,6 +862,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CursoCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CursoCountAggregateOutputType> | number
+        }
+      }
+    }
+    Capa: {
+      payload: Prisma.$CapaPayload<ExtArgs>
+      fields: Prisma.CapaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CapaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CapaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        findFirst: {
+          args: Prisma.CapaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CapaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        findMany: {
+          args: Prisma.CapaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>[]
+        }
+        create: {
+          args: Prisma.CapaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        createMany: {
+          args: Prisma.CapaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CapaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>[]
+        }
+        delete: {
+          args: Prisma.CapaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        update: {
+          args: Prisma.CapaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        deleteMany: {
+          args: Prisma.CapaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CapaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CapaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>[]
+        }
+        upsert: {
+          args: Prisma.CapaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        aggregate: {
+          args: Prisma.CapaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCapa>
+        }
+        groupBy: {
+          args: Prisma.CapaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CapaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CapaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CapaCountAggregateOutputType> | number
         }
       }
     }
@@ -1820,10 +1895,24 @@ export const CursoScalarFieldEnum = {
   horarioInicio: 'horarioInicio',
   horarioFim: 'horarioFim',
   diasSemana: 'diasSemana',
-  fkInstituicao: 'fkInstituicao'
+  fkInstituicao: 'fkInstituicao',
+  capaID: 'capaID'
 } as const
 
 export type CursoScalarFieldEnum = (typeof CursoScalarFieldEnum)[keyof typeof CursoScalarFieldEnum]
+
+
+export const CapaScalarFieldEnum = {
+  id: 'id',
+  nomeArquivo: 'nomeArquivo',
+  nomeOriginal: 'nomeOriginal',
+  mimeType: 'mimeType',
+  size: 'size',
+  path: 'path',
+  dataCriacao: 'dataCriacao'
+} as const
+
+export type CapaScalarFieldEnum = (typeof CapaScalarFieldEnum)[keyof typeof CapaScalarFieldEnum]
 
 
 export const AlocacaoProfessorScalarFieldEnum = {
@@ -2306,6 +2395,7 @@ export type GlobalOmitConfig = {
   endereco?: Prisma.EnderecoOmit
   dadosBancarios?: Prisma.DadosBancariosOmit
   curso?: Prisma.CursoOmit
+  capa?: Prisma.CapaOmit
   alocacaoProfessor?: Prisma.AlocacaoProfessorOmit
   instituicao?: Prisma.InstituicaoOmit
   inscricao?: Prisma.InscricaoOmit

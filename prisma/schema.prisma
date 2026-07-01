@@ -35,8 +35,8 @@ model Usuario {
   fkIdentidade String @unique @map("fk_identidade")
   fkEndereco   Int    @map("fk_endereco")
 
-  endereco   Endereco   @relation(fields: [fkEndereco], references: [id])
-  identidade Identidade @relation(fields: [fkIdentidade], references: [id])
+  endereco   Endereco    @relation(fields: [fkEndereco], references: [id])
+  identidade Identidade  @relation(fields: [fkIdentidade], references: [id])
   historico  Historico[]
 
   @@map("usuario")
@@ -59,40 +59,40 @@ model Aluno {
 model Professor {
   id String @id @default(uuid())
 
-  siape                   String   @unique
-  emailSiape              String?  @unique @map("email_siape")
-  
-  telefonesInstitucionais String[]  @default([]) @map("telefones_institucionais")
-  telefonesPessoais       String[]  @default([]) @map("telefones_pessoais")
+  siape      String  @unique
+  emailSiape String? @unique @map("email_siape")
+
+  telefonesInstitucionais String[] @default([]) @map("telefones_institucionais")
+  telefonesPessoais       String[] @default([]) @map("telefones_pessoais")
   emPGD                   Boolean?
-  emailNotificacoes       String?   @map("email_notificacoes") // Campo Novo
-  emailClassroom          String?   @map("email_classroom")    // Campo Novo
+  emailNotificacoes       String?  @map("email_notificacoes") // Campo Novo
+  emailClassroom          String?  @map("email_classroom") // Campo Novo
 
-  titulacao               String?
-  escolaridade            String?
-  grupoSanguineo          String?  @map("grupo_sanguineo")
+  titulacao      String?
+  escolaridade   String?
+  grupoSanguineo String? @map("grupo_sanguineo")
 
-  setorSuap               String?  @map("setor_suap")
-  lotacaoSiape            String?  @map("lotacao_siape")
-  exercicioSiape          String?  @map("execicio_siape")
-  situacao                String?
-  regimeTrabalho          String?  @map("regime_trabalho")
-  jornadaTrabalho         String?  @map("jornada_trabalho")
-  operadorRaioX           Boolean? @map("operador_raiox")
+  setorSuap       String?  @map("setor_suap")
+  lotacaoSiape    String?  @map("lotacao_siape")
+  exercicioSiape  String?  @map("execicio_siape")
+  situacao        String?
+  regimeTrabalho  String?  @map("regime_trabalho")
+  jornadaTrabalho String?  @map("jornada_trabalho")
+  operadorRaioX   Boolean? @map("operador_raiox")
 
-  inicioServicoPublico    DateTime? @map("inicio_servico_publico") @db.Date
-  dataDePosseInstituicao  DateTime? @map("data_posse_instituicao") @db.Date
+  inicioServicoPublico     DateTime? @map("inicio_servico_publico") @db.Date
+  dataDePosseInstituicao   DateTime? @map("data_posse_instituicao") @db.Date
   inicioServicoInstituicao DateTime? @map("inicio_servico_instituicao") @db.Date
   tempoServicoInstituicaao String?   @map("tempo_servico_instituicao")
-  dataPosseCargo          DateTime? @map("data_posse_cargo") @db.Date
-  inicioExercicioCargo    DateTime? @map("inicio_exercicio_cargo") @db.Date
-  tempoServicoCargo       DateTime? @map("tempo_servico_cargo") @db.Date
-  cargoInstitucional      String?   @map("cargo_institucional")
-  classeCargo             String?   @map("classe_cargo")
-  padrao                  String?
-  grupoCargo              String?   @map("grupo_cargo")
-  codigoVaga              Int?      @map("codigo_vaga")
-  NCE                     String?
+  dataPosseCargo           DateTime? @map("data_posse_cargo") @db.Date
+  inicioExercicioCargo     DateTime? @map("inicio_exercicio_cargo") @db.Date
+  tempoServicoCargo        DateTime? @map("tempo_servico_cargo") @db.Date
+  cargoInstitucional       String?   @map("cargo_institucional")
+  classeCargo              String?   @map("classe_cargo")
+  padrao                   String?
+  grupoCargo               String?   @map("grupo_cargo")
+  codigoVaga               Int?      @map("codigo_vaga")
+  NCE                      String?
 
   qtdDependentes Int?    @map("qtd_dependentes")
   pisPasep       String? @map("pis_pasep")
@@ -147,7 +147,25 @@ model Curso {
   fkInstituicao String      @map("fk_instituicao")
   Instituicao   Instituicao @relation(fields: [fkInstituicao], references: [id])
 
+  capaID String? @unique
+  Capa   Capa?   @relation(fields: [capaID], references: [id])
+
   @@map("curso")
+}
+
+model Capa {
+  id String @id @default(uuid())
+
+  nomeArquivo  String @map("nome_arquivo")
+  nomeOriginal String @map("nome_original")
+
+  mimeType String @map("mime_type")
+  size     Int
+  path     String
+
+  cursos Curso?
+
+  dataCriacao DateTime @default(now())
 }
 
 model AlocacaoProfessor {
@@ -163,7 +181,7 @@ model AlocacaoProfessor {
   dataAlocacao DateTime @default(now()) @map("data_alocacao")
 
   @@unique([fkProfessor, fkCurso])
-  @@map("alocacao_professor ")
+  @@map("alocacao_professor")
 }
 
 model Instituicao {
@@ -220,7 +238,7 @@ model TituloEleitor {
   secaoEleitoral String @map("secao_eleitoral")
   UF             String
 
-  fkUsuario String @unique @map("fk_usuario")
+  fkUsuario String  @unique @map("fk_usuario")
   usuario   Usuario @relation(fields: [fkUsuario], references: [id])
 
   @@map("titulo_eleitor")
@@ -351,11 +369,11 @@ enum Cargos {
 model Documento {
   id String @id @default(uuid())
 
-  nomeOriginal String  @map("nome_original")
-  nomeArquivo  String  @map("nome_arquivo") // nome único salvo em disco
-  caminho      String  // caminho relativo de armazenamento
-  tipoMime     String  @map("tipo_mime")
-  tamanho      Int     // bytes
+  nomeOriginal String              @map("nome_original")
+  nomeArquivo  String              @map("nome_arquivo") // nome único salvo em disco
+  caminho      String // caminho relativo de armazenamento
+  tipoMime     String              @map("tipo_mime")
+  tamanho      Int // bytes
   categoria    CategoriaDocumento? @default(OUTRO)
 
   criadoEm DateTime @default(now()) @map("criado_em")
