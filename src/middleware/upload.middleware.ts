@@ -13,17 +13,7 @@ if(!fs.existsSync(BASE_DIR)) {
 }
 
 export const upload = multer({
-  storage: multer.diskStorage({
-    destination(req, file, callback) {
-      callback(null, path.resolve("uploads"));
-    },
-
-    filename(req, file, callback) {
-      const hash = crypto.randomBytes(10).toString("hex");
-      const filename = `${hash}-${file.originalname}`;
-      callback(null, BASE_DIR);
-    }
-  }),
+  storage: multer.memoryStorage(),
 
   limits: {
     fileSize: TAMANHO_MAXIMO,
