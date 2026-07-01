@@ -55,7 +55,7 @@ export async function enviarDocumento({
 
   const subpasta = `inscricoes/${inscricaoId}`;
   const { nomeArquivo, caminho } = await storageService.salvar(
-    file.buffer,
+    file.path,
     file.originalname,
     subpasta,
   );

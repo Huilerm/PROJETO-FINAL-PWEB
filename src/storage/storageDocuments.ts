@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 
-const BASE_DIR = path.resolve(__dirname, "../../uploads");
+const BASE_DIR = path.resolve(process.cwd(), "uploads");
 
 interface ArquivoSalvo {
   nomeArquivo: string;
@@ -10,15 +10,20 @@ interface ArquivoSalvo {
 }
 
 class LocalStorageService {
-  async salvar(buffer: Buffer, nomeOriginal: string, subpasta: string): Promise<ArquivoSalvo> {
+  async salvar(caminhoTemp: string, nomeOriginal: string, subpasta: string): Promise<ArquivoSalvo> {
     const extensao = path.extname(nomeOriginal);
     const nomeArquivo = `${crypto.randomUUID()}${extensao}`;
-    const pastaDestino = path.join(BASE_DIR, subpasta);
+    
+    const pastaDestino = path.resolve(BASE_DIR, subpasta);
 
     await fs.mkdir(pastaDestino, { recursive: true });
 
     const caminhoCompleto = path.join(pastaDestino, nomeArquivo);
-    await fs.writeFile(caminhoCompleto, buffer);
+
+    await fs.copyFile(caminhoTemp, caminhoCompleto);
+    await fs.unlink(caminhoTemp).catch(() => {});
+
+    const caminhoRelativo = path.join(subpasta, nomeArquivo).replace(/\\/g, "/");
 
     return {
       nomeArquivo,
@@ -27,11 +32,15 @@ class LocalStorageService {
   }
 
   async remover(caminhoRelativo: string): Promise<void> {
-    const caminhoCompleto = path.join(BASE_DIR, caminhoRelativo);
+    const caminhoCompleto = path.isAbsolute(caminhoRelativo) ? caminhoRelativo : path.join(BASE_DIR, caminhoRelativo);
     await fs.unlink(caminhoCompleto).catch(() => {});
   }
 
   resolverCaminhoAbsoluto(caminhoRelativo: string): string {
+    if (path.isAbsolute(caminhoRelativo)) {
+      return caminhoRelativo;
+    }
+
     return path.join(BASE_DIR, caminhoRelativo);
   }
 }
