@@ -38,7 +38,7 @@ export const listarProfessores = async (req: Request, res: Response) => {
 // 3. READ ONE - Buscar Professor por ID
 export const buscarProfessorPorId = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const professor = await prisma.professor.findUnique({
       where: { id },
       include: { usuario: true, alocacoes: true } 
@@ -55,7 +55,7 @@ export const buscarProfessorPorId = async (req: Request, res: Response) => {
 // 4. UPDATE - Atualizar Professor (Geral)
 export const atualizarProfessor = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const dados = atualizarProfessorSchema.parse(req.body);
 
     const professorAtualizado = await prisma.professor.update({
@@ -73,7 +73,7 @@ export const atualizarProfessor = async (req: Request, res: Response) => {
 // 4.1 UPDATE - Atualizar Apenas Dados de Conta
 export const atualizarDadosContaProfessor = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     
     // Valida os 9 campos estruturados no schema
     const dados = professorDadosContaSchema.parse(req.body);
@@ -111,7 +111,7 @@ export const atualizarDadosContaProfessor = async (req: Request, res: Response) 
 // 5. DELETE - Deletar Professor
 export const deletarProfessor = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     await prisma.professor.delete({
       where: { id },

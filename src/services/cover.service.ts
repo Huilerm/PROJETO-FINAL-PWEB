@@ -1,6 +1,7 @@
 import path from "path";
 import { AppError } from "../errors/AppError";
 import { prisma } from "../lib/prisma";
+import { storageService } from "../storage/storageDocuments";
 
 interface Cover {
     cursoID: string;
@@ -23,13 +24,20 @@ export class UploadCoverService {
             throw new AppError("Curso não encontrado");
         }
 
+        const subpasta = "covers";
+        const { nomeArquivo, caminho } = await storageService.salvar(
+            file.buffer,
+            file.originalname,
+            subpasta,
+        );
+
         const uploadedCover = await prisma.capa.create({
             data: {
-                nomeArquivo: file.filename,
+                nomeArquivo,
                 nomeOriginal: file.originalname,
                 mimeType: file.mimetype,
                 size: file.size,
-                path: file.path
+                path: caminho
             },
         });
 
