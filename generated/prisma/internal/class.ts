@@ -249,6 +249,16 @@ export interface PrismaClient<
   get curso(): Prisma.CursoDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
+   * `prisma.capa`: Exposes CRUD operations for the **Capa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Capas
+    * const capas = await prisma.capa.findMany()
+    * ```
+    */
+  get capa(): Prisma.CapaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
    * `prisma.alocacaoProfessor`: Exposes CRUD operations for the **AlocacaoProfessor** model.
     * Example usage:
     * ```ts

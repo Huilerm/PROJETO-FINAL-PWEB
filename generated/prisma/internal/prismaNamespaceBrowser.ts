@@ -57,6 +57,7 @@ export const ModelName = {
   Endereco: 'Endereco',
   DadosBancarios: 'DadosBancarios',
   Curso: 'Curso',
+  Capa: 'Capa',
   AlocacaoProfessor: 'AlocacaoProfessor',
   Instituicao: 'Instituicao',
   Inscricao: 'Inscricao',
@@ -189,10 +190,24 @@ export const CursoScalarFieldEnum = {
   horarioInicio: 'horarioInicio',
   horarioFim: 'horarioFim',
   diasSemana: 'diasSemana',
-  fkInstituicao: 'fkInstituicao'
+  fkInstituicao: 'fkInstituicao',
+  capaID: 'capaID'
 } as const
 
 export type CursoScalarFieldEnum = (typeof CursoScalarFieldEnum)[keyof typeof CursoScalarFieldEnum]
+
+
+export const CapaScalarFieldEnum = {
+  id: 'id',
+  nomeArquivo: 'nomeArquivo',
+  nomeOriginal: 'nomeOriginal',
+  mimeType: 'mimeType',
+  size: 'size',
+  path: 'path',
+  dataCriacao: 'dataCriacao'
+} as const
+
+export type CapaScalarFieldEnum = (typeof CapaScalarFieldEnum)[keyof typeof CapaScalarFieldEnum]
 
 
 export const AlocacaoProfessorScalarFieldEnum = {
