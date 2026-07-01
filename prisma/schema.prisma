@@ -57,7 +57,7 @@ model Aluno {
 }
 
 model Professor {
-  id id String @id @default(uuid())
+  id String @id @default(uuid())
 
   siape                   String   @unique
   emailSiape              String?  @unique @map("email_siape")
