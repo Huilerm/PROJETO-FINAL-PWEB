@@ -19,6 +19,9 @@ CREATE TYPE "Acao" AS ENUM ('CREATE', 'UPDATE', 'DELETE');
 -- CreateEnum
 CREATE TYPE "Cargos" AS ENUM ('ALUNO', 'PROFESSOR', 'ADMIN', 'DEPPI');
 
+-- CreateEnum
+CREATE TYPE "CategoriaDocumento" AS ENUM ('RG', 'CPF', 'COMPROVANTE_RESIDENCIA', 'COMPROVANTE_RENDA', 'HISTORICO_ESCOLAR', 'OUTRO');
+
 -- CreateTable
 CREATE TABLE "usuario" (
     "id" TEXT NOT NULL,
@@ -243,6 +246,21 @@ CREATE TABLE "historico" (
 );
 
 -- CreateTable
+CREATE TABLE "documento" (
+    "id" TEXT NOT NULL,
+    "nome_original" TEXT NOT NULL,
+    "nome_arquivo" TEXT NOT NULL,
+    "caminho" TEXT NOT NULL,
+    "tipo_mime" TEXT NOT NULL,
+    "tamanho" INTEGER NOT NULL,
+    "categoria" "CategoriaDocumento" DEFAULT 'OUTRO',
+    "criado_em" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "fk_inscricao" TEXT NOT NULL,
+
+    CONSTRAINT "documento_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_CargoToUsuario" (
     "A" INTEGER NOT NULL,
     "B" TEXT NOT NULL,
@@ -347,6 +365,9 @@ ALTER TABLE "historico" ADD CONSTRAINT "historico_fk_inscricao_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "historico" ADD CONSTRAINT "historico_fk_usuario_responsavel_fkey" FOREIGN KEY ("fk_usuario_responsavel") REFERENCES "usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "documento" ADD CONSTRAINT "documento_fk_inscricao_fkey" FOREIGN KEY ("fk_inscricao") REFERENCES "inscricao"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CargoToUsuario" ADD CONSTRAINT "_CargoToUsuario_A_fkey" FOREIGN KEY ("A") REFERENCES "cargo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
